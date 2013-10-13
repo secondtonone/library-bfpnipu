@@ -1,0 +1,4 @@
+AddDefaultCharset utf-8
+AddHandler application/x-httpd-php .php .htm .html
+php_value max_execution_time 86400
+php_flag magic_quotes_gpc Off

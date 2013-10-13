@@ -1,0 +1,101 @@
+.user,.admin {
+	width: 230px;
+	height: 100px;
+	background-color:rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size:24px;
+	text-align:center;
+	line-height:50px;
+	cursor: pointer;
+	text-decoration:none;
+	display:block;
+	-webkit-transition: All 0.5s ease;
+	-moz-transition: All 0.5s ease;
+	-o-transition: All 0.5s ease;
+	-ms-transition: All 0.5s ease;
+	transition: All 0.5s ease;
+	}
+.user {
+    color: rgb(228, 3, 48);
+	float: left;
+	margin:10% 0 0 15%;
+	text-shadow: 1px 1px 1px black, 0 0 0.6em red;
+	border-left:20px solid rgb(228, 3, 48);
+	}
+.admin {
+	color: rgb(32, 15, 238);
+	float: right;
+	margin:10% 15% 0 0;
+	text-shadow: 1px 1px 2px black, 0 0 0.6em navy;
+	border-right:20px solid rgb(32, 15, 238);
+		}
+.user p, .admin p {
+	color: rgb(199, 199, 199);
+	font-size:12px;
+	text-shadow: 0px 0px 0px gray, 0 0 0.0em gray;
+	color:#3F3F3F;
+	margin-top:-10px;
+		}
+.user:hover p, .admin:hover p {
+	color:#FFF;
+	}
+.user:hover {
+	width: 250px;
+	 background-color:rgba(228, 3, 48, 0.9);
+	-moz-box-shadow: 0 0 0px rgb(0,0,0);
+    -webkit-box-shadow: 0 0 0px rgb(0,0,0); 
+    box-shadow: 0 0 0px rgb(0,0,0);
+	border-left:0px solid rgb(228, 3, 38);
+	color:#FFF;
+	}
+.admin:hover {
+	width: 250px;	
+    background-color:rgba(32, 15, 238, 0.9);
+	-moz-box-shadow: 0 0 0px rgb(0,0,0);
+    -webkit-box-shadow: 0 0 0px rgb(0,0,0); 
+    box-shadow: 0 0 0px rgb(0,0,0);
+	border-right:0px solid rgb(32, 15, 228);
+	color:#FFF;
+	}
+.social {
+	margin:0 auto;
+    height: 23px;
+	width: 80px;
+}
+.social a { 
+    display: inline-block;
+    height: 22px;
+    margin-right: 2px;
+    width: 22px;
+}
+.social a.tw,.social a.fb,.social a.vk,
+.social a.tw:hover ,.social a.fb:hover ,
+.social a.vk:hover { 
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url(../img/share.png);
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.social a.tw { 
+    background-position: 0px 0%;
+}
+.social a.tw:hover { 
+    background-position: 0px 100%;
+}
+.social a.fb { 
+    background-position: -27px 0%;
+}
+.social a.fb:hover { 
+    background-position: -27px 100%;
+}
+.social a.vk { 
+    background-position: -53px 0%;
+}
+.social a.vk:hover { 
+    background-position: -53px 100%;
+}

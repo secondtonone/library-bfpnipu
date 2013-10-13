@@ -1,0 +1,81 @@
+@charset "utf-8";
+@import url("form.css");
+@import url("formreg.css");
+@import url("header.css");
+@import url("index.css");
+@font-face {
+    font-family: Book;
+    src: url(BKANT.ttf);
+   }
+html,body {
+	background-image:url(../img/white-noise.gif);
+	margin:0 auto;
+	padding:0 auto;
+	font-size:14px;
+	font-family:Book;
+	height:100%;
+	color:rgb(12, 6, 207);
+}
+.page {
+	min-width: 800px;
+	max-width: 1200px;
+	height: 300px;	
+	margin:0 auto;
+	}
+.footer {
+	height: 18px;
+	background-color:#ECEAEB;
+	border-top: 1px solid #CCC;
+    margin:0 auto;
+    bottom:0px;
+	position:  fixed;
+	width: 100%;
+	clear:both;
+	text-align:center;
+	vertical-align:50%;
+	font-size:12px;
+	color:rgb(12, 6, 207);
+}
+#attentionForm {
+	margin: 10% auto;
+	padding:10px 10px;
+	width: 500px;
+	background: #FEFEFE;
+   	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font: 26px Book;
+	text-shadow: 1px 1px 2px black, 0 0 0.6em red;
+	color: #FF2B30;
+	-webkit-transition: All 0.5s ease;
+	-moz-transition: All 0.5s ease;
+	-o-transition: All 0.5s ease;
+	-ms-transition: All 0.5s ease;
+	transition: All 0.5s ease;
+}
+
+		
+.attentionText {
+	height: 100%;
+	text-align:center;
+	text-decoration: none;
+	display:block;
+			}
+#attentionForm:hover {
+	background-color:rgba(228, 3, 48, 0.1);
+	box-shadow: 0 0 0px rgb(0,0,0);
+   	-moz-box-shadow: 0 0 0px rgb(0,0,0);
+    -webkit-box-shadow: 0 0 0px rgb(0,0,0);
+
+			}
+
+			
+.attentionText:visited {
+	text-decoration: none;
+	color: #FF2B30;
+			}
+
+#preloader{
+	display:block; 
+	margin:10% auto;
+	}

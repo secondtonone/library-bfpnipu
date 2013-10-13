@@ -1,0 +1,88 @@
+@font-face {
+    font-family: Book;
+    src: url(BKANT.ttf);
+   }
+#loginForm {
+	width: 290px;
+	padding: 24px 24px 0;
+	margin: 100px auto 0;
+	background: #FEFEFE;
+   	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font: 16px/18px Book;
+	color: rgb(12, 6, 207);
+}
+#loginForm .field {
+	margin: 0 0 18px;
+}
+#loginForm .field label {
+	display: block;
+	margin: 0 0 11px;
+}
+#loginForm .field input {
+    font: 14px sans-serif;
+	color:  rgb(12, 6, 207);
+	width: 262px;
+	padding: 9px 13px;
+    border: 1px solid #D2D9DC;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	outline: none;
+}
+#loginForm .field input:focus {
+	border-color: #B7D4EA;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+}
+#forgot {
+	float: right;
+    font-size: 11px;
+	color: #ababab;
+    text-decoration: none;
+	margin: 0;
+}
+#forgot:hover {
+	color: rgb(12, 6, 207);
+    text-decoration: none;
+}
+#loginForm .submit {
+	overflow: hidden;
+	margin: 30px -24px 0;
+	padding: 22px 24px;
+	background: #ECEAEB;
+	border-top: 1px solid #CCC;
+	font-size: 11px;
+}
+#loginForm .submit button {
+	float: right;
+	padding: 6px 20px;
+	height: 30px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(12, 6, 207);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+}
+#loginForm .submit button:hover {
+	background-color: rgb(12, 6, 167);
+}
+.reg {
+	float: left;
+	padding: 6px 20px;
+	height: 17px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(228, 3, 58);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+	text-decoration: none;
+}
+.reg:hover {
+	background-color: rgb(228, 3, 8);
+	}
+
