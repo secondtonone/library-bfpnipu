@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="icon" type="image/png" href="img/favicon.png" />
 <title>Электронная библиотека кафедр БФ ПНИПУ</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
