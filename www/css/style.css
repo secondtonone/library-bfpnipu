@@ -19,7 +19,13 @@ html,body {
 .page {
 	min-width: 800px;
 	max-width: 1200px;
-	height: 300px;	
+	height: 100%;	
+	margin:0 auto;
+	}
+	.wrap {
+	min-width: 800px;
+	max-width: 1200px;
+	height: 200px;	
 	margin:0 auto;
 	}
 .footer {

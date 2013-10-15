@@ -60,15 +60,18 @@
 	color:#FFF;
 	}
 .social {
-	margin:0 auto;
+	margin:5% auto;
     height: 23px;
 	width: 80px;
+    clear:both;
+
 }
 .social a { 
     display: inline-block;
     height: 22px;
     margin-right: 2px;
     width: 22px;
+	
 }
 .social a.tw,.social a.fb,.social a.vk,
 .social a.tw:hover ,.social a.fb:hover ,
