@@ -38,16 +38,16 @@ if ($number_zach==false) { exit;}
 /*
 * Проверка значений формы по БД на совпадение
 */
-$query='SELECT name FROM users WHERE name=?';
+$query='SELECT `name` FROM `users` WHERE name=?';
 $result=$QueryClass->check_login($query,$login,$dbh);
 if (!empty($result)) { exit;}
-$query='SELECT email FROM users WHERE email=?';
+$query='SELECT `email` FROM `users` WHERE email=?';
 $result=$QueryClass->check_email($query,$email,$dbh);
 if (!empty($result)) { exit;}
-$query='SELECT s.id_man FROM people p INNER JOIN student s ON p.id_man = s.id_man AND p.fam=? AND s.number_zach=?';
+$query='SELECT s.id_man FROM `people` p INNER JOIN `student` s ON p.id_man = s.id_man AND p.fam=? AND s.number_zach=?';
 $idman=$QueryClass->check_hit($query,$fam,$number_zach,$dbh);
 if (empty($idman)) { exit;}
-$query='SELECT id_man FROM `users` WHERE id_man=?';
+$query='SELECT `id_man` FROM `users` WHERE id_man=?';
 $result=$QueryClass->check_user($query,$idman,$dbh);
 if (!empty($result)) { exit;}
 /*
@@ -62,7 +62,7 @@ if(!empty($adduser)){
 /*
 * Генерация кода
 */
-$query='SELECT * FROM users WHERE id_man=?';
+$query='SELECT * FROM `users` WHERE id_man=?';
 $activation=$QueryClass->active_code($query,$idman,$dbh);
 $array=$QueryClass->check_repeat($query,$idman,$dbh);
 /*

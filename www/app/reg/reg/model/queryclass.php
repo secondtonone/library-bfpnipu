@@ -64,7 +64,7 @@ class QueryClass {
 	$active="1";	
 	$this->data=$dbh->prepare($updatequery);
     $this->data->execute(array($active,$id));
-	$query='SELECT * FROM users WHERE active=? AND id=?';
+	$query='SELECT * FROM `users` WHERE active=? AND id=?';
     $this->data=$dbh->prepare($query);
     $this->data->execute(array($active,$id));
     $this->data=$this->data->fetch(PDO::FETCH_ASSOC);
@@ -74,7 +74,7 @@ class QueryClass {
 	function update_pass($updatequery,$pass,$id,$dbh){
 	$this->data=$dbh->prepare($updatequery);
     $this->data->execute(array($pass,$id));
-	$query='SELECT * FROM users WHERE id=?';
+	$query='SELECT * FROM `users` WHERE id=?';
 	$this->data=$this->check_repeat($query,$id,$dbh);
 	return $this->data;
 	}	

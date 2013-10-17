@@ -31,7 +31,7 @@ $activision=$QueryClass->active_code($query,$id,$dbh);
 
 if($result["id"]!=='' and $activision==$code){
 
-$query='UPDATE users SET pass=? WHERE id=?';
+$query='UPDATE `users` SET pass=? WHERE id=?';
 $update=$QueryClass->update_pass($query,$newpass,$id,$dbh);
 		
 if($update["pass"]==$newpass){

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE HTML>
+﻿<?php require_once '../scripts/startsession.php';?>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,7 +13,5 @@
 <div class="page">
 
 </div>
-<script src="../reg/auth/enter.js"></script>
-<?php require_once '../../temp/footer.php';?>
 </body>
 </html>

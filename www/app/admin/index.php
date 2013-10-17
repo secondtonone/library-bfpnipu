@@ -1,3 +1,4 @@
+<?php require_once '../scripts/checksession.php';?>
 <!DOCTYPE HTML>
 <html>
 <head>
