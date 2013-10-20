@@ -22,7 +22,7 @@ html,body {
 	height: 100%;	
 	margin:0 auto;
 	}
-	.wrap {
+.wrap {
 	min-width: 800px;
 	max-width: 1200px;
 	height: 200px;	
@@ -85,3 +85,11 @@ html,body {
 	display:block; 
 	margin:10% auto;
 	}
+.content {
+	min-width: 800px;
+	max-width: 1200px;
+	height: 100%;	
+	margin:15px auto;
+	background-color:rgba(238, 238, 238, 0.5);
+	}
+
