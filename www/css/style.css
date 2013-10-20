@@ -25,7 +25,7 @@ html,body {
 .wrap {
 	min-width: 800px;
 	max-width: 1200px;
-	height: 200px;	
+	height:300px;	
 	margin:0 auto;
 	}
 .footer {
@@ -89,7 +89,7 @@ html,body {
 	min-width: 800px;
 	max-width: 1200px;
 	height: 100%;	
-	margin:15px auto;
+	margin:20px auto;
 	background-color:rgba(238, 238, 238, 0.5);
 	}
 
