@@ -1,13 +1,20 @@
+.wrap {
+	min-width: 900px;
+	max-width: 1200px;
+	height:300px;	
+	margin:0 auto;
+	}
+
 .user,.admin {
-	width: 230px;
-	height: 100px;
+	width: 330px;
+	height: 135px;
 	background-color:rgba(255, 255, 255, 0.5);
 	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	font-size:24px;
+	font-size:28px;
 	text-align:center;
-	line-height:50px;
+	line-height:75px;
 	cursor: pointer;
 	text-decoration:none;
 	display:block;
@@ -20,20 +27,20 @@
 .user {
     color: rgb(228, 3, 48);
 	float: left;
-	margin:10% 0 0 15%;
+	margin:10% 0 0 10%;
 	text-shadow: 1px 1px 1px black, 0 0 0.6em red;
-	border-left:20px solid rgb(228, 3, 48);
+	border-top:20px solid rgb(228, 3, 48);
 	}
 .admin {
 	color: rgb(32, 15, 238);
 	float: right;
-	margin:10% 15% 0 0;
+	margin:10% 10% 0 0;
 	text-shadow: 1px 1px 2px black, 0 0 0.6em navy;
-	border-right:20px solid rgb(32, 15, 238);
+	border-top:20px solid rgb(32, 15, 238);
 		}
 .user p, .admin p {
 	color: rgb(199, 199, 199);
-	font-size:12px;
+	font-size:14px;
 	text-shadow: 0px 0px 0px gray, 0 0 0.0em gray;
 	color:#3F3F3F;
 	margin-top:-10px;
@@ -42,21 +49,21 @@
 	color:#FFF;
 	}
 .user:hover {
-	width: 250px;
+	height:155px;
 	 background-color:rgba(228, 3, 48, 0.9);
-	-moz-box-shadow: 0 0 0px rgb(0,0,0);
-    -webkit-box-shadow: 0 0 0px rgb(0,0,0); 
-    box-shadow: 0 0 0px rgb(0,0,0);
-	border-left:0px solid rgb(228, 3, 38);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+    -webkit-box-shadow: inset  0 0 10px rgba(0,0,0,0.7); 
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.7);
+	border-top:0px solid rgb(228, 3, 38);
 	color:#FFF;
 	}
 .admin:hover {
-	width: 250px;	
+	height:155px;	
     background-color:rgba(32, 15, 238, 0.9);
-	-moz-box-shadow: 0 0 0px rgb(0,0,0);
-    -webkit-box-shadow: 0 0 0px rgb(0,0,0); 
-    box-shadow: 0 0 0px rgb(0,0,0);
-	border-right:0px solid rgb(32, 15, 228);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+    -webkit-box-shadow: inset  0 0 10px rgba(0,0,0,0.7); 
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.7);
+	border-top:0px solid rgb(32, 15, 228);
 	color:#FFF;
 	}
 .social {
