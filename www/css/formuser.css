@@ -2,26 +2,29 @@
     font-family: Book;
     src: url(BKANT.ttf);
    }
-.userForm {
+.puserForm,
+.auserForm {
 	width: 80%;
-
 	padding: 24px 24px 0;
 	margin: 70px auto 0;
 	background: #FEFEFE;
    	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	font: 18px/18px Book;
-	color: rgb(12, 6, 207);
+	font: 18px/20px Book;
+	color: rgb(228, 3, 48);
 }
-.userForm .field {
+.puserForm .field,
+.auserForm .field {
 	margin: 0 0 18px;
 }
-.userForm .field label {
+.puserForm .field label,
+.auserForm .field label {
 	display: block;
 	margin: 0 0 11px;
 }
-.userForm .field input {
+.puserForm .field input,
+.auserForm .field input {
     font: 14px sans-serif;
 	color:  rgb(12, 6, 207);
 	width: 262px;
@@ -30,13 +33,15 @@
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
 	outline: none;
 }
-.userForm .field input:focus {
+.puserForm .field input:focus,
+.auserForm .field input:focus {
 	border-color: #B7D4EA;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
 }
 
 
-.userForm .submit {
+.puserForm .submit,
+.auserForm .submit {
 	overflow: hidden;
 	margin: 30px -24px 0;
 	padding: 22px 24px;
@@ -44,7 +49,8 @@
 	border-top: 1px solid #CCC;
 	font-size: 11px;
 }
-.userForm .submit button {
+.puserForm .submit button,
+.auserForm .submit button {
 	float: right;
 	padding: 6px 20px;
 	height: 30px;
@@ -57,9 +63,20 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.2);
 }
-.userForm .submit button:hover {
+.puserForm .submit button:hover,
+.auserForm .submit button:hover {
 	background-color: rgb(12, 6, 167);
 }
-
+.p_content #preloader,
+.a_content #preloader{
+	display:block; 
+	margin:25% auto;
+}
+.puserForm .field .formline,
+.auserForm .field .formline {
+	display:inline;
+    font: 16px sans-serif;
+	color:  rgb(12, 6, 207);
+}
 
 

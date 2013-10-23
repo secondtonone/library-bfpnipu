@@ -13,7 +13,8 @@ $(document).ready(function(){
                   type: "POST",  
                   url: "reg_controller.php",  
                   data: 'login='+ value1+'&pass='+ value2+ '&pass2=' +value3+'&email='+ value4+ '&fam=' + value5+  '&number_zach=' + value6,
-				  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},                  success: function(data){  
+				  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},                 
+				   success: function(data){  
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index_reg.php'>"+data+"</a></div>");
 						  
                     }  

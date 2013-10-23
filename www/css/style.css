@@ -79,7 +79,7 @@ html,body {
 
 #preloader{
 	display:block; 
-	margin:10% auto;
+	margin:15% auto;
 	}
 .content {
 	min-width: 800px;
@@ -89,7 +89,8 @@ html,body {
 	background-color:rgba(238, 238, 238, 0.5);
 	}
 .personal,.accaunt {
-    width: 45%;
+    height:90%;
+	width: 45%;
 	margin:30px auto;
 	}
 .personal {
@@ -99,7 +100,7 @@ html,body {
     float:right;
 	}
 .p_content,.a_content {
-   	height: 400px;
+   	height: 100%;
 	width: 100%;	
 	margin:0 auto;
 	background-color:rgba(238, 238, 238, 0.5);
