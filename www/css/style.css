@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import url("form.css");
+@import url("formlog.css");
 @import url("formreg.css");
 @import url("formuser.css");
 @import url("header.css");
@@ -91,7 +91,7 @@ html,body {
 .personal,.accaunt {
     height:90%;
 	width: 45%;
-	margin:30px auto;
+	margin:-1px auto;
 	}
 .personal {
     float:left;
@@ -115,7 +115,7 @@ html,body {
 	padding:0 5px;
 	text-align:center;
 	line-height:30px;
-	background-color:rgba(238, 238, 238, 0.5);
+	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	}
-	
+
 	

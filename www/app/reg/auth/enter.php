@@ -40,7 +40,7 @@ $_SESSION["name"]=$result["name"];
 $_SESSION["id_kafedra"]=$result["id_kafedra"];
 $_SESSION["rights"]=$result["rights"];
 
-echo "/app/admin/unit1.php";
+echo "admin";
 }else{
 exit("Вы ввели не верный пароль");
 }
@@ -61,8 +61,17 @@ $_SESSION["id"]=$result["id"];
 $_SESSION["name"]=$result["name"];
 $_SESSION["id_man"]=$result["id_man"];
 $_SESSION["rights"]=$result["rights"];
+$_SESSION["email"]=$result["email"];
 
-echo "/app/user/unit1.php";
+$query='SELECT `telefon_dom`,`telefon_sot`,`e_mail`,`telefon_rabochii` FROM `people` WHERE id_man=?';
+$result=$QueryClass->check_repeat($query,$_SESSION["id_man"],$dbh);
+
+$_SESSION["telefon_dom"]=$result["telefon_dom"];
+$_SESSION["telefon_sot"]=$result["telefon_sot"];
+$_SESSION["telefon_rabochii"]=$result["telefon_rabochii"];
+$_SESSION["e_mail"]=$result["e_mail"];
+
+echo "user";
 }else{
 exit("Вы ввели не верный пароль!");
 }

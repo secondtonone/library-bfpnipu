@@ -1,25 +1,29 @@
-﻿<form class="puserForm">
+﻿<?php require_once '../../scripts/startsession.php';?>
+<form id="ppl">
 	<div class="field">
-		<label>Телефон домашний:</label><div class="input"><input type="text" id="telephone" /></div>
+		<label>Телефон домашний:</label><div class="input"><input type="text" id="telephone" value="<?php echo $_SESSION["telefon_dom"]; ?>"/></div>
 	</div>		
-	</div>
+
 	<div class="field">
-		<label>Телефон сотовый:</label><div class="input"><input type="text" id="mobile" /></div>
+		<label>Телефон сотовый:</label><div class="input"><input type="text" id="mobile" value="<?php echo $_SESSION["telefon_sot"]; ?>" /></div>
 	</div>
 		
-	</div>
+	
     	<div class="field">
-		<label>Электронная почта:</label><div class="input"><input type="text" id="email" /></div>
+		<label>Электронная почта:</label><div class="input"><input type="text" id="email" value="<?php echo $_SESSION["e_mail"]; ?>"/></div>
 	</div>
 		
-	</div>
+	
     	<div class="field">
-		<label>Рабочий телефон:</label><div class="input"><input type="text" id="workphone" />
-        <input type="hidden" id="hideid" value="1"/></div>
+		<label>Рабочий телефон:</label><div class="input"><input type="text" id="workphone" value="<?php echo $_SESSION["telefon_rabochii"]; ?>" />
+        </div>
+         <input type="text" hidden="hidden" id="hide" value="ppl"/>
 	</div>
 		
-	</div>
-	<div class="submit">
+
+	<div class="submitbutton">
 		<button type="submit">Сохранить</button>
 </div>
+
 </form>
+

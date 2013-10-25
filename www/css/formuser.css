@@ -2,8 +2,8 @@
     font-family: Book;
     src: url(BKANT.ttf);
    }
-.puserForm,
-.auserForm {
+#ppl,
+#acc {
 	width: 80%;
 	padding: 24px 24px 0;
 	margin: 70px auto 0;
@@ -14,17 +14,17 @@
 	font: 18px/20px Book;
 	color: rgb(228, 3, 48);
 }
-.puserForm .field,
-.auserForm .field {
+#ppl .field,
+#acc .field {
 	margin: 0 0 18px;
 }
-.puserForm .field label,
-.auserForm .field label {
+#ppl .field label,
+#acc .field label {
 	display: block;
 	margin: 0 0 11px;
 }
-.puserForm .field input,
-.auserForm .field input {
+#ppl .field input,
+#acc .field input {
     font: 14px sans-serif;
 	color:  rgb(12, 6, 207);
 	width: 262px;
@@ -33,15 +33,15 @@
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
 	outline: none;
 }
-.puserForm .field input:focus,
-.auserForm .field input:focus {
+#ppl .field input:focus,
+#acc .field input:focus {
 	border-color: #B7D4EA;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
 }
 
 
-.puserForm .submit,
-.auserForm .submit {
+#ppl .submitbutton,
+#acc .submitbutton {
 	overflow: hidden;
 	margin: 30px -24px 0;
 	padding: 22px 24px;
@@ -49,8 +49,8 @@
 	border-top: 1px solid #CCC;
 	font-size: 11px;
 }
-.puserForm .submit button,
-.auserForm .submit button {
+#ppl .submitbutton button,
+#acc .submitbutton button {
 	float: right;
 	padding: 6px 20px;
 	height: 30px;
@@ -63,8 +63,8 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.2);
 }
-.puserForm .submit button:hover,
-.auserForm .submit button:hover {
+#ppl .submitbutton button:hover,
+#acc .submitbutton button:hover {
 	background-color: rgb(12, 6, 167);
 }
 .p_content #preloader,
@@ -72,8 +72,8 @@
 	display:block; 
 	margin:25% auto;
 }
-.puserForm .field .formline,
-.auserForm .field .formline {
+#ppl .field .formline,
+#acc .field .formline {
 	display:inline;
     font: 16px sans-serif;
 	color:  rgb(12, 6, 207);

@@ -5,22 +5,45 @@ require_once '../model/userclass.php';
 require_once '../../reg/reg/model/regclass.php';
 
 
-$hideid=$_POST["hideid"];
+
 
 
 $UserClass=new UserClass();
 $RegClass=new RegClass();
-if ($hideid==1){
+
+if ($_POST["hide"]=="ppl"){
 	
-	}else{
-		if ($hideid==2){
+	$telephone=$UserClass->check_number($_POST["telephone"]);
+	if ($telephone==false) { exit;}
 
-$query='SELECT `telefon_dom`,`telefon_sot`,`e_mail`,`telefon_rabochii` FROM `people` WHERE id_man=?';
-$result=$UserClass->get_data($query,$id_man,$dbh);
+	$mobile=$UserClass->check_number($_POST["mobile"]);
+	if ($mobile==false) { exit;}
 
-$query='SELECT `email` FROM `users` WHERE id=?';
-$email=$UserClass->get_data($query,$id,$dbh);
+	$workphone=$UserClass->check_number($_POST["workphone"]);
+	if ($workphone==false) { exit;}
+	
+	$email=$RegClass->check_email($_POST["email"]);
+	if ($email==false) { exit;}
+	
+	 $query='UPDATE `people` SET telefon_dom=?,telefon_sot=?,telefon_rabochii=?,e_mail=? WHERE id=?';
+	 
+     $update=$UserClass->update_ppl($query,$telephone,$mobile,$workphone,$email,$_SESSION["id"],$dbh);
+	 echo "Данные успешно изменены.";
+	  }
+	  else{
+if ($_POST["hide"]=="acc"){
+	
+	 
+	 $email=$RegClass->check_email($_POST["email"]);
+	 if ($email==false) { exit;}
+	 
+	 $password=$RegClass->check_pass($_POST["password"],$_POST["rpassword"]);
+     if ($password==false) { exit;}
+	 
+	 $query='UPDATE `users` SET email=?,pass=? WHERE id=?';
+     $update=$UserClass->update_user($query,$email,$password,$_SESSION["id"],$dbh);
+	  echo "Данные успешно изменены.";	 
+		 }
+	 }
 
-
-	}}
 ?>
