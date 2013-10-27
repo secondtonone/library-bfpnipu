@@ -13,22 +13,30 @@ $RegClass=new RegClass();
 
 if ($_POST["hide"]=="ppl"){
 	
-	$telephone=$UserClass->check_number($_POST["telephone"]);
-	if ($telephone==false) { exit;}
+	$telephone=$UserClass->check_data($_POST["telephone"]);
+	
 
-	$mobile=$UserClass->check_number($_POST["mobile"]);
-	if ($mobile==false) { exit;}
+	$mobile=$UserClass->check_data($_POST["mobile"]);
 
-	$workphone=$UserClass->check_number($_POST["workphone"]);
-	if ($workphone==false) { exit;}
+
+	$workphone=$UserClass->check_data($_POST["workphone"]);
+
 	
 	$email=$RegClass->check_email($_POST["email"]);
 	if ($email==false) { exit;}
 	
-	 $query='UPDATE `people` SET telefon_dom=?,telefon_sot=?,telefon_rabochii=?,e_mail=? WHERE id=?';
+	 $query='SELECT * FROM `people` WHERE id_man=?';
+	 $queryupdate='UPDATE `people` SET telefon_dom=?,telefon_sot=?,telefon_rabochii=?,e_mail=? WHERE id_man=?';
 	 
-     $update=$UserClass->update_ppl($query,$telephone,$mobile,$workphone,$email,$_SESSION["id"],$dbh);
+     $update=$UserClass->update_ppl($query,$queryupdate,$telephone,$mobile,$workphone,$email,$_SESSION["id_man"],$dbh);
+	 
+	  $_SESSION["telefon_dom"]=$telephone;
+	  $_SESSION["telefon_sot"]=$mobile;
+	  $_SESSION["e_mail"]=$email;
+	  $_SESSION["telefon_rabochii"]=$workphone;
+	 
 	 echo "Данные успешно изменены.";
+	 
 	  }
 	  else{
 if ($_POST["hide"]=="acc"){
@@ -40,8 +48,11 @@ if ($_POST["hide"]=="acc"){
 	 $password=$RegClass->check_pass($_POST["password"],$_POST["rpassword"]);
      if ($password==false) { exit;}
 	 
-	 $query='UPDATE `users` SET email=?,pass=? WHERE id=?';
-     $update=$UserClass->update_user($query,$email,$password,$_SESSION["id"],$dbh);
+	 $query='SELECT * FROM `users` WHERE id=?';
+	 $queryuodate='UPDATE `users` SET email=?,pass=? WHERE id=?';
+     $update=$UserClass->update_user($query,$queryuodate,$email,$password,$_SESSION["id"],$dbh);
+	 
+	 $_SESSION["email"]=$email;
 	  echo "Данные успешно изменены.";	 
 		 }
 	 }

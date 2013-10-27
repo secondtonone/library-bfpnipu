@@ -13,7 +13,11 @@
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
 <div class="content">
-
+<form action="sync/sync.php" method="post" enctype="multipart/form-data">
+<input type="file" name="filename" size="20" />
+<input type="hidden" name="update" value="ok" />
+<input type="submit" value="Upload" />
+</form>
 </div>
 </div>
 <script src="markunit/markunit4.js"></script>

@@ -41,7 +41,7 @@ html,body {
 #attentionForm {
 	margin: 10% auto;
 	padding:10px 10px;
-	width: 500px;
+	width: 50%;
 	background: #FEFEFE;
    	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
@@ -54,6 +54,7 @@ html,body {
 	-o-transition: All 0.5s ease;
 	-ms-transition: All 0.5s ease;
 	transition: All 0.5s ease;
+	cursor: pointer;
 }
 
 		

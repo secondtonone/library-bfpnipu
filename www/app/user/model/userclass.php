@@ -23,24 +23,23 @@ class UserClass {
 	return $this->data;
 	}
 	
-	function update_user($updatequery,$data,$data2,$id,$dbh){
+	function update_user($query,$updatequery,$data,$data2,$id,$dbh){
 	$this->data=$dbh->prepare($updatequery);
     $this->data->execute(array($data,$data2,$id));
+	$this->data=$this->check_data($query,$id,$dbh);
+	return $this->data;
 	}	
 	
-	function update_ppl($updatequery,$data,$data2,$data3,$data4,$id,$dbh){
+	function update_ppl($query,$updatequery,$data,$data2,$data3,$data4,$id,$dbh){
 	$this->data=$dbh->prepare($updatequery);
     $this->data->execute(array($data,$data2,$data3,$data4,$id));
+	$this->data=$this->check_data($query,$id,$dbh);
+	return $this->data;
 	}	
 	
-	function check_number ($string){
-	$this->data=$this->check_data($string);
-	if(!preg_match('/[0-9]/', $this->data)){
-    echo "Неверный номер!";
-	return false;}
-	else{	
-    return $this->data;}
-	}
+    
+	function __destruct() {
+         }
 	
 
       
