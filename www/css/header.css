@@ -1,4 +1,4 @@
-.header,.menuline {
+header,.menuline {
 	min-width: 800px;
 	max-width: 1200px;
 	padding:0 auto;
@@ -6,7 +6,7 @@
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-.header {
+header {
 	background-color:rgba(255, 255, 255, 0.5);
     margin:2px auto;
 	height: 135px;
