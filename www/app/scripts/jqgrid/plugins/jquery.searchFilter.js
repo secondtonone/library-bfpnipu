@@ -1,4 +1,4 @@
- /* Plugin:      searchFilter v1.2.9
+/* Plugin:      searchFilter v1.2.9
  * Author:      Kasey Speakman (kasey@cornerspeed.com)
  * License:     Dual Licensed, MIT and GPL v2 (http://www.gnu.org/licenses/gpl-2.0.html)
  *

@@ -1,4 +1,4 @@
- (function($){
+(function($){
 /*
  * jqGrid methods without support. Use as you wish
  * Tony Tomov tony@trirand.com

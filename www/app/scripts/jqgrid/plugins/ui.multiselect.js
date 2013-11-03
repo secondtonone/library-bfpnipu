@@ -1,4 +1,4 @@
- /*
+/*
  * jQuery UI Multiselect
  *
  * Authors:

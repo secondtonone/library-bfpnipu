@@ -1,4 +1,4 @@
- ;(function($){
+;(function($){
 /**
  * jqGrid extension for manipulating columns properties
  * Piotr Roznicki roznicki@o2.pl

@@ -8,7 +8,7 @@ $(".unit1").each(function(){
 var lastSel;
 		
 $("#list").jqGrid({
-            url:'getdata.php',
+            url:'getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
             colNames:['#', 'Название книги','Автор','Автор','Год издания','Дисциплина','В наличии', 'Всего', 'Кафедра', 'УДК', 'ББК', 'ISBN',  'Аннотация'],
@@ -25,7 +25,7 @@ $("#list").jqGrid({
                 ,{name:'isbn', index:'isbn', width:70, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
 				{name:'annotation', index:'annotation', width:50, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
                 ],
-            pager: jQuery('#pager'),
+            pager: $('#pager'),
 			width:1000,
             height:300,
             rowNum:5,
@@ -36,14 +36,15 @@ $("#list").jqGrid({
             caption: 'Данные о книгах',
            ondblClickRow: function(id) {
                 
-                    jQuery("#list").restoreRow(lastSel);
-                    jQuery("#list").editRow(id, true);
+                    $("#list").restoreRow(lastSel);
+                    $("#list").editRow(id, true);
                     lastSel = id;
                
-            }, onSelectRow: function(id) {
+            }, 
+			onSelectRow: function(id) {
                jQuery("#list").restoreRow(lastSel);
 }, 
-            editurl: 'saverow.php'
+            editurl: 'saverowunit1.php'
         }).navGrid('#pager',{view:false, del:false, add:false, edit:false}, 
 			{}, //  default settings for edit
 			{}, //  default settings for add

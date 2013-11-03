@@ -1,4 +1,4 @@
- /*
+/*
  * ContextMenu - jQuery plugin for right-click context menus
  *
  * Author: Chris Domigan

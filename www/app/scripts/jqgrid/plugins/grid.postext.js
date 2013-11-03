@@ -1,4 +1,4 @@
- ;(function($){
+;(function($){
 /**
  * jqGrid extension
  * Paul Tiseo ptiseo@wasteconsultants.com
