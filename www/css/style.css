@@ -5,7 +5,8 @@
 @import url("header.css");
 @import url("index.css");
 @import url("../app/scripts/jqgrid/css/ui.jqgrid.css");
-@import url("../app/scripts/jqgrid/themes/jquery-ui-1.10.3.custom.css");
+@import url("../app/scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.css");
+@import url("../app/scripts/jqgrid/plugins/ui.multiselect.css");
 @font-face {
     font-family: Book;
     src: url(BKANT.ttf);

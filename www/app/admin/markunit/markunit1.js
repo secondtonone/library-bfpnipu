@@ -8,33 +8,30 @@ $(".unit1").each(function(){
 var lastSel;
 		
 $("#list").jqGrid({
-            url:'getdataunit1.php',
+            url:'scripts/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Автор','Автор','Год издания','Дисциплина','В наличии', 'Всего', 'Кафедра', 'УДК', 'ББК', 'ISBN',  'Аннотация'],
+            colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
             colModel :[
-                {name:'id', index:'id', width:40, align:'right', search:false}
-                ,{name:'namebook', index:'namebook', width:350, align:'left',editable:true, edittype:"text",searchoptions:{sopt:['eq','ne','bw','cn']}},				{name:'avtor', index:'avtor', width:110, align:'left',editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},{name:'avtor2', index:'avtor2', width:110, align:'left',editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-				{name:'yearcreate', index:'yearcreate', width:60, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-				{name:'disciplina', index:'disciplina', width:110, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-				{name:'bookcount', index:'bookcount', width:65, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-				{name:'allcount', index:'allcount', width:65, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},				
-				{name:'nazkaf_krat', index:'nazkaf_krat', width:120, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-								{name:'udk', index:'udk', width:50, align:'left',editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
-                ,{name:'bbk', index:'bbk', width:50, align:'left',editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
-                ,{name:'isbn', index:'isbn', width:70, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
-				{name:'annotation', index:'annotation', width:50, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
+                {name:'id_book', index:'id_book', width:40, align:'right', search:false}
+                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['eq','ne','bw','cn']}},
+				{name:'year_create', index:'year_create', width:60, align:'left', edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
+				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'left', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},
+				{name:'UDK', index:'UDK', width:65, align:'left', edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}},				
+				{name:'name_kratko', index:'name_kratko', width:120, align:'left', edittype:"text", search:false,searchoptions:{sopt:['eq','ne','bw','cn']}},
+				{name:'ostatok', index:'ostatok', width:50, align:'left',editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
+                
                 ],
             pager: $('#pager'),
 			width:1000,
             height:300,
-            rowNum:5,
-            rowList:[5,10,30],
-            sortname: 'id',
+            rowNum:15,
+            rowList:[15,30,45],
+            sortname: 'id_book',
             sortorder: "asc",
             viewrecords: true,
             caption: 'Данные о книгах',
-           ondblClickRow: function(id) {
+            ondblClickRow: function(id) {
                 
                     $("#list").restoreRow(lastSel);
                     $("#list").editRow(id, true);
@@ -44,15 +41,16 @@ $("#list").jqGrid({
 			onSelectRow: function(id) {
                jQuery("#list").restoreRow(lastSel);
 }, 
-            editurl: 'saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false}, 
+            editurl: 'scripts/saverowunit1.php'
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
 			{}, //  default settings for edit
 			{}, //  default settings for add
 			{},  // delete instead that del:false we need this
 			{closeOnEscape:true, multipleSearch:true, closeAfterSearch:true}, // search options
 			{} 
 		); 
-		$("#list").jqGrid('filterToolbar',{searchOperators:true});
+		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:true});
+
   
     //эта функция добавляет GET параметр в запрос на получение
     //данных для таблицы и обновляет её

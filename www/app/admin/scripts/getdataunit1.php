@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('../../scripts/connect.php');
-require_once('../../scripts/startsession.php');
 try {
     //читаем параметры
     $curPage = $_POST['page'];
@@ -9,11 +8,13 @@ try {
     $sortingField = $_POST['sidx'];
     $sortingOrder = $_POST['sord'];
 
+
 	$qWhere = '';
 	//определяем команду (поиск или просто запрос на вывод данных)
 	//если поиск, конструируем WHERE часть запроса
+  
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('namebook','avtor','avtor2','yearcreate','disciplina','bookcount','allcount','nazkaf_krat','udk', 'bbk', 'isbn','annotation','nazkaf_krat');
+		$allowedFields = array('name_book','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -57,21 +58,25 @@ try {
     //определяем количество записей в таблице
     $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
-    $kodkaf=$_SESSION["id_kafedra"];
-    $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
-    //получаем список пользователей из базы
-    $res = $dbh->prepare('SELECT book.id,book.namebook,(select fam from teacher where book.avtor=teacher.id_man) as fam,avtor,avtor2,book.udk,book.bbk,book.isbn,book.yearcreate,(SELECT disciplina.nazvan FROM disciplina WHERE book.disciplina=disciplina.id) as disciplina,book.annotation,book.bookcount,book.allcount,kafedra.nazkaf_krat FROM `book`,`kafedra` WHERE book.kod_kaf=kafedra.kod_kaf AND book.kod_kaf=? '.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kod));
 	
+    $kodkaf=$_SESSION["id_kafedra"];
+	
+    $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
+    //получаем список из базы
+    $res = $dbh->prepare('SELECT b.`id_book`, b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array($kodkaf));
+
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
+	$response = new stdClass();
     $response->page = $curPage;
     $response->total = ceil($totalRows['count'] / $rowsPerPage);
     $response->records = $totalRows['count'];
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $response->rows[$i]['id']=$row['id'];
-        $response->rows[$i]['cell']=array($row['id'],$row['namebook'], $row['avtor'],$row['avtor2'],$row['yearcreate'], $row['disciplina'],$row['bookcount'],$row['allcount'],$row['nazkaf_krat'], $row['udk'],$row['bbk'],$row['isbn'],$row['annotation']);
+		$response->rows[$i]['id']=$row['id_book'];
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'], $row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+		
         $i++;
     }
     echo json_encode($response);
@@ -80,4 +85,4 @@ catch (Exception $e) {
     echo json_encode(array('errMess'=>'Error: '.$e->getMessage()));
 }
 
-// end of getdata.php
+?>

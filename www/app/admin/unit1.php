@@ -6,9 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Электронная библиотека кафедр БФ ПНИПУ</title>
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" media="screen" href="../scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="../scripts/jqgrid/css/ui.jqgrid.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="../scripts/jqgrid/plugins/ui.multiselect.css" />
 <script type="text/javascript" src="../scripts/jqgrid/js/jquery-1.9.0.min.js"></script>
 </head>
 <body>
@@ -23,7 +20,6 @@
     </div>
 </div>
 </div>
- 
 <script src="markunit/markunit1.js"></script>
 <script src="../scripts/jqgrid/js/grid.locale-ru.js" type="text/javascript"></script>
 <script src="../scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
