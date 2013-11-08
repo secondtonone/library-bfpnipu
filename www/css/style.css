@@ -30,7 +30,7 @@ html,body {
 footer {
 	height: 15px;
 	background-color:#ECEAEB;
-	border-top: 1px solid #CCC;
+	
     margin:0 auto;
     bottom:0px;
 	position:  fixed;
@@ -39,7 +39,8 @@ footer {
 	text-align:center;
 	vertical-align:50%;
 	font-size:11px;
-	color:rgb(12, 6, 207);
+	color:#ECEAEB;
+	background: linear-gradient(0deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.7));
 }
 #attentionForm {
 	margin: 10% auto;

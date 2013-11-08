@@ -7,7 +7,7 @@ header,.menuline {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 header {
-	background-color:rgba(255, 255, 255, 0.5);
+	background-color:rgba(255, 255, 255, 0.4);
     margin:2px auto;
 	height: 135px;
 	overflow:hidden;
@@ -21,7 +21,7 @@ header {
 	margin: 30px 0 0 70px;
 }
 .menuline {
-	background-color:rgba(12, 6, 207, 0.9);
+	background: linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
 	margin:0 auto;
 	height:30px;
 }
@@ -48,12 +48,14 @@ header {
 
 
 .line:hover{
-	background-color:rgba(12, 6, 157, 0.9);
+	
+	background: linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
 	color:white;
 
 }
 .exit:hover{
 	background-color:rgb(228, 3, 48);
+	background: linear-gradient(180deg, rgb(228, 3, 48),rgba(228, 3, 48, 0.5));
 	color:white;
 
 }
