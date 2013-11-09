@@ -12,9 +12,10 @@ try {
 	$qWhere = '';
 	//определяем команду (поиск или просто запрос на вывод данных)
 	//если поиск, конструируем WHERE часть запроса
-  
+	
+
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','fam_io','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
+		$allowedFields = array('name_book','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -63,7 +64,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,a.`fam_io`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` JOIN napisal as n ON b.`id_book`=n.`id_book` JOIN `avtor` as a ON n.`id_avtor`=a.`id_avtor` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -75,7 +76,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['fam_io'], $row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
 		
         $i++;
     }

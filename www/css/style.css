@@ -126,5 +126,8 @@ footer {
 .table .ui-jqgrid {margin:0 auto;
        
 	}
+.subgridform {
+	float:left;
+    width: 251px;}
 
 	
