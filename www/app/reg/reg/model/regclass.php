@@ -29,7 +29,9 @@ class RegClass {
 		return $this->data;	}
 		else{echo"Вы не ввели логин!";
 		return false;
-		}}else{echo"Логин должен содержать больше 5 символов!";
+		}
+		}else
+		{echo"Логин должен содержать больше 5 символов!";
 		return false;
 		}		
 		}
