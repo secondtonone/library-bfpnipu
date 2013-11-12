@@ -14,13 +14,9 @@ $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Фамилия','Имя', 'Отчество','Группа', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
+            colNames:['#', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
             colModel :[
-                {name:'id_vid', index:'id_vid', width:20, align:'right', search:false}
-                ,{name:'fam', index:'fam', width:60, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'name', index:'name', width:60, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'otchestvo', index:'otchestvo', width:69, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'name_group', index:'name_group', width:55, align:'center', edittype:"text", search:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},				
+                {name:'id_vid', index:'id_vid', width:20, align:'right', search:false},				
 				{name:'name_book', index:'name_book', width:70, align:'left', edittype:"text", search:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'year_create', index:'year_create', width:50, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'data_vidachi', index:'data_vidachi', width:50, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -31,7 +27,7 @@ $("#list").jqGrid({
                 
                 ],
             pager: '#pager',
-			width:1100,
+			width:1000,
             height:300,
 			rowNum:15,
             rowList:[15,30,45],

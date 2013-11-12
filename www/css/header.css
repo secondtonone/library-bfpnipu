@@ -102,4 +102,43 @@ header {
 	color: rgb(228, 3, 88);
 	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 }
+.usermenu {
+	width: 345px;
+	padding:0 auto;
+	margin:-20px auto;
+	height:30px;
+
+	
+}
+
+.usermenu a{
+	height:30px;
+	width: 150px;
+	float:left;
+	color: rgb(228, 3, 48);
+	font: bold 14px Arial, Tahoma, sans-serif;
+	padding:0 5px;
+	cursor: pointer;
+	text-decoration: none;
+	text-align:center;
+	line-height:30px;
+	border-right:dotted 1px rgba(225, 225, 225, 0.5);
+	-webkit-transition: All 0.5s ease;
+	-moz-transition: All 0.5s ease;
+	-o-transition: All 0.5s ease;
+	-ms-transition: All 0.5s ease;
+	transition: All 0.5s ease;
+	
+
+}
+.usermenu a:last-child {
+	border-right:dotted 0px rgba(225, 225, 225, 0.5) ;
+	}
+.usermenu a:hover{
+	background-color:rgb(255, 255, 255);
+	border-right:dotted 1px rgba(238, 238, 238, 0.5);
+	color: rgb(228, 3, 88);
+
+
+}
 

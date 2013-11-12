@@ -15,7 +15,7 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('fam','name','otchestvo', 'name_group', 'name_book','year_create', 'data_vidachi', 'data_vozvrata', 'na_rukah', 'poterya', 'primechanie');
+		$allowedFields = array('name_book','year_create', 'data_vidachi', 'data_vozvrata', 'na_rukah', 'poterya', 'primechanie');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -57,15 +57,18 @@ try {
 	}
 	
     //определяем количество записей в таблице
-    $rows = $dbh->query('SELECT COUNT(`id_vid`) AS count FROM `vidacha`');
+	$id_man=$_SESSION["id_man"];
+    $rows = $dbh->prepare('SELECT COUNT(`id_vid`) AS count FROM `vidacha` WHERE `id_man`=?');
+    $rows->execute(array($id_man));
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
 	
-    $kodkaf=$_SESSION["id_kafedra"];
+
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_vid`, p.`fam`,p.`name`,p.`otchestvo`, g.`name_group`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kodkaf));
+    $res = $dbh->prepare('SELECT `id_vid`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE v.`id_man`=? AND v.`na_rukah`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array($id_man,"Yes"));
+
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
     $response->page = $curPage;
@@ -75,7 +78,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_vid'];
-        $response->rows[$i]['cell']=array($row['id_vid'],$row['fam'],$row['name'],$row['otchestvo'],$row['name_group'], $row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
+        $response->rows[$i]['cell']=array($row['id_vid'],$row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
 		      $i++;
     }
     echo json_encode($response);
