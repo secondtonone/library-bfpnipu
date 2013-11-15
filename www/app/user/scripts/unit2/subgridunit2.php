@@ -14,22 +14,7 @@ require_once('../../../scripts/connect.php');
 	$countres = $count->fetch(PDO::FETCH_ASSOC);
 	
 	
-	if ($query==1) {
-		
-		$res = $dbh->prepare('SELECT `number_zach` FROM `student` WHERE `id_man`=?');
 	
-	$res->execute(array($resvid['id_man']));
-
-    $i=0;
-	$response = new stdClass();
-    $row = $res->fetch(PDO::FETCH_ASSOC);
-		
-    $response->rows[$i]['cell']=array($row['number_zach'],$countres['count']);
-	
-   
-    echo json_encode($response);
-		
-		}
 	if ($query==2) {		
 	$res = $dbh->prepare('SELECT a.`fam_io`,b.`kolvo_vsego`,b.`ostatok` FROM `book` as b INNER JOIN napisal as n ON b.`id_book`=n.`id_book` JOIN `avtor` as a ON n.`id_avtor`=a.`id_avtor` WHERE b.`id_book`=?');
 	

@@ -49,7 +49,7 @@ if(!empty($id) AND $email==$result["email"]){
 	$objMail->subject = 'Восстановление пароля на сайте';
 	$objMail->body = 'Ваш логин- '.$login.'
 Ваш email - '.$email.'
-Для создания нового пароля для Вашего аккаунта перейдите по этой ссылке: '.$path.'/newpass.php?id='.$id.'&&code='.$activation;
+Для создания нового пароля для Вашего аккаунта перейдите по этой ссылке: '.$path.'/newpass.php?id='.$id.'&&code='.$activation.'';
 	$objMail->send();
     /*
     * Отправляем письмо

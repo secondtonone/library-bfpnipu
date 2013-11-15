@@ -28,9 +28,7 @@ html,body {
 	}
 
 footer {
-	height: 15px;
-	background-color:#ECEAEB;
-	
+	height: 18px;
     margin:0 auto;
     bottom:0px;
 	position:  fixed;
@@ -39,8 +37,15 @@ footer {
 	text-align:center;
 	vertical-align:50%;
 	font-size:11px;
-	color:#ECEAEB;
-	background: linear-gradient(0deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.7));
+	color:12, 6, 207;
+
+}
+footer .border{
+	border-top:1px solid #D8D8D8;
+    margin:0 auto;
+	width: 1000px;
+
+
 }
 #attentionForm {
 	margin: 10% auto;

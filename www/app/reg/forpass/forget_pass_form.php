@@ -13,11 +13,11 @@
 <form id="loginForm">
 	<div class="field">
 		<label>Имя пользователя:</label>
-		<div class="input"><input type="text"  id="login" /></div>
+		<div class="input"><input type="text"  id="login" maxlength="20" placeholder="Введите имя пользователя" required="required" pattern="^[a-zA-Z0-9]+$"></div>
 	</div>
 	<div class="field">
 		<label>E-mail:</label>
-		<div class="input"><input type="text"  id="email" /></div>
+		<div class="input"><input type="email"  id="email" maxlength="35" placeholder="Введите электронный адрес" required="required"></div>
 	</div>
 	<div class="submit">
 		<button type="submit">Отправить</button>

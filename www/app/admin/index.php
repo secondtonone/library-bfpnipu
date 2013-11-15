@@ -14,11 +14,11 @@
 <form id="loginForm">
 	<div class="field">
 		<label>Имя пользователя:</label>
-		<div class="input"><input type="text" id="login" /></div>
+		<div class="input" ><input type="text" id="login" autocomplete="on" maxlength="20" required="required" pattern="^[a-zA-Z0-9]+$" placeholder="Введите имя пользователя"></div>
 	</div>
 	<div class="field">
 		<label>Пароль:</label>
-		<div class="input"><input type="password" id="pass" /></div>
+		<div class="input"><input type="password" id="pass" maxlength="20"  required="required" pattern="^[a-zA-Z0-9]+$" placeholder="Введите пароль"></div>
 	</div>
 	<div class="submit">
 		<button type="submit">Войти</button>

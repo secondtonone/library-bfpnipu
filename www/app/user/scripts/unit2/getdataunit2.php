@@ -7,7 +7,9 @@ try {
     $rowsPerPage = $_POST['rows'];
     $sortingField = $_POST['sidx'];
     $sortingOrder = $_POST['sord'];
-
+	$curyear=date('Y');
+	$curmonth=date('n');
+	$status=" ";
 
 	$qWhere = '';
 	//определяем команду (поиск или просто запрос на вывод данных)
@@ -15,7 +17,7 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','year_create', 'data_vidachi', 'data_vozvrata', 'na_rukah', 'poterya', 'primechanie');
+		$allowedFields = array('name_book','year_create', 'data_vidachi','na_rukah', 'poterya', 'primechanie','status');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -66,7 +68,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_vid`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE v.`id_man`=? AND v.`na_rukah`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT `id_vid`, b.`name_book`,b.`year_create`, `data_vidachi`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE v.`id_man`=? AND v.`na_rukah`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($id_man,"Yes"));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -77,8 +79,15 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+		list($year, $month, $day, $hour, $minute, $second) = sscanf($row['data_vidachi'], "%04s-%02s-%02s %02s:%02s:%02s");
+		$raz=$curyear-$year;
+		if (($raz>1) or ($month<=11 and $raz==1 and $curmonth>5) or ($raz==0 and $curmonth>6 and $month<=5)) 
+		{$status=array("status"=>"Просроченно!");
+			} else 
+		{$status=array("status"=>"Не забудьте сдать в срок.");
+				}
 		$response->rows[$i]['id']=$row['id_vid'];
-        $response->rows[$i]['cell']=array($row['id_vid'],$row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
+        $response->rows[$i]['cell']=array($row['id_vid'],$row['name_book'],$row['year_create'],$row['data_vidachi'],$row['na_rukah'],$row['poterya'],$row['primechanie'],$status['status']);
 		      $i++;
     }
     echo json_encode($response);

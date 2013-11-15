@@ -1,7 +1,7 @@
 <?php 
 /*
 * Класс для составления письма и его отправки
-*/  
+ */ 
 	class Lib_Sent {
     var $parts;
     var $to;
@@ -19,7 +19,7 @@
         $this->headers =  "";
     }
  
-    function add_attachment($message, $name = "",
+   function add_attachment($message, $name = "",
  $ctype = "application/octet-stream", $cid='', $encode='') {
         $this->parts [] = array (
                                 "ctype" => $ctype,
@@ -37,7 +37,7 @@
             $message = chunk_split(base64_encode($message));
             $encoding = "base64";
             $hdr = "Content-Type: ".$part["ctype"]."\n";
-            $hdr .= "Content-Transfer-Encoding: $encoding\n";
+            $hdr .= "Content-Transfer-Encoding: ".$encoding."\n";
             $hdr .= ($part["name"]? "Content-Disposition: attachment; filename = \""
                  .$part["name"]."\"\n" : "\n");
             $hdr .= "Content-ID: <".$part["cid"].">\n";
@@ -46,17 +46,17 @@
             $hdr = "Content-Type: text/html; charset=utf-8\n";
             $hdr.= "Content-Transfer-Encoding: Quot-Printed\n\n";
         }
-        $hdr.= "\n$message\n";
+        $hdr.= "\n".$message."\n";
         return $hdr;
     }
  
     function build_multipart() {
         $boundary = "--b".md5(uniqid(time()));
-        $multipart = "Content-Type: multipart/mixed; boundary=\"$boundary\"\n\n--$boundary";
+        $multipart = "Content-Type: multipart/mixed; boundary=\"".$boundary."\"\n\n--".$boundary."";
         for($i = sizeof($this->parts)-1; $i>=0; $i--) {
-            $multipart .= "\n".$this->build_message($this->parts[$i]). "--$boundary";
+            $multipart .= "\n".$this->build_message($this->parts[$i])."";
         }
-        return $multipart.=  "--\n";
+        return $multipart.=  "\n";
     }
  
     function send() {
@@ -78,5 +78,6 @@
     }
 		function __destruct() {
          }
-}
+} 
+
 ?>

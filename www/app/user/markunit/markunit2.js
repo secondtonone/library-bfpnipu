@@ -14,16 +14,16 @@ $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
+            colNames:['#', 'Книга', 'Год','Дата выдачи','На руках','Потеря','Примечание','Статус'],	 
             colModel :[
                 {name:'id_vid', index:'id_vid', width:20, align:'right', search:false},				
 				{name:'name_book', index:'name_book', width:70, align:'left', edittype:"text", search:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'year_create', index:'year_create', width:50, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'data_vidachi', index:'data_vidachi', width:50, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'data_vozvrata', index:'data_vozvrata', width:50, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'na_rukah', index:'na_rukah', width:30, align:'center',editable:true,edittype:"checkbox",formatter:"checkbox",editoptions: {value:"Yes:No"},search:false},
 				{name:'poterya', index:'poterya', width:30, align:'center',editable:true, edittype:"checkbox",formatter:"checkbox",editoptions: {value:"Yes:No"},search:false},
-				{name:'primechanie', index:'primechanie', width:70, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
+				{name:'primechanie', index:'primechanie', width:70, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'status', index:'status', width:50, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
                 
                 ],
             pager: '#pager',
@@ -33,31 +33,11 @@ $("#list").jqGrid({
             rowList:[15,30,45],
             sortname: 'id_vid',
             sortorder: "asc",
-            caption: 'Приём изданий',
-			subGrid: true,
+			caption: 'Приём изданий',
+   			subGrid: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {
 
-		var subgrid_table_id, pager_id;
-		subgrid_table_id = subgrid_id+"_t";
-		
-		
-		$("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></div></div>");
-		
-		jQuery("#"+subgrid_table_id).jqGrid({
-			url:"scripts/unit2/subgridunit2.php?q=1&id="+row_id,
-			datatype: "json",
-			mtype: 'GET',
-			colNames: ['Номер зачетной книжки', 'Всего задолжностей'],
-			colModel: [
-				{name:"number_zach",index:"number_zach",width:150, align:'center'},	
-				{name:"count",index:"count",width:150, align:'center'}		
-			],
-		   	rowNum:20,
-		   	sortname: 'number_zach',
-		    sortorder: "asc",
-		    height: '100%'
-		});
-		
+			
 			subgrid_table_id = subgrid_id+"_tt";
 		    
 					
