@@ -14,6 +14,21 @@ $(".p_content").html(html);
 return false;
 });
 
+$(document).on('click',"#ppl .denied",function(){
+$.ajax({
+url: "cabinet_controller.php",
+cache: false,
+beforeSend: function() {
+$(".p_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+},
+success: function(){
+window.location.href = "/app/user/cabinet_controller.php";
+}
+});
+return false;
+});
+
+
 
 $(document).on('submit','#ppl',function(){
 				
@@ -88,6 +103,19 @@ $(document).on('submit','#acc',function(){
                 });  
                 return false;  
             });  
+$(document).on('click',"#acc .denied",function(){
+$.ajax({
+url: "cabinet_controller.php",
+cache: false,
+beforeSend: function() {
+$(".a_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+},
+success: function(){
+window.location.href = "/app/user/cabinet_controller.php";
+}
+});
+return false;
+});
 			$(document).on('click','.a_content #attentionForm',function(){
               $.ajax({
             url: "cabinet/controller_acc.php",

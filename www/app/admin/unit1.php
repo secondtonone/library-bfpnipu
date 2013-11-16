@@ -14,6 +14,23 @@
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
 <div class="content">
+<form id="regForm">
+<div class="field">
+<label>Имя</label>
+<input type='text' id='login' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите имя пользователя" title="Должно содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
+</div>
+<div class="field">
+<label>Пароль</label>
+<input type='password' id='pass' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите пароль" title="Должен содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
+</div>
+<div class="field">
+<label>Повторите пароль</label>
+<input type='password' id='pass2' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Повторите пароль" title="Должен содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
+</div>
+<div class="submit">
+<button type="submit">Регистрация</button>
+</div>
+</form>
    <div class="table">
     <table id="list"></table> 
 	<div id="pager"></div> 

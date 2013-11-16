@@ -1,5 +1,4 @@
-﻿
-<div id="ppl">
+﻿<div id="ppl">
     <div class="field">
    
 		<label>Телефон домашний: <div class="formline"><?php echo $_SESSION["telefon_dom"]; ?></div></label>
@@ -19,7 +18,6 @@
 	</div>
 	<div class="submitbutton">
 		<button class="perchange" type="button">Редактировать</button>
-        
-</div>
+       </div>
 
 </div>

@@ -37,14 +37,13 @@ footer {
 	text-align:center;
 	vertical-align:50%;
 	font-size:11px;
-	color:12, 6, 207;
+	color:rgb(12, 6, 207);
 
 }
 footer .border{
 	border-top:1px solid #D8D8D8;
     margin:0 auto;
 	width: 1000px;
-
 
 }
 #attentionForm {
@@ -128,16 +127,24 @@ footer .border{
 	line-height:30px;
 	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	}
-.table .ui-jqgrid {margin:0 auto;
+.table .ui-jqgrid {margin:10px auto;
        
 	}
 .subgridform {
 	float:left;
     width: 300px;
+	margin-top:-10px;
 	margin-left:35px;}
 .subgridform2 {
 	float:left;
     width: 300px;
+	margin-top:-10px;
 	margin-left:117px;}
 
-	
+.ui-tooltip {
+	color:rgb(12, 6, 207);
+    font-size:11px;
+	border:0px;
+	font-family:Book;
+	max-width:260px;
+  }	

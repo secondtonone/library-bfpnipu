@@ -67,6 +67,24 @@
 #acc .submitbutton button:hover {
 	background-color: rgb(12, 6, 167);
 }
+#ppl .submitbutton .denied,
+#acc .submitbutton .denied {
+	float: left;
+	padding: 6px 20px;
+	height: 30px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(228, 3, 58);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+}
+#ppl .submitbutton .denied:hover,
+#acc .submitbutton .denied:hover {
+	background-color: rgb(228, 3, 8);
+}
 .p_content #preloader,
 .a_content #preloader{
 	display:block; 
