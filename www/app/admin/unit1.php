@@ -14,22 +14,26 @@
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
 <div class="content">
-<form id="regForm">
+<form id="giveForm">
+<div class="fields">
 <div class="field">
-<label>Имя</label>
-<input type='text' id='login' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите имя пользователя" title="Должно содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
-</div>
-<div class="field">
-<label>Пароль</label>
-<input type='password' id='pass' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите пароль" title="Должен содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
+<label>Книга</label>
+<input type='text' id='id_book' hidden='hidden'>
+<input type='text' id='book' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать.">
 </div>
 <div class="field">
-<label>Повторите пароль</label>
-<input type='password' id='pass2' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Повторите пароль" title="Должен содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
+<label>Группа</label>
+<input type='text' id='id_group' hidden='hidden'>
+<input type='text' id='group' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите группу студента" title="Начните печатать, появятся варианты из которых нужно выбрать..">
 </div>
-<div class="submit">
-<button type="submit">Регистрация</button>
+<div class="field">
+<label>Студент</label>
+<input type='text' id='id_man' hidden='hidden'>
+<input type='text' id='student' required placeholder="Введите студента" title="Начните печатать фамилию студента, появятся варианты из которых нужно выбрать.">
 </div>
+</div>
+<button class="add" type="submit">Добавить</button>
+<button type="submit">Отправить</button>
 </form>
    <div class="table">
     <table id="list"></table> 
@@ -44,5 +48,6 @@
 <script src="../scripts/jqgrid/plugins/ui.multiselect.js" type="text/javascript"></script>
 <script src="../scripts/jqgrid/plugins/jquery.searchFilter.js" type="text/javascript"></script>
 <script src="../scripts/jqgrid/plugins/jquery.tablednd.js" type="text/javascript"></script>
+<script src="../scripts/tooltip.js"></script>
 </body>
 </html>

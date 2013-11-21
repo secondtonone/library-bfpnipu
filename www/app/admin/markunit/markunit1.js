@@ -87,23 +87,53 @@ $("#list").jqGrid({
     
     //настройка плагина Autocomplete
     //при возникновении события onSelect вызываем функцию updateTable
-    $('#city_field').autocomplete({
-        serviceUrl:'search.php',
-        maxHeight:150,
-      
-		
-    });
-	 
-    
-    //этот обработчик используется если посетитель ввел название города
-    //и нажал Enter
-    $('#autocomplete_form').submit(function() {
-        updateTable($('#city_field').val());
-
-        return false;
-		
+    $('#book').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$("#book").val(ui.item.label); // display the selected text
+		$("#id_book").val(ui.item.value); // save selected id to hidden input
+        return false; },
+        focus: function(event, ui) {
+        $("#book").val(ui.item.label);
+        return false; // Prevent the widget from inserting the value.
+    }
+	
     });
 	
+	    $('#group').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$("#group").val(ui.item.label); // display the selected text
+		$("#id_group").val(ui.item.value); // save selected id to hidden input
+        return false; },
+        focus: function(event, ui) {
+        $("#group").val(ui.item.label);
+        return false; // Prevent the widget from inserting the value.
+    }
+	
+    });
+	$('#student').keypress(function () {
+		var id_group = $("#id_group").val();
+	   	    $('#student').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$("#student").val(ui.item.label); // display the selected text
+		$("#id_man").val(ui.item.value); // save selected id to hidden input
+        return false; },
+        focus: function(event, ui) {
+        $("#student").val(ui.item.label);
+        return false; // Prevent the widget from inserting the value.
+    }
+	
+    });
+	 
+});
 
 
 

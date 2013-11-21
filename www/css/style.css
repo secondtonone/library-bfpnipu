@@ -127,13 +127,12 @@ footer .border{
 	line-height:30px;
 	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	}
-.table .ui-jqgrid {margin:10px auto;
+.table .ui-jqgrid {margin:0 auto;
        
 	}
 .subgridform {
 	float:left;
     width: 300px;
-	margin-top:-10px;
 	margin-left:35px;}
 .subgridform2 {
 	float:left;
@@ -148,3 +147,82 @@ footer .border{
 	font-family:Book;
 	max-width:260px;
   }	
+#giveForm {
+	width: 950px;
+	height: 170px;
+	padding: 24px 24px 0;
+	margin: 0 auto 30px;
+	background: #FEFEFE;
+   	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font: 16px/18px Book;
+	color: rgb(12, 6, 207);
+}
+#giveForm .field {
+	margin:0 8px;
+	float:left;
+}
+#giveForm .fields {
+ width:890px;
+ margin: 0 auto;
+}
+#giveForm .field label {
+	display: block;
+	margin: 0 0 11px;
+}
+#giveForm .field input {
+    font: 14px sans-serif;
+	color: rgb(12, 6, 207);
+	width: 252px;
+	padding: 9px 13px;
+    border: 1px solid #D2D9DC;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	outline: none;
+}
+#giveForm .field input:focus {
+	border-color: #B7D4EA;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+}
+#giveForm button {
+	overflow:hidden;
+	padding: 6px 20px;
+	height: 30px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(12, 6, 207);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+	margin:20px 35px 30px;
+	float:right;
+}
+#giveForm button:hover {
+	background-color: rgb(12, 6, 167);
+}  
+#giveForm .add {
+	overflow:hidden;
+	padding: 6px 20px;
+	height: 30px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(228, 3, 58);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+	margin:20px 35px 30px;
+	float:left;
+}
+#giveForm .add:hover {
+	background-color: rgb(228, 3, 8);
+}  
+.ui-autocomplete {
+	max-width:400px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
