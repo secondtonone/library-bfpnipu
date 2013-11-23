@@ -20,6 +20,7 @@
 </div>
 </div>
 <script src="markunit/markunit2.js"></script>
+<script src="../scripts/tooltip.js"></script>
 <script src="../scripts/jqgrid/js/grid.locale-ru.js" type="text/javascript"></script>
 <script src="../scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
 <script src="../scripts/jqgrid/js/jquery.jqGrid.js" type="text/javascript"></script>

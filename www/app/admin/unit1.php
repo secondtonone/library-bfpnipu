@@ -29,10 +29,12 @@
 <div class="field">
 <label>Студент</label>
 <input type='text' id='id_man' hidden='hidden'>
+<input type='text' id='name' hidden='hidden'>
+<input type='text' id='otch' hidden='hidden'>
 <input type='text' id='student' required placeholder="Введите студента" title="Начните печатать фамилию студента, появятся варианты из которых нужно выбрать.">
 </div>
 </div>
-<button class="add" type="submit">Добавить</button>
+<div class="add" title="Добавить дополнительную  форму">Добавить</div>
 <button type="submit">Отправить</button>
 </form>
    <div class="table">

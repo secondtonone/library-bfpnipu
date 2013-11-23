@@ -1,6 +1,5 @@
 // ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
-
 /**
  * @license jqGrid  4.5.4 - jQuery Grid
  * Copyright (c) 2008, Tony Tomov, tony@trirand.com
@@ -4002,7 +4001,7 @@ $.jgrid.extend({
 			groupOp: 'AND',
 			defaultSearch : "bw",
 			searchOperators : false,
-			operandTitle : "Click to select search operation.",
+			operandTitle : "Нажмите для выбора условия.",
 			operands : { "eq" :"==", "ne":"!","lt":"<","le":"<=","gt":">","ge":">=","bw":"^","bn":"!^","in":"=","ni":"!=","ew":"|","en":"!@","cn":"~","nc":"!~","nu":"#","nn":"!#"}
 		}, $.jgrid.search , p  || {});
 		return this.each(function(){
@@ -4237,7 +4236,7 @@ $.jgrid.extend({
 						soptions.clearSearch = true;
 					}
 					if(soptions.clearSearch) {
-						$("td:eq(2)",stbl).append("<a title='Clear Search Value' style='padding-right: 0.3em;padding-left: 0.3em;' class='clearsearchclass'>x</a>");
+						$("td:eq(2)",stbl).append("<a title='Удалить значение.' style='padding-right: 0.3em;padding-left: 0.3em;' class='clearsearchclass'>x</a>");
 					}
 					switch (this.stype)
 					{

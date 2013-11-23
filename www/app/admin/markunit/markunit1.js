@@ -43,7 +43,7 @@ $("#list").jqGrid({
 		subgrid_table_id = subgrid_id+"_t";
 		pager_id = "p_"+subgrid_table_id;
 		
-		$("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div></div>");
+		$("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table></div>");
 		
 		jQuery("#"+subgrid_table_id).jqGrid({
 			url:"scripts/unit1/subgridunit1.php?id="+row_id,
@@ -56,7 +56,6 @@ $("#list").jqGrid({
 		   	rowNum:20,
 		   	sortname: 'fam_io',
 		    sortorder: "asc",
-			pager: pager_id,
 		    height: '100%'
 		});
 		},
@@ -114,24 +113,27 @@ $("#list").jqGrid({
         $("#group").val(ui.item.label);
         return false; // Prevent the widget from inserting the value.
     }
+	});
 	
-    });
 	$('#student').keypress(function () {
 		var id_group = $("#id_group").val();
-	   	    $('#student').autocomplete({
+	   	$('#student').autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
 		minLength: 3,
 		select: function (event, ui) {
-		$("#student").val(ui.item.label); // display the selected text
-		$("#id_man").val(ui.item.value); // save selected id to hidden input
+		$("#student").val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); //display the selected text
+		$("#id_man").val(ui.item.value); 
+//save selected id to hidden input
         return false; },
         focus: function(event, ui) {
         $("#student").val(ui.item.label);
         return false; // Prevent the widget from inserting the value.
     }
 	
-    });
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
 	 
 });
 

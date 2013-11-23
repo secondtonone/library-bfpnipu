@@ -29,8 +29,10 @@ try {
     echo json_encode($response);
 	}
 			if ($id_q==3){
+				
 			$id_group=$_GET["id_group"]; 
-			$res = $dbh->prepare("'SELECT p.`id_man`, p.`fam`,p.`name`,p.`otchestvo` FROM  `people` p INNER JOIN `student` s ON s.`id_man`=p.`id_man` WHERE s.`id_group`=? AND p.`fam` LIKE ?");
+			
+			$res = $dbh->prepare("SELECT p.`id_man`, p.`fam`,p.`name`,p.`otchestvo` FROM  `people` p INNER JOIN `student` s ON s.`id_man`=p.`id_man` WHERE s.`id_group`=? AND p.`fam` LIKE ?");
 
 	$res->execute(array($id_group,"%$term%"));
 
