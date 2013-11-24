@@ -78,25 +78,18 @@ $("#list").jqGrid({
 			{} 
 		); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
-		
-  
-    //эта функция добавляет GET параметр в запрос на получение
-    //данных для таблицы и обновляет её
-    
-    
-    //настройка плагина Autocomplete
-    //при возникновении события onSelect вызываем функцию updateTable
+
     $('#book').autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=1',
 		delay:10,
 		minLength: 3,
 		select: function (event, ui) {
-		$("#book").val(ui.item.label); // display the selected text
-		$("#id_book").val(ui.item.value); // save selected id to hidden input
+		$(this).val(ui.item.label); 
+		$("#id_book").val(ui.item.value);
         return false; },
         focus: function(event, ui) {
-        $("#book").val(ui.item.label);
-        return false; // Prevent the widget from inserting the value.
+        $(this).val(ui.item.label);
+        return false;
     }
 	
     });
@@ -106,29 +99,28 @@ $("#list").jqGrid({
 		delay:10,
 		minLength: 1,
 		select: function (event, ui) {
-		$("#group").val(ui.item.label); // display the selected text
-		$("#id_group").val(ui.item.value); // save selected id to hidden input
+		$(this).val(ui.item.label); 
+		$("#id_group").val(ui.item.value);
         return false; },
         focus: function(event, ui) {
-        $("#group").val(ui.item.label);
-        return false; // Prevent the widget from inserting the value.
+        $(this).val(ui.item.label);
+        return false; 
     }
 	});
 	
 	$('#student').keypress(function () {
 		var id_group = $("#id_group").val();
-	   	$('#student').autocomplete({
+	   	$(this).autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
 		minLength: 3,
 		select: function (event, ui) {
-		$("#student").val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); //display the selected text
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man").val(ui.item.value); 
-//save selected id to hidden input
         return false; },
         focus: function(event, ui) {
-        $("#student").val(ui.item.label);
-        return false; // Prevent the widget from inserting the value.
+        $(this).val(ui.item.label);
+        return false; 
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
@@ -137,6 +129,447 @@ $("#list").jqGrid({
 	 
 });
 
+var i = 1;
+var h = 0;
+var hc = 0;
+$('.add').click(function(){
+if (i<10){
+$('.fields'+i+'').css({display:"block"});
+h=$('#giveForm').height(function(j,h){
+       return h+70;});
+hc=$('.contentform').height(function(g,hc){
+       return hc+70;});
+
+	i++; 
+} else{
+		   $(".add").hide();
+		   $('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
+});
 
 
+    $('#book1').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book1').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group1').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group1").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student1').keypress(function () {
+		var id_group = $("#id_group1").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man1").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book2').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book2').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group2').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group2").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student2').keypress(function () {
+		var id_group = $("#id_group2").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man2").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book3').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book3').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group3').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group3").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student3').keypress(function () {
+		var id_group = $("#id_group3").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man1").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book4').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book4').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group4').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group4").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student4').keypress(function () {
+		var id_group = $("#id_group4").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man4").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+
+    $('#book5').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book5').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group5').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group5").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student5').keypress(function () {
+		var id_group = $("#id_group5").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man5").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book6').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book6').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group6').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group6").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student6').keypress(function () {
+		var id_group = $("#id_group6").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man6").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book7').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book7').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group7').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group7").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student7').keypress(function () {
+		var id_group = $("#id_group7").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man7").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
 });  
+    $('#book8').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book8').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group8').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group8").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student8').keypress(function () {
+		var id_group = $("#id_group8").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man8").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+    $('#book9').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$('#id_book9').val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    });
+	 $('#group9').autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_group9").val(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+	
+	$('#student9').keypress(function () {
+		var id_group = $("#id_group9").val();
+	   	$(this).autocomplete({
+        source:'scripts/unit1/autocomplete.php?id_q=3&id_group='+id_group+'',
+		delay:10,
+		minLength: 3,
+		select: function (event, ui) {
+		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
+		$("#id_man9").val(ui.item.value); 
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+	};
+}); 
+
+});

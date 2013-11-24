@@ -98,6 +98,30 @@ footer .border{
 	min-width: 800px;
 	max-width: 1200px;
 		}
+.contenttable {
+	height: 400px;	
+	margin:20px auto 0px;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding:20px;
+	min-width: 800px;
+	max-width: 1200px;
+		}
+.contentform {
+	height: 250px;	
+	margin:0px auto;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding: 5px;
+	min-width: 800px;
+	max-width: 1200px;
+		}
+.submitform {
+	height: 50px;	
+	margin:0px auto;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding: 5px;
+	min-width: 800px;
+	max-width: 1200px;
+		}
 .personal,.accaunt {
     height:90%;
 	width: 45%;
@@ -149,9 +173,9 @@ footer .border{
   }	
 #giveForm {
 	width: 950px;
-	height: 170px;
+	height: 180px;
 	padding: 24px 24px 0;
-	margin: 0 auto 30px;
+	margin: 10px auto 30px;
 	background: #FEFEFE;
    	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
@@ -169,7 +193,7 @@ footer .border{
 }
 #giveForm .field label {
 	display: block;
-	margin: 0 0 11px;
+	margin: 2px 0 11px;
 }
 #giveForm .field input {
     font: 14px sans-serif;
@@ -220,6 +244,20 @@ footer .border{
 #giveForm .add:hover {
 	background-color: rgb(228, 3, 8);
 }  
+
+#giveForm .fields1,
+#giveForm .fields2,
+#giveForm .fields3,
+#giveForm .fields4,
+#giveForm .fields5,
+#giveForm .fields6,
+#giveForm .fields7,
+#giveForm .fields8,
+#giveForm .fields9 {
+ width:890px;
+ margin: 0 auto;
+ display:none;
+}
 .ui-autocomplete {
 	max-width:400px;
     max-height: 300px;
@@ -227,3 +265,10 @@ footer .border{
     overflow-x: hidden;
 	background:rgba(248, 248, 248, 0.9);
 }
+.attetion {
+	font: bold 14px Arial, Tahoma, sans-serif;
+	color: rgb(228, 3, 58);
+	padding: 6px 20px;
+	margin:20px 35px 30px;
+	float:left;
+	}
