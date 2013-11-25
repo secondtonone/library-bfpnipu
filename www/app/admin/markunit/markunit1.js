@@ -1,10 +1,9 @@
 $(document).ready(function(){
-
+//для подсветки меню
 $(".unit1").each(function(){
-
     $(this).addClass("selected");
 });
-
+//jqgrid плагин
 var lastSel;
 		
 $("#list").jqGrid({
@@ -32,13 +31,7 @@ $("#list").jqGrid({
             caption: 'Данные о книгах',
 			subGrid: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {
-		// we pass two parameters
-		// subgrid_id is a id of the div tag created whitin a table data
-		// the id of this elemenet is a combination of the "sg_" + id of the row
-		// the row_id is the id of the row
-		// If we wan to pass additinal parameters to the url we can use
-		// a method getRowData(row_id) - which returns associative array in type name-value
-		// here we can easy construct the flowing
+		// subgrid
 		var subgrid_table_id, pager_id;
 		subgrid_table_id = subgrid_id+"_t";
 		pager_id = "p_"+subgrid_table_id;
@@ -71,14 +64,14 @@ $("#list").jqGrid({
 }, 
             editurl: 'scripts/unit1/saverowunit1.php'
         }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
-			{}, //  default settings for edit
-			{}, //  default settings for add
-			{},  // delete instead that del:false we need this
-			{}, // search options
+			{}, 
+			{}, 
+			{},  
+			{}, 
 			{} 
 		); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
-
+//autocomplete для певого поля
     $('#book').autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=1',
 		delay:10,
@@ -128,7 +121,7 @@ $("#list").jqGrid({
 	};
 	 
 });
-
+//подгрузка полей
 var i = 1;
 var h = 0;
 var hc = 0;
@@ -146,7 +139,7 @@ hc=$('.contentform').height(function(g,hc){
 		   $('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
 });
 
-
+//autocomplete для подгруж. полей
     $('#book1').autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=1',
 		delay:10,
@@ -571,5 +564,26 @@ hc=$('.contentform').height(function(g,hc){
 		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
 	};
 }); 
+//кнопка для очитски значений
+
+
+//для отправки формы
+ $('#giveForm').submit(function(){
+				
+				 var id_book = $("#id_book").val();
+                 var id_man = $("#id_man").val();
+				 		 				  
+                $.ajax({  
+                  type: "POST",  
+                  url: "../reg/auth/enter.php",  
+                  data: 'id_book='+ id_book+'&id_man='+ id_man,
+				  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
+				  success: function(data){
+                        $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
+						  
+                    
+                });  
+                return false;  
+            });  
 
 });

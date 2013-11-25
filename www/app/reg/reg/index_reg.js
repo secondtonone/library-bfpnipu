@@ -16,7 +16,7 @@ $(document).ready(function(){
 				  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},                 
 				   success: function(data){  
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index_reg.php'>"+data+"</a></div>");
-						  
+						 setTimeout('window.location.href = "index_reg.php"', 3000);
                     }  
                 });  
                 return false;  

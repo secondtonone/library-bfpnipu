@@ -37,7 +37,7 @@
 </div>
 <div class="field">
 <label>Номер зачетки</label>
-<input type='text' id='number_zach' required maxlength="7" placeholder="Введите номер своей зачетной книжки" pattern="^[0-9]+$-^[0-9]+$" title="Например: 123-12">
+<input type='text' id='number_zach' required maxlength="7" placeholder="Введите номер своей зачетной книжки" title="Например: 123-12">
 </div>
 </div>
 <div class="submit">
