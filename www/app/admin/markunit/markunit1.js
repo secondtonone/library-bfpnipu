@@ -582,7 +582,7 @@ hc=$('.contentform').height(function(g,hc){
                  var id_man4 = $("#id_man4").val();
                  var id_book5 = $("#id_book5").val();
                  var id_man5 = $("#id_man5").val();
-		var id_book6 = $("#id_book6").val();
+		 var id_book6 = $("#id_book6").val();
                  var id_man6 = $("#id_man6").val();
                  var id_book7 = $("#id_book7").val();
                  var id_man7 = $("#id_man7").val();
@@ -595,19 +595,19 @@ hc=$('.contentform').height(function(g,hc){
                 $.ajax({  
                   type: "POST",  
                   url: "../reg/auth/enter.php",  
-                  data: 'id_book='+ id_book+'&id_man='+ id_man
-                  +'&id_book1='+ id_book1+'&id_man1='+ id_man1
-                  +'&id_book2='+ id_book2+'&id_man2='+ id_man2
-                  +'&id_book3='+ id_book3+'&id_man3='+ id_man3
-                  +'&id_book4='+ id_book4+'&id_man4='+ id_man4
-                  +'&id_book5='+ id_book5+'&id_man5='+ id_man5
-                  +'&id_book6='+ id_book6+'&id_man6='+ id_man6
-                  +'&id_book7='+ id_book7+'&id_man7='+ id_man7
-                  +'&id_book8='+ id_book8+'&id_man8='+ id_man8
-                  +'&id_book9='+ id_book9+'&id_man9='+ id_man9,
-				  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
-				  success: function(data){
-                        $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
+                  data: 'i='+i+'&id_book='+id_book+'&id_man='+id_man
+                  +'&id_book1='+id_book1+'&id_man1='+id_man1
+                  +'&id_book2='+id_book2+'&id_man2='+id_man2
+                  +'&id_book3='+id_book3+'&id_man3='+id_man3
+                  +'&id_book4='+id_book4+'&id_man4='+id_man4
+                  +'&id_book5='+id_book5+'&id_man5='+id_man5
+                  +'&id_book6='+id_book6+'&id_man6='+id_man6
+                  +'&id_book7='+id_book7+'&id_man7='+id_man7
+                  +'&id_book8='+id_book8+'&id_man8='+id_man8
+                  +'&id_book9='+id_book9+'&id_man9='+id_man9,
+		  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
+		  success: function(data){
+                  $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
 						  
                     
                 });  
