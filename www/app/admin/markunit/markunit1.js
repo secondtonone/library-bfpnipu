@@ -133,10 +133,32 @@ h=$('#giveForm').height(function(j,h){
 hc=$('.contentform').height(function(g,hc){
        return hc+70;});
 
-	i++; 
+	++i; 
+	return i;
+	return h;
+	return hc;
 } else{
 		   $(".add").hide();
 		   $('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
+});
+//удаление полей
+$('.remove').click(function(){
+if (i>0){
+$('.fields'+i+'').css({display:"none"});
+h=$('#giveForm').height(function(j,h){
+       return h-70;});
+hc=$('.contentform').height(function(g,hc){
+       return hc-70;});
+
+	--i; 
+	return i;
+	return h;
+	return hc;
+} else{
+		   $(".remove").hide();
+		   $('<div class="attetion">Нельзя удалить первое поле!</div>').fadeIn('350').appendTo('.fieds9')
+		   $('.attetion').hide(3000);
+		   $(".remove").show();}
 });
 
 //autocomplete для подгруж. полей
@@ -565,7 +587,9 @@ hc=$('.contentform').height(function(g,hc){
 	};
 }); 
 //кнопка для очитски значений
-
+$('.cross').click(function(){
+$('.cross').siblings('.field').val();	
+});
 
 //для отправки формы
  $('#giveForm').submit(function(){
