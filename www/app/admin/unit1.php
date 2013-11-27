@@ -212,6 +212,7 @@
 </div>
 <div class="sumbitfrom">
 <div class="add"  title="Добавить дополнительную  форму">+</div>
+<div class="remove"  title="Удалить дополнительную форму">-</div>
 <button type="submit">Отправить</button>
 </div>
 </form>   
