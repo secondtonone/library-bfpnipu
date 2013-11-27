@@ -25,12 +25,12 @@
 <div class="field">
 <label>Книга</label>
 <input type='text' id='id_book' hidden='hidden'>
-<input type='text' id='book' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать.">
+<input type='text' id='book' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать."><div title="Очистить поле" class='cross'></div>
 </div>
 <div class="field">
 <label>Группа</label>
 <input type='text' id='id_group' hidden='hidden'>
-<input type='text' id='group' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите группу студента" title="Начните печатать, появятся варианты из которых нужно выбрать..">
+<input type='text' id='group' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите группу студента" title="Начните печатать, появятся варианты из которых нужно выбрать.."><div title="Очистить поле" class='cross'></div>
 </div>
 <div class="field">
 <label>Студент</label>
@@ -38,7 +38,7 @@
 <input type='text' id='name' hidden='hidden'>
 <input type='text' id='otch' hidden='hidden'>
 <input type='text' id='student' required placeholder="Введите студента" title="Начните печатать фамилию студента, появятся варианты из которых нужно выбрать.">
-</div>
+<div title="Очистить поле" class='cross'></div></div>
 </div>
 <div class="fields1">
 <div class="field">
@@ -212,7 +212,7 @@
 </div>
 </div>
 <div class="sumbitfrom">
-<div class="add"  title="Добавить дополнительную  форму">Добавить</div>
+<div class="add"  title="Добавить дополнительную  форму">+</div>
 <button type="submit">Отправить</button>
 </div>
 </form>   

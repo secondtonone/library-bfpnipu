@@ -19,12 +19,13 @@ $(document).ready(function(){
                                  window.location.href = "/app/admin/unit1.php";
                                                                  }else{
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");
-						 setTimeout('window.location.href = "index.php"', 3000);
+						setTimeout('window.location.href = "index.php"', 3000);
 						 }
                                                   
                     } }
                 });  
-                return false;  
+                return false; 
+				 
             });  
               
         });  

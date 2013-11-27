@@ -198,7 +198,7 @@ footer .border{
 #giveForm .field input {
     font: 14px sans-serif;
 	color: rgb(12, 6, 207);
-	width: 252px;
+	width: 210px;
 	padding: 9px 13px;
     border: 1px solid #D2D9DC;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
@@ -228,22 +228,15 @@ footer .border{
 }  
 #giveForm .add {
 	overflow:hidden;
-	padding: 6px 20px;
-	height: 18px;
- 	color: #FFF;
-    font: bold 13px Arial, Tahoma, sans-serif;
-	background-color: rgb(228, 3, 58);
+	padding: 0px 0px;
+ 	color: rgb(12, 6, 207);
+    font: bold 46px Arial, Tahoma, sans-serif;
 	cursor: pointer;
-	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-	border: 1px solid rgba(0,0,0,0.2);
-	margin:20px 35px 30px;
+	margin:7px 35px 30px;
+	height: 46px;
 	float:left;
 }
-#giveForm .add:hover {
-	background-color: rgb(228, 3, 8);
-}  
+
 
 #giveForm .fields1,
 #giveForm .fields2,
@@ -271,4 +264,14 @@ footer .border{
 	padding: 6px 20px;
 	margin:20px 35px 30px;
 	float:left;
+	}
+.cross {
+	background-image:url(../img/cross.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin:2px 4px;
+	padding:0px 0px;
+	height:30px;
+    width:30px;
+	float:right;
 	}

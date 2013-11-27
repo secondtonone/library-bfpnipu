@@ -17,8 +17,10 @@ try {
         { 
         $id_book = $_GET['id_book'.$j.''];
         $id_man = $_GET['id_man'.$j.''];  
+		
         $vid = $dbh->prepare('INSERT INTO `vidacha`(`id_man`,`id_book`,`data_vozvrata`,`na_rukah`,`poterya`) VALUES (?,?,?,?,?)');
-        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No");
+        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No"));
+		
         $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
         $ost->execute(array(1,$id_book ));
         }else{
@@ -32,7 +34,7 @@ try {
         {if (!empty($_GET['id_book']) && !empty($_GET['id_man']))
         { 
         $vid = $dbh->prepare('INSERT INTO `vidacha`(`id_man`,`id_book`,`data_vozvrata`,`na_rukah`,`poterya`) VALUES (?,?,?,?,?)');
-        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No");
+        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No"));
         $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
         $ost->execute(array(1,$id_book ));
         echo "Запись добавлена!";

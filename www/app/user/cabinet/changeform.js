@@ -46,7 +46,7 @@ $(document).on('submit','#ppl',function(){
 },                 
 				   success: function(data){  
                         $(".p_content").html("<div id='attentionForm'><a class='attentionText'>"+data+"</a></div>");
-						  
+					setTimeout('window.location.href = "cabinet_controller.php"', 3000);  
                     }  
                 });  
                 return false;  
@@ -98,7 +98,7 @@ $(document).on('submit','#acc',function(){
 },                 
 				   success: function(data){  
                         $(".a_content").html("<div id='attentionForm'><a class='attentionText' >"+data+"</a></div>");
-						  
+					setTimeout('window.location.href = "cabinet_controller.php"', 3000);	  
                     }  
                 });  
                 return false;  
