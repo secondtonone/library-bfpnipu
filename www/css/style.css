@@ -236,6 +236,16 @@ footer .border{
 	height: 46px;
 	float:left;
 }
+#giveForm .remove {
+	overflow:hidden;
+	padding: 0px 0px;
+ 	color: rgb(12, 6, 207);
+        font: bold 46px Arial, Tahoma, sans-serif;
+	cursor: pointer;
+	margin:7px 25px 30px;
+	height:46px;
+	float:left;
+}
 
 
 #giveForm .fields1,
