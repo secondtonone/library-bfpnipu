@@ -126,39 +126,36 @@ var i = 1;
 var h = 0;
 var hc = 0;
 $('.add').click(function(){
-if (i<10){
+if (i<=9){
 $('.fields'+i+'').css({display:"block"});
+$('.remove').css({display:"block"});
 h=$('#giveForm').height(function(j,h){
        return h+70;});
 hc=$('.contentform').height(function(g,hc){
        return hc+70;});
-
-	++i; 
-	return i;
-	return h;
-	return hc;
-} else{
-		   $(".add").hide();
+    ++i; 
+} else{ $(".add").hide();
 		   $('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
 });
 //удаление полей
 $('.remove').click(function(){
-if (i>0){
+if (i==0)
+{
+$('.remove').css({display:"none"});
+$('#giveForm').height(180);
+$('.contentform').height(250);	}
+else	
+if (i>=1){
 $('.fields'+i+'').css({display:"none"});
 h=$('#giveForm').height(function(j,h){
-       return h-70;});
+       return h-60;});
 hc=$('.contentform').height(function(g,hc){
-       return hc-70;});
-
+       return hc-60;});
+ $('.attetion').remove();	   
+ $('.add').css({display:"block"});
 	--i; 
-	return i;
-	return h;
-	return hc;
-} else{
-		   $(".remove").hide();
-		   $('<div class="attetion">Нельзя удалить первое поле!</div>').fadeIn('350').appendTo('.fieds9')
-		   $('.attetion').hide(3000);
-		   $(".remove").show();}
+
+}
 });
 
 //autocomplete для подгруж. полей

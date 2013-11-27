@@ -44,7 +44,7 @@
 <div class="field">
 <label>Книга</label>
 <input type='text' id='id_book1' hidden='hidden'>
-<input type='text' id='book1' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать."> <div title="Очистить поле" class='cross'></div>   </div>
+<input type='text' id='book1' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать."><div title="Очистить поле" class='cross'></div></div>
 <div class="field">
 <label>Группа</label>
 <input type='text' id='id_group1' hidden='hidden'>

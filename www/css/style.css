@@ -239,12 +239,13 @@ footer .border{
 #giveForm .remove {
 	overflow:hidden;
 	padding: 0px 0px;
- 	color: rgb(12, 6, 207);
-        font: bold 46px Arial, Tahoma, sans-serif;
+	color: rgb(228, 3, 48);
+ 	font: bold 58px Arial, Tahoma, sans-serif;
 	cursor: pointer;
-	margin:7px 25px 30px;
+	margin:-4px -10px 30px;
 	height:46px;
 	float:left;
+	display:none;
 }
 
 
@@ -284,4 +285,5 @@ footer .border{
 	height:30px;
     width:30px;
 	float:right;
+	cursor: pointer;
 	}
