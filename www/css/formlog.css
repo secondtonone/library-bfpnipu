@@ -27,11 +27,15 @@
 	padding: 9px 13px;
     border: 1px solid #D2D9DC;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	-webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
 	outline: none;
 }
 #loginForm .field input:focus {
 	border-color: #B7D4EA;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+	-webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
 }
 #forgot {
 	float: right;
@@ -85,4 +89,3 @@
 .reg:hover {
 	background-color: rgb(228, 3, 8);
 	}
-

@@ -122,29 +122,32 @@ $("#list").jqGrid({
 	 
 });
 //подгрузка полей
-var i = 1;
+var i = 0;
 var h = 0;
 var hc = 0;
 $('.add').click(function(){
 if (i<=9){
+	++i;
 $('.fields'+i+'').css({display:"block"});
 $('.remove').css({display:"block"});
 h=$('#giveForm').height(function(j,h){
   return h+70;});
 hc=$('.contentform').height(function(g,hc){
   return hc+70;});
-    ++i;
 if (i==10)
 {
-return i=9;	
+$(".add").hide();
+$('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');	
+h=$('#giveForm').height(function(j,h){
+  return h-70;});
+hc=$('.contentform').height(function(g,hc){
+  return hc-70;});
+return i=9;
+}	
 }
-} else{ $(".add").hide();
-$('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
 });
 //удаление полей
 $('.remove').click(function(){
-
-	
 if (i>=1 && i<=9){
 $('.fields'+i+'').css({display:"none"});
 h=$('#giveForm').height(function(j,h){
@@ -159,9 +162,9 @@ if (i==0)
 $('.remove').css({display:"none"});
 $('#giveForm').height(180);
 $('.contentform').height(250);
-return i=1;}
+return i=0;
 }
-
+}
 });
 
 //autocomplete для подгруж. полей
@@ -640,7 +643,7 @@ $('.cross').siblings('input').val("");
                 });  
                 return false;  
             });  
-                $('#attetionForm').load(function(){
+                   $('#attetionForm').load(function(){
                 	$('#attetionForm').delay(3000).remove();
                 	$('.contentform').load('unit1.php #giveForm'); 
                 	});

@@ -149,6 +149,9 @@ footer .border{
 	padding:0 5px;
 	text-align:center;
 	line-height:30px;
+	background: -moz-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
+	background: -webkit-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
+	background: -o-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	}
 .table .ui-jqgrid {margin:0 auto;
@@ -202,11 +205,16 @@ footer .border{
 	padding: 9px 13px;
     border: 1px solid #D2D9DC;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+    -webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
 	outline: none;
+	
 }
 #giveForm .field input:focus {
 	border-color: #B7D4EA;
 	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+    -webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
 }
 #giveForm button {
 	overflow:hidden;

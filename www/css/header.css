@@ -21,6 +21,9 @@ header {
 	margin: 30px 0 0 70px;
 }
 .menuline {
+	background: -moz-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	background: -webkit-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	background: -o-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
 	background: linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
 	margin:0 auto;
 	height:30px;
@@ -48,13 +51,18 @@ header {
 
 
 .line:hover{
-	
+	background: -o-linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
+	background: -webkit-linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
+	background: -moz-linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
 	background: linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
 	color:white;
 
 }
 .exit:hover{
 	background-color:rgb(228, 3, 48);
+	background: -o-linear-gradient(180deg, rgb(228, 3, 48),rgba(228, 3, 48, 0.5));
+	background: -webkit-linear-gradient(180deg, rgb(228, 3, 48),rgba(228, 3, 48, 0.5));
+	background: -moz-linear-gradient(180deg, rgb(228, 3, 48),rgba(228, 3, 48, 0.5));
 	background: linear-gradient(180deg, rgb(228, 3, 48),rgba(228, 3, 48, 0.5));
 	color:white;
 
@@ -100,6 +108,9 @@ header {
 }
 .selected {
 	color: rgb(228, 3, 88);
+	background: -webkit-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
+	background: -moz-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
+	background: -o-linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 	background: linear-gradient(180deg, rgba(0,0,0,0.1),rgba(238, 238, 238, 0.5));
 }
 .usermenu {
@@ -138,7 +149,4 @@ header {
 	background-color:rgb(255, 255, 255);
 	border-right:dotted 1px rgba(238, 238, 238, 0.5);
 	color: rgb(228, 3, 88);
-
-
 }
-

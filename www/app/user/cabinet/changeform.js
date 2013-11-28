@@ -52,7 +52,7 @@ $(document).on('submit','#ppl',function(){
                 return false;  
             });  
 
-	$(document).on('click','.p_content #attentionForm',function(){
+$(document).on('click','.p_content #attentionForm',function(){
               $.ajax({
             url: "cabinet/controller_ppl.php",
 				cache: false,
@@ -132,4 +132,3 @@ return false;
               
        
 });
-
