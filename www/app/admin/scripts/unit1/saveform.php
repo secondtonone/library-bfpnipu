@@ -15,12 +15,12 @@ try {
         $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
         $ost->execute(array(1,$id_book ));
         echo "Запись добавлена!";
-        }
+        }else{
         echo "Не заполнены строки в поле";
         exit;
         } 
         
-        if ($i>=1){
+      
         for ($j=1;$j<=$i;$j++)
             {
         if (!empty($_GET['id_book'.$j.'']) && !empty($_GET['id_man'.$j.'']))
@@ -37,9 +37,7 @@ try {
            exit; 
         }
         }
-         echo "Запись добавлены!";
-        }
-       
+      
 }  
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();
