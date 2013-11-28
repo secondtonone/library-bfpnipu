@@ -8,9 +8,19 @@ require_once('../../../scripts/connect.php');
     $i = $_GET['i'];   
     
 try {
-
+        if (!empty($_GET['id_book']) && !empty($_GET['id_man']))
+        { 
+        $vid = $dbh->prepare('INSERT INTO `vidacha`(`id_man`,`id_book`,`data_vozvrata`,`na_rukah`,`poterya`) VALUES (?,?,?,?,?)');
+        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No"));
+        $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
+        $ost->execute(array(1,$id_book ));
+        echo "Запись добавлена!";
+        }
+        echo "Не заполнены строки в поле";
+        exit;
+        } 
         
-        if ($i>0){  
+        if ($i>=1){
         for ($j=1;$j<=$i;$j++)
             {
         if (!empty($_GET['id_book'.$j.'']) && !empty($_GET['id_man'.$j.'']))
@@ -24,25 +34,11 @@ try {
         $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
         $ost->execute(array(1,$id_book ));
         }else{
-           echo "Не заполнены строки в поле №".$j.""; 
            exit; 
         }
-            } 
-        echo "Записи добавлены!";
         }
-        else 
-        {if (!empty($_GET['id_book']) && !empty($_GET['id_man']))
-        { 
-        $vid = $dbh->prepare('INSERT INTO `vidacha`(`id_man`,`id_book`,`data_vozvrata`,`na_rukah`,`poterya`) VALUES (?,?,?,?,?)');
-        $vid->execute(array($id_man,$id_book,$datevid,"Yes","No"));
-        $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');
-        $ost->execute(array(1,$id_book ));
-        echo "Запись добавлена!";
+         echo "Запись добавлены!";
         }
-        echo "Не заполнены строки в поле";
-        exit;
-        } 
-    
        
 }  
 catch (PDOException $e) {
