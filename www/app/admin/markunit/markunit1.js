@@ -130,22 +130,22 @@ if (i<=9){
 $('.fields'+i+'').css({display:"block"});
 $('.remove').css({display:"block"});
 h=$('#giveForm').height(function(j,h){
-       return h+70;});
+  return h+70;});
 hc=$('.contentform').height(function(g,hc){
-       return hc+70;});
-    ++i; 
+  return hc+70;});
+    ++i;
+if (i==10)
+{
+return i=9;	
+}
 } else{ $(".add").hide();
-		   $('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
+$('<div class="attetion">Нельзя добавить больше 10 полей!</div>').fadeIn('350').appendTo('.fields9');}
 });
 //удаление полей
 $('.remove').click(function(){
-if (i==0)
-{
-$('.remove').css({display:"none"});
-$('#giveForm').height(180);
-$('.contentform').height(250);	}
-else	
-if (i>=1){
+
+	
+if (i>=1 && i<=9){
 $('.fields'+i+'').css({display:"none"});
 h=$('#giveForm').height(function(j,h){
        return h-60;});
@@ -154,8 +154,14 @@ hc=$('.contentform').height(function(g,hc){
  $('.attetion').remove();	   
  $('.add').css({display:"block"});
 	--i; 
-
+if (i==0)
+{
+$('.remove').css({display:"none"});
+$('#giveForm').height(180);
+$('.contentform').height(250);
+return i=1;}
 }
+
 });
 
 //autocomplete для подгруж. полей
@@ -585,13 +591,13 @@ hc=$('.contentform').height(function(g,hc){
 }); 
 //кнопка для очитски значений
 $('.cross').click(function(){
-$('.cross').siblings('.field').val();	
+$('.cross').siblings('input').val("");	
 });
 
 //для отправки формы
  $('#giveForm').submit(function(){
 				
-		var id_book = $("#id_book").val();
+		 var id_book = $("#id_book").val();
                  var id_man = $("#id_man").val();
                  var id_book1 = $("#id_book1").val();
                  var id_man1 = $("#id_man1").val();
@@ -626,13 +632,17 @@ $('.cross').siblings('.field').val();
                   +'&id_book7='+id_book7+'&id_man7='+id_man7
                   +'&id_book8='+id_book8+'&id_man8='+id_man8
                   +'&id_book9='+id_book9+'&id_man9='+id_man9,
-		  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
+		  beforeSend: function() {$(".contentform").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
 		  success: function(data){
-                  $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
+                  $(".contentform").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
 						  
                     
                 });  
                 return false;  
             });  
+                $('#attetionForm').load(function(){
+                	$('#attetionForm').delay(3000).remove();
+                	$('.contentform').load('unit1.php #giveForm'); 
+                	});
 
 });
