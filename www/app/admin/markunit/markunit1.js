@@ -79,6 +79,24 @@ $("#list").jqGrid({
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$("#id_book").val(ui.item.value);
+		$('#book1').val(ui.item.label); 
+		$("#id_book1").val(ui.item.value);
+		$('#book2').val(ui.item.label); 
+		$("#id_book2").val(ui.item.value);
+		$('#book3').val(ui.item.label); 
+		$("#id_book3").val(ui.item.value);
+		$('#book4').val(ui.item.label); 
+		$("#id_book4").val(ui.item.value);
+		$('#book5').val(ui.item.label); 
+		$("#id_book5").val(ui.item.value);
+		$('#book6').val(ui.item.label); 
+		$("#id_book6").val(ui.item.value);
+		$('#book7').val(ui.item.label); 
+		$("#id_book7").val(ui.item.value);
+		$('#book8').val(ui.item.label); 
+		$("#id_book8").val(ui.item.value);
+		$('#book9').val(ui.item.label); 
+		$("#id_book9").val(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -94,6 +112,24 @@ $("#list").jqGrid({
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$("#id_group").val(ui.item.value);
+		$('#group1').val(ui.item.label); 
+		$("#id_group1").val(ui.item.value);
+		$('#group2').val(ui.item.label); 
+		$("#id_group2").val(ui.item.value);
+		$('#group3').val(ui.item.label); 
+		$("#id_group3").val(ui.item.value);
+		$('#group4').val(ui.item.label); 
+		$("#id_group4").val(ui.item.value);
+		$('#group5').val(ui.item.label); 
+		$("#id_group5").val(ui.item.value);
+		$('#group6').val(ui.item.label); 
+		$("#id_group6").val(ui.item.value);
+		$('#group7').val(ui.item.label); 
+		$("#id_group7").val(ui.item.value);
+		$('#group8').val(ui.item.label); 
+		$("#id_group8").val(ui.item.value);
+		$('#group9').val(ui.item.label); 
+		$("#id_group9").val(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -125,6 +161,8 @@ $("#list").jqGrid({
 var i = 0;
 var h = 0;
 var hc = 0;
+
+
 $('.add').click(function(){
 if (i<=9){
 	++i;
@@ -593,10 +631,36 @@ return i=0;
 	};
 }); 
 //кнопка для очитски значений
-$('.cross').click(function(){
-$('.cross').siblings('input').val("");	
+$('.fields .cross').click(function(){
+$('.fields .field input').val("");	
 });
-
+$('.fields1 .cross').click(function(){
+$('.fields1 .field input').val("");	
+});
+$('.fields2 .cross').click(function(){
+$('.fields2 .field input').val("");	
+});
+$('.fields3 .cross').click(function(){
+$('.fields3 .field input').val("");	
+});
+$('.fields4 .cross').click(function(){
+$('.fields4 .field input').val("");	
+});
+$('.fields5 .cross').click(function(){
+$('.fields5 .field input').val("");	
+});
+$('.fields6 .cross').click(function(){
+$('.fields6 .field input').val("");	
+});
+$('.fields7 .cross').click(function(){
+$('.fields7 .field input').val("");	
+});
+$('.fields8 .cross').click(function(){
+$('.fields8 .field input').val("");	
+});
+$('.fields9 .cross').click(function(){
+$('.fields9 .field input').val("");	
+});
 //для отправки формы
  $('#giveForm').submit(function(){
 				

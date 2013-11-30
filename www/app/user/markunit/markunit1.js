@@ -63,5 +63,13 @@ $("#list").jqGrid({
 		); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 		
-  
+$.ajax({
+  type: "POST",
+  url: "scripts/unit1/stickyquery.php",
+  dataType: "html",
+  success: function(data){
+     $.sticky(data);
+  }
+});
+
 });  

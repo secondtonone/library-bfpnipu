@@ -13,13 +13,15 @@
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
 <div class="content">
-<form action="sync/sync.php" method="post" enctype="multipart/form-data">
-<input type="file" name="filename" size="20" />
-<input type="hidden" name="update" value="ok" />
-<input type="submit" value="Upload" />
-</form>
 </div>
 </div>
 <script src="markunit/markunit4.js"></script>
+<script src="../scripts/jqgrid/js/grid.locale-ru.js" type="text/javascript"></script>
+<script src="../scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+<script src="../scripts/jqgrid/js/jquery.jqGrid.js" type="text/javascript"></script>
+<script src="../scripts/jqgrid/plugins/ui.multiselect.js" type="text/javascript"></script>
+<script src="../scripts/jqgrid/plugins/jquery.searchFilter.js" type="text/javascript"></script>
+<script src="../scripts/jqgrid/plugins/jquery.tablednd.js" type="text/javascript"></script>
+<script src="../scripts/tooltip.js"></script>
 </body>
 </html>

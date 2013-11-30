@@ -71,6 +71,11 @@ $_SESSION["telefon_sot"]=$result["telefon_sot"];
 $_SESSION["telefon_rabochii"]=$result["telefon_rabochii"];
 $_SESSION["e_mail"]=$result["e_mail"];
 
+$query='SELECT COUNT(`id_vid`) AS count FROM `vidacha` WHERE id_man=? and na_rukah="Yes"';
+$result=$QueryClass->check_repeat($query,$_SESSION["id_man"],$dbh);
+
+$_SESSION["count"]=$result["count"];
+
 echo "user";
 }else{
 exit("Вы ввели не верный пароль!");
