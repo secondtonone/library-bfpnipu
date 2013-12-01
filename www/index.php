@@ -5,6 +5,8 @@
 <link rel="icon" type="image/png" href="img/favicon.png" />
 <title>Электронная библиотека кафедр БФ ПНИПУ</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="app/scripts/jquery-1.10.2.js"></script>
+<script src="app/scripts/jqgrid/themes/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
 </head>
 <body>
 <?php require_once 'temp/menuline.php';?>
