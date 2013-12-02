@@ -13,6 +13,10 @@
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
 <div class="content">
+   <div class="table">
+    <table id="list"></table> 
+        <div id="pager"></div> 
+    </div>
 </div>
 </div>
 <script src="markunit/markunit3.js"></script>
