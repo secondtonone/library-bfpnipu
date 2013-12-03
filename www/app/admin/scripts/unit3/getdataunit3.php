@@ -147,7 +147,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`,COUNT(v.`id_book`) as narukah FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` JOIN `vidacha` as v ON b.`id_book`=v.`id_book` WHERE b.`id_kafedra`=? AND v.`na_rukah`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`ostatok`,COUNT(v.`id_book`) as narukah,v.`data_vidachi` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` JOIN `vidacha` as v ON b.`id_book`=v.`id_book` WHERE b.`id_kafedra`=? AND v.`na_rukah`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf,"Yes"));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -158,12 +158,15 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+    	 list($year, $month, $day, $hour, $minute, $second) = sscanf($row['data_vidachi'], "%04s-%02s-%02s %02s:%02s:%02s");
+                $raz=$curyear-$year;
+                if (($raz>1) or ($month<=11 and $raz==1 and $curmonth>5) or ($raz==0 and $curmonth>6 and $month<=5)){
+	$response->rows[$i]['id']=$row['id_book'];
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['ostatok']);
 		
         $i++;
     }
-    echo json_encode($response);}
+    echo json_encode($response);}}
 }
 catch (Exception $e) {
     echo json_encode(array('errMess'=>'Error: '.$e->getMessage()));
