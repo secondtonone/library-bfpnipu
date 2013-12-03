@@ -7,7 +7,7 @@ $(".unit3").each(function(){
 
 });
 $("#list").jqGrid({
-            url:'scripts/unit1/getdataunit3.php',
+            url:'scripts/unit1/getdataunit3.php?n=1',
             datatype: 'json',
             mtype: 'POST',
             colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
@@ -60,7 +60,7 @@ $("#list").jqGrid({
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 		
 $("#list1").jqGrid({
-            url:'scripts/unit1/getdataunit3.php',
+            url:'scripts/unit1/getdataunit3.php?n=2',
             datatype: 'json',
             mtype: 'POST',
             colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
