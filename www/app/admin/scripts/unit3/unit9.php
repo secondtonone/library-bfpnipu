@@ -1,136 +1,95 @@
 <?php
 session_start();
-if(isset($_SESSION["id"])and($_SESSION["id"]!=='')and($_SESSION["right"]=='Moderator')){
-echo "<h3>Привет, ".$_SESSION["name"]."!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='unit7.php'>Помощь</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='/../reg/exitad.php'>Выйти</a></h3><br />";
-}else{
-echo "<html><head><meta http-equiv='Refresh' content='0; URL=/../reg/indexad.php'></head></html>";
+require_once('../../../scripts/connect.php');
+try {
+    	
+   //читаем параметры
+    $curPage = $_POST['page'];
+    $rowsPerPage = $_POST['rows'];
+    $sortingField = $_POST['sidx'];
+    $sortingOrder = $_POST['sord'];
+	$curyear=date('Y');
+	$curmonth=date('n');
+
+        $qWhere = '';
+        //определяем команду (поиск или просто запрос на вывод данных)
+        //если поиск, конструируем WHERE часть запроса
+        
+
+        if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
+                $allowedFields = array('name_book','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
+                $allowedOperations = array('AND', 'OR');
+                
+                $searchData = json_decode($_POST['filters']);
+
+                $qWhere = ' AND ';
+                $firstElem = true;
+
+                //объединяем все полученные условия
+                foreach ($searchData->rules as $rule) {
+                        if (!$firstElem) {
+                                //объединяем условия (с помощью AND или OR)
+                                if (in_array($searchData->groupOp, $allowedOperations)) {
+                                        $qWhere .= ' '.$searchData->groupOp.' ';
+                                }
+                                else {
+                                        //если получили не существующее условие - возвращаем описание ошибки
+                                        throw new Exception('Cool hacker is here!!! :)');
+                                }
+                        }
+                        else {
+                                $firstElem = false;
+                        }
+                        
+                        //вставляем условия
+                        if (in_array($rule->field, $allowedFields)) {
+                                switch ($rule->op) {
+                                        case 'eq': $qWhere .= $rule->field.' = '.$dbh->quote($rule->data); break;
+                                        case 'ne': $qWhere .= $rule->field.' <> '.$dbh->quote($rule->data); break;
+                                        case 'bw': $qWhere .= $rule->field.' LIKE '.$dbh->quote($rule->data.'%'); break;
+                                        case 'cn': $qWhere .= $rule->field.' LIKE '.$dbh->quote('%'.$rule->data.'%'); break;
+                                        default: throw new Exception('Cool hacker is here!!! :)');
+                                }
+                        }
+                        else {
+                                //если получили не существующее условие - возвращаем описание ошибки
+                                throw new Exception('Cool hacker is here!!! :)');
+                        }
+                }
+        }
+             
+    //определяем количество записей в таблице
+    $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
+    $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
+        
+    $kodkaf=$_SESSION["id_kafedra"];
+    $year = date('Y')-5; 
+        
+    $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
+    //получаем список из базы
+    $res = $dbh->prepare('SELECT (select `name_book` from `book` where book.`id_book`=vidacha.id_book AND book.`id_kafedra`=?) as namebook,(select `kolvo_vsego` from book where book.`id_book`=vidacha.id_book) as `kolvo_vsego`, (select `ostatok` from book where book.`id_book`=vidacha.`id_book`) as `ostatok`, COUNT(na_rukah) as KOL FROM vidacha where `na_rukah`=?,(select `data_vidachi` FROM vidacha where  book.`id_book`=vidacha.id_book) GROUP BY id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+        $res->execute(array($kodkaf,"Yes"));
+
+    //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
+    $response = new stdClass();
+    $response->page = $curPage;
+    $response->total = ceil($totalRows['count'] / $rowsPerPage);
+    $response->records = $totalRows['count'];
+
+    $i=0;
+    while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+		list($year, $month, $day, $hour, $minute, $second) = sscanf($row['data_vidachi'], "%04s-%02s-%02s %02s:%02s:%02s");
+		$raz=$curyear-$year;
+		if (($raz>1) or ($month<=11 and $raz==1 and $curmonth>5) or ($raz==0 and $curmonth>6 and $month<=5)) 
+		{ $response->rows[$i]['id']=$row['id_book'];
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+                
+        $i++;}
+    }
+    echo json_encode($response);
+	}
+catch (Exception $e) {
+    echo json_encode(array('errMess'=>'Error: '.$e->getMessage()));
 }
+
 ?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Электронная библиотека кафедр БФ ПНИПУ</title>
-<link rel="stylesheet" type="text/css" href="rules.css">
-<script type="text/javascript" src="jquery.js"></script>
-
-<!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]--></head>
-
-<body>
-<?php include_once '../header.php'; ?>
-<div class="block">
-    <nav> 
- <div class="menu-item">
-      <h4><a href="index.html" id="getContent8">Главная</a></h4>
-
-    </div>
-     
-      <div class="menu-item">
-      <h4><a href="#">Добавить</a></h4>
-      <ul>
-        <li><a href="unit1.php" id="getContent1">Студента</a></li>
-        <li><a href="unit2.php"id="getContent2">Преподавателя</a></li>
-          <li><a href="unit3.php" id="getContent3">Издание</a></li>
-          <li><a href="unit4.php" id="getContent4">Группу</a></li>
-      </ul>
-    </div>
- 
-    <div class="menu-itemone">
-      <h4><a href="#">Выдача и прием</a></h4>
-      <ul>
-        <li><a href="vidacha/index.html" id="getContent5">Выдача</a></li>
-        <li><a href="priem/index.html" id="getContent9">Прием</a></li>
-      </ul>
-    </div>
- 
-     
-                <div class="menu-itemone">
-      <h4><a href="#">Статистика</a></h4>
-      <ul>
-        <li><a href="unit8.php" id="getContent10">По читателям</a></li>
-        <li><a href="unit9.php" id="getContent6">По изданиям</a></li>
-      </ul>
-    </div>
-</nav>
-<div id="content"><section><h3>Эта литература устарела, требует замены:</h3>
-<?php
-include_once 'soed.php';
-$year = date('Y'); 
-$kod=$_SESSION["kod_kaf"];
-$ath = mysql_query("SELECT namebook, avtor, yearcreate,allcount FROM `book` WHERE yearcreate <='$year' - '5' AND book.kod_kaf='$kod'");
-if($ath)
-{
-  // Определяем таблицу и заголовок
-  echo "<table id='box-table-a' summary='Устаревшие издания'>";
-  echo  "<thead>";
-    echo  "<tr>";
-        	echo  "<th scope='col'>Название книги</th>";
-            echo  "<th scope='col'>Автор</th>";
-            echo  "<th scope='col'>Год издания</th>";
-            echo  "<th scope='col'>Тираж</th>";
-        echo  "</tr>";
-    echo  "</thead>";
-	 echo "<tbody>";
-  // Так как запрос возвращает несколько строк, применяем цикл
-  while($author = mysql_fetch_array($ath))
-  {
-    echo "<tr><td>".$author['namebook']."&nbsp;</td><td>".$author['avtor']."
-    &nbsp </td><td>".$author['yearcreate']."&nbsp </td><td>".$author['allcount']."&nbsp </td></tr>";
-  }
-   echo "</table>";
-     echo "</tbody>";
-}
-else
-{
-  echo "<p><b>Error: ".mysql_error()."</b><p>";
-  exit();}
-  ?>
-  <br>
-  <h3>Издания, требующие дополнительных экземпляров:</h3>
-<?php
-include_once 'soed.php';
-$year = date('Y'); 
-$kod=$_SESSION["kod_kaf"];
-$ath = mysql_query("SELECT (select namebook from book where book.id=vidacha.id_book AND book.kod_kaf='$kod') as namebook,(select bookcount from book where book.id=vidacha.id_book) as bookcount, (select allcount from book where book.id=vidacha.id_book) as allcount, COUNT(narukah) as KOL FROM vidacha where narukah= 'Yes' AND ((MONTH(vidacha.date_vid) between 9 AND 12) AND YEAR(vidacha.date_vid)<YEAR(CURDATE())) OR ((MONTH(vidacha.date_vid) between 1 AND 6) AND (YEAR(vidacha.date_vid)<=YEAR(CURDATE()) AND MONTH(CURDATE())>=6 ))  GROUP BY id_book");
-if($ath)
-{
-  // Определяем таблицу и заголовок
-    echo "<table id='box-table-a' summary='Возврат изданий'>";
-  echo  "<thead>";
-    echo  "<tr>";
-        	echo  "<th scope='col'>Название книги</th>";
-            echo  "<th scope='col'>Осталось</th>";
-            echo  "<th scope='col'>На руках более полугода</th>";
-            echo  "<th scope='col'>Тираж</th>";
-        echo  "</tr>";
-    echo  "</thead>";
-	 echo "<tbody>";
-  // Так как запрос возвращает несколько строк, применяем цикл
-  while($author = mysql_fetch_array($ath))
-  {
-	  $raz=$author['bookcount']+$author['KOL'];
-	  $nado=$author['allcount']-$raz;
-	  $nadot=20-$raz;
-	  if ($raz<=20){
-    echo "<tr><td>".$author['namebook']."
-	</td><td>".$author['bookcount']."
-     </td><td>".$author['KOL']."
-    </td><td>".$author['allcount']."
-     </td></tr>";}
-  }
-   echo "</table>";
-     echo "</tbody>";
-}
-else
-{
-  echo "<p><b>Error: ".mysql_error()."</b><p>";
-  exit();}
-  ?>
-  
-</section>
-</div>
-</div>
-</body>
-</html>
