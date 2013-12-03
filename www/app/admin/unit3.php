@@ -17,6 +17,10 @@
     <table id="list"></table> 
         <div id="pager"></div> 
     </div>
+       <div class="table">
+    <table id="list1"></table> 
+        <div id="pager1"></div> 
+    </div>
 </div>
 </div>
 <script src="markunit/markunit3.js"></script>
