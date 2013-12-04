@@ -12,13 +12,13 @@ $("#list").jqGrid({
             mtype: 'POST',
             colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
             colModel :[
-                {name:'id_book', index:'id_book', width:40, align:'right', search:false}
-                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},				
-				{name:'name_kratko', index:'name_kratko', width:70, align:'left', edittype:"text", search:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
+                {name:'id_book', index:'id_book', width:40, align:'right',editable:false, search:false}
+                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'year_create', index:'year_create', width:60, align:'center', editable:false,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:false, edittype:"text",editable:false,sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false, editable:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},				
+				{name:'name_kratko', index:'name_kratko', width:70, align:'left', edittype:"text",editable:false, search:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:false, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
                 
                 ],
             pager: '#pager',
@@ -77,18 +77,17 @@ $("#list").jqGrid({
 
 
 $("#list1").jqGrid({
-            url:'scripts/unit3/getdataunit3.php',
+            url:'scripts/unit3/getdataunit31.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Кафедра', 'Остаток', 'Количество на руках'],
+            colNames:['#', 'Название книги','Год издания', 'Всего', 'Остаток', 'Просрочено на руках'],
              colModel :[
                 {name:'id_book', index:'id_book', width:40, align:'right', search:false}
-                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-                                {name:'year_create', index:'year_create', width:60, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},                                
-                                {name:'name_kratko', index:'name_kratko', width:70, align:'left', edittype:"text", search:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
+                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+                                {name:'year_create', index:'year_create', width:60, align:'center', editable:false,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+                                {name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:false,editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+                                {name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, editable:false,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+                                {name:'na_rukah', index:'na_rukah', width:50, align:'center',editable:false, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
                 
                 ],
             pager: '#pager1',
@@ -131,12 +130,12 @@ $("#list1").jqGrid({
                jQuery("#list1").restoreRow(lastSel);
 }, 
             editurl: 'scripts/unit3/saverowunit3.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
+        }).navGrid('#pager1',{view:false, del:false, add:false, edit:false, search:false}, 
                         {}, 
                         {},  
                         {}, 
                         {} 
                 ); 
-                $("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
+                $("#list1").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  
