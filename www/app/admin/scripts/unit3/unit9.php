@@ -67,7 +67,7 @@ try {
         
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT (select `name_book` from `book` where book.`id_book`=vidacha.id_book AND book.`id_kafedra`=?) as namebook,(select `kolvo_vsego` from book where book.`id_book`=vidacha.id_book) as `kolvo_vsego`, (select `ostatok` from book where book.`id_book`=vidacha.`id_book`) as `ostatok`, COUNT(na_rukah) as KOL FROM vidacha where `na_rukah`=?,(select `data_vidachi` FROM vidacha where  book.`id_book`=vidacha.id_book) GROUP BY id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT (select `name_book` from `book` where book.`id_book`=vidacha.id_book AND book.`id_kafedra`=?) as namebook,(select `kolvo_vsego` from book where book.`id_book`=vidacha.id_book) as `kolvo_vsego`, (select `ostatok` from book where book.`id_book`=vidacha.`id_book`) as `ostatok`, COUNT(na_rukah) as KOL FROM vidacha where `na_rukah`=? AND ((YEAR(CURDATE())-YEAR(`data_vidachi`)>=1) OR (MONTH(`data_vidachi`)<=11 AND (YEAR(CURDATE())-YEAR(`data_vidachi`)=1 AND MONTH(CURDATE())>5) OR (YEAR(CURDATE())-YEAR(`data_vidachi`)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
         $res->execute(array($kodkaf,"Yes"));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -78,14 +78,11 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		list($year, $month, $day, $hour, $minute, $second) = sscanf($row['data_vidachi'], "%04s-%02s-%02s %02s:%02s:%02s");
-		$raz=$curyear-$year;
-		if (($raz>1) or ($month<=11 and $raz==1 and $curmonth>5) or ($raz==0 and $curmonth>6 and $month<=5)) 
-		{ $response->rows[$i]['id']=$row['id_book'];
+		$response->rows[$i]['id']=$row['id_book'];
         $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
                 
         $i++;}
-    }
+   
     echo json_encode($response);
 	}
 catch (Exception $e) {
