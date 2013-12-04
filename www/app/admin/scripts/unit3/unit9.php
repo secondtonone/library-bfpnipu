@@ -8,8 +8,7 @@ try {
     $rowsPerPage = $_POST['rows'];
     $sortingField = $_POST['sidx'];
     $sortingOrder = $_POST['sord'];
-	$curyear=date('Y');
-	$curmonth=date('n');
+
 
         $qWhere = '';
         //определяем команду (поиск или просто запрос на вывод данных)
