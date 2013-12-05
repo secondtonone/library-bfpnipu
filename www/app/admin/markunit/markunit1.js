@@ -699,7 +699,7 @@ $('.fields9 .field input').val("");
                   +'&id_book7='+id_book7+'&id_man7='+id_man7
                   +'&id_book8='+id_book8+'&id_man8='+id_man8
                   +'&id_book9='+id_book9+'&id_man9='+id_man9,
-		  beforeSend: function() {$(".contentform").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
+		  beforeSend: function() {$(".contentform").html("<div id='preloader'></div>");},    
 		  success: function(data){
                   $(".contentform").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
 						  
