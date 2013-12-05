@@ -5,7 +5,7 @@ $.ajax({
 url: "cabinet/personaldata.php",
 cache: false,
 beforeSend: function() {
-$(".p_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+$(".p_content").html("<div id='preloader'></div>");
 },
 success: function(html){
 $(".p_content").html(html);
@@ -19,7 +19,7 @@ $.ajax({
 url: "cabinet_controller.php",
 cache: false,
 beforeSend: function() {
-$(".p_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+$(".p_content").html("<div id='preloader'></div>");
 },
 success: function(){
 window.location.href = "/app/user/cabinet_controller.php";
@@ -42,7 +42,7 @@ $(document).on('submit','#ppl',function(){
                   type: "POST",  
                   url: "cabinet/saveform.php",  
                   data: 'telephone='+ value1+'&mobile='+ value2+ '&email=' +value3+'&workphone='+ value4+'&hide='+ value5,
-				  beforeSend: function() {$(".p_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+				  beforeSend: function() {$(".p_content").html("<div id='preloader'></div>");
 },                 
 				   success: function(data){  
                         $(".p_content").html("<div id='attentionForm'><a class='attentionText'>"+data+"</a></div>");
@@ -57,7 +57,7 @@ $(document).on('click','.p_content #attentionForm',function(){
             url: "cabinet/controller_ppl.php",
 				cache: false,
 			beforeSend: function() {
-			$(".p_content").html("<img id='preloader'src='../../../img/preloader.gif'/>");
+			$(".p_content").html("<div id='preloader'></div>");
 },
 				success: function(html){
 $(".p_content").html(html);
@@ -72,7 +72,7 @@ $.ajax({
 url: "cabinet/accauntdata.php",
 cache: false,
 beforeSend: function() {
-$(".a_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+$(".a_content").html("<div id='preloader'></div>");
 },
 success: function(html){
 $(".a_content").html(html);
@@ -94,7 +94,7 @@ $(document).on('submit','#acc',function(){
                   type: "POST",  
                   url: "cabinet/saveform.php",  
                   data: 'email='+ value1+'&password='+ value2+ '&rpassword=' +value3+'&hide='+ value5,
-				  beforeSend: function() {$(".a_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+				  beforeSend: function() {$(".a_content").html("<div id='preloader'></div>");
 },                 
 				   success: function(data){  
                         $(".a_content").html("<div id='attentionForm'><a class='attentionText' >"+data+"</a></div>");
@@ -108,7 +108,7 @@ $.ajax({
 url: "cabinet_controller.php",
 cache: false,
 beforeSend: function() {
-$(".a_content").html("<img id='preloader' src='../../../img/preloader.gif'/>");
+$(".a_content").html("<div id='preloader'></div>");
 },
 success: function(){
 window.location.href = "/app/user/cabinet_controller.php";
@@ -121,7 +121,7 @@ return false;
             url: "cabinet/controller_acc.php",
 				cache: false,
 			beforeSend: function() {
-			$(".a_content").html("<img id='preloader'src='../../../img/preloader.gif'/>");
+			$(".a_content").html("<div id='preloader'></div>");
 },
 				success: function(html){
 $(".a_content").html(html);
