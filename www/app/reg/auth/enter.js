@@ -9,7 +9,7 @@ $(document).ready(function(){
                   type: "POST",  
                   url: "../reg/auth/enter.php",  
                   data: 'login='+ value1+'&pass='+ value2,
-                  beforeSend: function() {$(".page").html("<img id='preloader' src='../../../img/preloader.gif'/>");},    
+                  beforeSend: function() {$(".page").html("<div id='preloader'></div>");},    
                   success: function(data){ 
                                          if (data=="user"){
                                                          
