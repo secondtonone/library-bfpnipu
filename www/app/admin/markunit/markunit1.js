@@ -22,7 +22,7 @@ $("#list").jqGrid({
                 
                 ],
             pager: '#pager',
-			width:1000,
+			autowidth:true,
             height:300,
 			rowNum:15,
             rowList:[15,30,45],
@@ -664,7 +664,7 @@ $('.fields9 .field input').val("");
 //для отправки формы
  $('#giveForm').submit(function(){
 				
-		 var id_book = $("#id_book").val();
+		         var id_book = $("#id_book").val();
                  var id_man = $("#id_man").val();
                  var id_book1 = $("#id_book1").val();
                  var id_man1 = $("#id_man1").val();
@@ -676,7 +676,7 @@ $('.fields9 .field input').val("");
                  var id_man4 = $("#id_man4").val();
                  var id_book5 = $("#id_book5").val();
                  var id_man5 = $("#id_man5").val();
-		 var id_book6 = $("#id_book6").val();
+		         var id_book6 = $("#id_book6").val();
                  var id_man6 = $("#id_man6").val();
                  var id_book7 = $("#id_book7").val();
                  var id_man7 = $("#id_man7").val();
@@ -688,7 +688,7 @@ $('.fields9 .field input').val("");
 				 		 				  
                 $.ajax({  
                   type: "POST",  
-                  url: "../reg/auth/enter.php",  
+                  url: "scripts/unit1/saveform.php",  
                   data: 'i='+i+'&id_book='+id_book+'&id_man='+id_man
                   +'&id_book1='+id_book1+'&id_man1='+id_man1
                   +'&id_book2='+id_book2+'&id_man2='+id_man2
@@ -701,15 +701,13 @@ $('.fields9 .field input').val("");
                   +'&id_book9='+id_book9+'&id_man9='+id_man9,
 		  beforeSend: function() {$(".contentform").html("<div id='preloader'></div>");},    
 		  success: function(data){
-                  $(".contentform").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");}
+                  $(".contentform").html("<div id='attentionFormunit1'><a class='attentionText' href='unit1.php'>"+data+"</a></div>");
+				  setTimeout('window.location.href = "unit1.php"', 3000);}
 						  
                     
                 });  
                 return false;  
             });  
-                   $('#attetionForm').load(function(){
-                	$('#attetionForm').delay(3000).remove();
-                	$('.contentform').load('unit1.php #giveForm'); 
-                	});
+                   
 
 });

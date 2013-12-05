@@ -22,13 +22,13 @@ $("#list").jqGrid({
                 
                 ],
             pager: '#pager',
-			width:1000,
+			autowidth:true,
             height:300,
 			rowNum:15,
             rowList:[15,30,45],
             sortname: 'id_book',
             sortorder: "asc",
-            caption: 'Данные о книгах',
+            caption: 'Данные о книгах требующие замены',
 			subGrid: true,
 			grouping:true,
    	groupingView : {
@@ -91,23 +91,23 @@ $("#list1").jqGrid({
                 
                 ],
             pager: '#pager1',
-                        width:1000,
+            autowidth:true,
             height:300,
-                        rowNum:15,
+            rowNum:15,
             rowList:[15,30,45],
             sortname: 'id_book',
             sortorder: "asc",
-            caption: 'Данные о книгах',
+            caption: 'Данные о тираже книг',
                 subGridRowExpanded: function(subgrid_id, row_id) {
                 // subgrid
                 var subgrid_table_id, pager_id;
-                subgrid_table_id = subgrid_id+"_t";
-                pager_id = "p_"+subgrid_table_id;
+                subgrid_table_id = subgrid_id+"_tt";
+                pager_id = "pp_"+subgrid_table_id;
                 
                 $("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table></div>");
                 
                 jQuery("#"+subgrid_table_id).jqGrid({
-                        url:"scripts/unit3/subgridunit3.php?id="+row_id,
+                        url:"scripts/unit3/subgridunit31.php?id="+row_id,
                         datatype: "json",
                         mtype: 'GET',
                         colNames: ['Автор'],

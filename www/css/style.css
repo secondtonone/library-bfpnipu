@@ -85,16 +85,53 @@ footer .border{
 	text-decoration: none;
 	color: #FF2B30;
 			}
+			
+#attentionFormunit1 {
+	margin: 10% auto;
+	padding:10px 10px;
+	width: 50%;
+	background: #FEFEFE;
+   	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font: 26px Book;
+	text-shadow: 1px 1px 2px black, 0 0 0.6em red;
+	color: #FF2B30;
+	-webkit-transition: All 0.5s ease;
+	-moz-transition: All 0.5s ease;
+	-o-transition: All 0.5s ease;
+	-ms-transition: All 0.5s ease;
+	transition: All 0.5s ease;
+	cursor: pointer;
+}
 
 #preloader{
 	background-image:url(../img/preloader.GIF);
 	background-repeat: no-repeat;
 	display:block; 
 	margin:15% auto;
+	height:100px;
+	width:128px;
 	}
 .content {
 	height: 100%;	
 	margin:20px auto;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding: 30px;
+	min-width: 800px;
+	max-width: 1200px;
+		}
+.content1tables {
+	height: 400px;	
+	margin:20px auto 0px;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding: 30px;
+	min-width: 800px;
+	max-width: 1200px;
+		}
+.content2tables {
+	height: 400px;	
+	margin:0px auto;
 	background-color:rgba(238, 238, 238, 0.5);
 	padding: 30px;
 	min-width: 800px;

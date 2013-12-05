@@ -12,11 +12,13 @@
 <?php require_once '../../temp/header.php';?>
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
-<div class="content">
+<div class="content1tables">
    <div class="table">
     <table id="list"></table> 
         <div id="pager"></div> 
     </div>
+    </div>
+<div class="content2tables">
        <div class="table">
     <table id="list1"></table> 
         <div id="pager1"></div> 

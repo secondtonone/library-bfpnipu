@@ -23,7 +23,7 @@ $("#list").jqGrid({
                 
                 ],
             pager: '#pager',
-			width:1000,
+			autowidth:true,
             height:300,
 			rowNum:15,
             rowList:[15,30,45],
