@@ -69,7 +69,7 @@ $array=$QueryClass->check_repeat($query,$idman,$dbh);
 * Отправка письма
 */
 $objMail->to = array($email);
-$objMail->from = 'Электронная библиотека БФ ПНИПУ';
+$objMail->from = 'librarybfpnipu@yandex.ru';
 $objMail->subject = 'Подтверждение регистрации на сайте';
 $objMail->body = 'Спасибо за регистрацию
 Для продолжения перейдите по ссылке: '.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'
