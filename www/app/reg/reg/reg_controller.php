@@ -15,7 +15,7 @@ $pass2=$_POST["pass2"];
 $email=$_POST["email"];
 $fam=$_POST["fam"];
 $number_zach=$_POST["number_zach"];
-$path=__DIR__;
+$path=$_SERVER['SERVER_NAME'];
 /*
 * Инициализация классов
 */
@@ -72,7 +72,7 @@ $objMail->to = array($email);
 $objMail->from = 'Электронная библиотека БФ ПНИПУ';
 $objMail->subject = 'Подтверждение регистрации на сайте';
 $objMail->body = 'Спасибо за регистрацию
-Для продолжения перейдите по ссылке: '.$path.'/reg_end.php?id='.$array["id"].'&&code='.$activation.'
+Для продолжения перейдите по ссылке: '.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'
 Информация об аккаунте: 
 Логин - '.$array["name"].'
 Пароль-'.$password.'
