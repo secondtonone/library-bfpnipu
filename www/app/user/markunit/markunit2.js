@@ -27,7 +27,7 @@ $("#list").jqGrid({
                 
                 ],
             pager: '#pager',
-			width:1000,
+			autowidth:true,
             height:300,
 			rowNum:15,
             rowList:[15,30,45],
@@ -79,30 +79,7 @@ $("#list").jqGrid({
 		); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 		
-  
-    //эта функция добавляет GET параметр в запрос на получение
-    //данных для таблицы и обновляет её
-    
-    
-    //настройка плагина Autocomplete
-    //при возникновении события onSelect вызываем функцию updateTable
-    $('#city_field').autocomplete({
-        serviceUrl:'search.php',
-        maxHeight:150,
-      
-		
-    });
-	 
-    
-    //этот обработчик используется если посетитель ввел название города
-    //и нажал Enter
-    $('#autocomplete_form').submit(function() {
-        updateTable($('#city_field').val());
 
-        return false;
-		
-    });
-	
 
 
 
