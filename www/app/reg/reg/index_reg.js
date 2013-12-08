@@ -16,9 +16,8 @@ $(document).ready(function(){
 				  beforeSend: function() {$(".page").html("<div id='preloader'></div>");},                 
 				   success: function(data){ if (data=="Спасибо за регистрацию! Ваш аккаунт был успешно создан! Вам на email было выслано письмо с инструкциями для завершения регистрации!"){
 				   	
-		$(".page").html("<div id='attentionForm'><a class='attentionText' href='../../../user/index.php'>"+data+"</a></div>");
-		setTimeout('window.location.href = "../../../user/index.php"', 3000);		   }
-				   }else{ 
+		$(".page").html("<div id='attentionForm'><a class='attentionText' href='../../user/index.php'>"+data+"</a></div>");
+		setTimeout('window.location.href = "../../user/index.php"', 3000);		  				   }else{ 
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index_reg.php'>"+data+"</a></div>");
 		setTimeout('window.location.href = "index_reg.php"', 3000);}
                     }  
