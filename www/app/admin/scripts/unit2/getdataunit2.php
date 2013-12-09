@@ -75,7 +75,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_vid'];
-        $response->rows[$i]['cell']=array($row['id_vid'],$row['fam'],$row['name'],$row['otchestvo'],$row['name_group'], $row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
+        $response->rows[$i]['cell']=array("",$row['id_vid'],$row['fam'],$row['name'],$row['otchestvo'],$row['name_group'], $row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
 		      $i++;
     }
     echo json_encode($response);

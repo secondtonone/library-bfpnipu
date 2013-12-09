@@ -13,7 +13,7 @@ $(document).ready(function(){
                   success: function(data){ 
                                          if (data=="user"){
                                                          
-                                window.location.href = "/app/user/unit1.php";
+                                window.location.href = "/app/user/unit2.php";
                                                          }else{
                                                 if(data=="admin"){
                                  window.location.href = "/app/admin/unit1.php";

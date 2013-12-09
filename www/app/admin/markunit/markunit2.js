@@ -14,8 +14,8 @@ $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Фамилия','Имя', 'Отчество','Группа', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
-            colModel :[
+            colNames:['Действия','#', 'Фамилия','Имя', 'Отчество','Группа', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
+            colModel :[{name:'act',index:'act', width:41,sortable:false,search:false},
                 {name:'id_vid', index:'id_vid', width:20, align:'right', search:false}
                 ,{name:'fam', index:'fam', width:60, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'name', index:'name', width:60, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -39,6 +39,7 @@ $("#list").jqGrid({
             sortorder: "asc",
             caption: 'Приём изданий',
 			subGrid: true,
+			multiselect: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {
 
 		var subgrid_table_id, pager_id;
@@ -83,18 +84,17 @@ $("#list").jqGrid({
 			height: '100%'
 		});
 		},
-            ondblClickRow: function(id) {
-                
-                    $("#list").restoreRow(lastSel);
-                    $("#list").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-			onSelectRow: function(id) {
-               jQuery("#list").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit2/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
+           gridComplete: function(){
+		var ids = jQuery("#list").jqGrid('getDataIDs');
+		for(var i=0;i < ids.length;i++){
+			var cl = ids[i];
+			be = "<input type='button' title='Редактировать' class='my-ui-icon-pecil' onclick=\"jQuery('#list').editRow('"+cl+"');\"  />"; 
+			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"');\"  />"; 
+			ce = "<input type='button' title='Отменить' class='my-ui-icon-cancel' onclick=\"jQuery('#list').restoreRow('"+cl+"');\" />"; 
+			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
+		}	
+	},editurl: 'scripts/unit2/saverowunit2.php'
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:true, search:false}, 
 			{}, //  default settings for edit
 			{}, //  default settings for add
 			{},  // delete instead that del:false we need this
