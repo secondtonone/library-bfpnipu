@@ -69,14 +69,22 @@ $array=$QueryClass->check_repeat($query,$idman,$dbh);
 * Отправка письма
 */
 $objMail->to = array($email);
-$objMail->from = 'librarybfpnipu@yandex.ru';
+$objMail->from = 'Электронная библиотека кафедр БФ ПНИПУ<librarybfpnipu@yandex.ru>';
 $objMail->subject = 'Подтверждение регистрации на сайте';
-$objMail->body = '<p>Спасибо за регистрацию!<p> 
-<p>Для продолжения перейдите по ссылке: <a href="'.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'">Перейти!</a><p>.
-<p>Информация об аккаунте:<p> 
-<p>Логин - '.$array["name"].'<p>
-<p>Пароль-'.$password.'<p>
-<p>Почта-'.$array["email"].'. <p>';
+$objMail->body = '<html>
+<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Спасибо за регистрацию!</title>
+</head> 
+</body>
+<p>Для продолжения перейдите по ссылке: <a href="'.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'">Перейти!</a></p>.
+<p>Информация об аккаунте:</p> 
+<p>Логин - '.$array["name"].'</p>
+<p>Пароль-'.$password.'</p>
+<p>Почта-'.$array["email"].'. </p>
+</body>
+</html>';
 $objMail->send();
 /*
 * Конец регистрации
