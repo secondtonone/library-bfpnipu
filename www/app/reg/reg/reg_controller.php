@@ -15,7 +15,7 @@ $pass2=$_POST["pass2"];
 $email=$_POST["email"];
 $fam=$_POST["fam"];
 $number_zach=$_POST["number_zach"];
-$path=$_SERVER['SERVER_NAME'];
+$path='librarybfpnipu.besaba.com';
 /*
 * Инициализация классов
 */
@@ -75,14 +75,14 @@ $objMail->body = '<html>
 <body>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Спасибо за регистрацию!</title>
 </head> 
 </body>
-<p>Для продолжения перейдите по ссылке: <a href="'.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'">Перейти!</a></p>.
-<p>Информация об аккаунте:</p> 
+<h2>Спасибо за регистрацию!</h2>
+<p><b>Для продолжения перейдите по ссылке: </b><a href="http://www.'.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'">http://www.'.$path.'/app/reg/reg/reg_end.php?id='.$array["id"].'&&code='.$activation.'</a></p>
+<p><b>Информация об аккаунте:</b></p> 
 <p>Логин - '.$array["name"].'</p>
-<p>Пароль-'.$password.'</p>
-<p>Почта-'.$array["email"].'. </p>
+<p>Пароль - '.$password.'</p>
+<p>Почта - '.$array["email"].'</p>
 </body>
 </html>';
 $objMail->send();

@@ -11,7 +11,7 @@ require_once '../reg/model/mailclass.php';
 */
 $login=$_POST["login"];
 $email=$_POST["email"];
-$path=__DIR__;
+$path='librarybfpnipu.besaba.com';
 /*
 * Инициализация классов
 */
@@ -45,11 +45,20 @@ if(!empty($id) AND $email==$result["email"]){
 	* Отправка письма
 	*/
 	$objMail->to = array($email);
-	$objMail->from = 'Электронная библиотека БФ ПНИПУ';
+	$objMail->from = 'Электронная библиотека кафедр БФ ПНИПУ<librarybfpnipu@yandex.ru>';
 	$objMail->subject = 'Восстановление пароля на сайте';
-	$objMail->body = 'Ваш логин- '.$login.'
-Ваш email - '.$email.'
-Для создания нового пароля для Вашего аккаунта перейдите по этой ссылке: '.$path.'/newpass.php?id='.$id.'&&code='.$activation.'';
+	$objMail->body = '<html>
+<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head> 
+</body>
+<p><b>Информация об аккаунте:</b></p> 
+<p>Ваш логин - '.$login.'</p> 
+<p>Ваш email - '.$email.'</p> 
+<p><b>Для создания нового пароля для Вашего аккаунта перейдите по этой ссылке:</b><a href="http://www.'.$path.'/app/reg/forpass/newpass.php?id='.$id.'&&code='.$activation.'">http://www. '.$path.'/app/reg/forpass/newpass.php?id='.$id.'&&code='.$activation.'</p>
+</body>
+</html>';
 	$objMail->send();
     /*
     * Отправляем письмо
