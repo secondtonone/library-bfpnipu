@@ -94,41 +94,27 @@ $("#list").jqGrid({
 			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
 		}	
 	},editurl: 'scripts/unit2/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:true, search:false}, 
-			{}, //  default settings for edit
-			{}, //  default settings for add
-			{},  // delete instead that del:false we need this
-			{}, // search options
-			{} 
-		); 
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil", onClickButton: function(){var s;
+	                                       s = jQuery("#list").jqGrid('getGridParam','selarrrow');
+										   for(var i=0;i<s.length;i++){
+			                                       var cl = s[i];
+										jQuery('#list').restoreRow(cl);
+	                                      jQuery('#list').editRow(cl,true);
+										  }}, position: "last", title:"Редактирование отмечанных строк", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
+	                        function(e) { 
+							var cols = [];
+                            var mycolModel = $("#list").getGridParam("colModel");
+                            $.each(mycolModel, function(i) {
+                                if (!this.hidden) {
+                                    cols.push(this.name);
+                                }
+                            });
+							var pdata = $grid.jqGrid('getGridParam', 'postData');
+                            var colsJ = JSON.stringify(cols);
+                            var params = jQuery.param(pdata);
+                            params = params + "&columns=" + colsJ;var url = 'ExcelExport.php' + "?" + params;
+                            window.location = url;
+                        }, position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
-		
-  
-    //эта функция добавляет GET параметр в запрос на получение
-    //данных для таблицы и обновляет её
-    
-    
-    //настройка плагина Autocomplete
-    //при возникновении события onSelect вызываем функцию updateTable
-    $('#city_field').autocomplete({
-        serviceUrl:'search.php',
-        maxHeight:150,
-      
-		
-    });
-	 
-    
-    //этот обработчик используется если посетитель ввел название города
-    //и нажал Enter
-    $('#autocomplete_form').submit(function() {
-        updateTable($('#city_field').val());
-
-        return false;
-		
-    });
-	
-
-
-
 
  });  
