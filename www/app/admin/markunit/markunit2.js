@@ -94,27 +94,19 @@ $("#list").jqGrid({
 			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
 		}	
 	},editurl: 'scripts/unit2/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil", onClickButton: function(){var s;
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil",onClickButton: function(){
+			   								var s;
+											var url;
+										   url = "scripts/unit2/massedit.php"; 
 	                                       s = jQuery("#list").jqGrid('getGridParam','selarrrow');
+										   
 										   for(var i=0;i<s.length;i++){
 			                                       var cl = s[i];
-										jQuery('#list').restoreRow(cl);
-	                                      jQuery('#list').editRow(cl,true);
+										jQuery('#list').saveRow(cl,url);
 										  }}, position: "last", title:"Редактирование отмечанных строк", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
-	                        function(e) { 
-							var cols = [];
-                            var mycolModel = $("#list").getGridParam("colModel");
-                            $.each(mycolModel, function(i) {
-                                if (!this.hidden) {
-                                    cols.push(this.name);
-                                }
-                            });
-							var pdata = $grid.jqGrid('getGridParam', 'postData');
-                            var colsJ = JSON.stringify(cols);
-                            var params = jQuery.param(pdata);
-                            params = params + "&columns=" + colsJ;var url = 'ExcelExport.php' + "?" + params;
-                            window.location = url;
-                        }, position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
+	                         function () { 
+           jQuery("#list").jqGrid('excelExport',{"url":"scripts/unit2/excelexport.php"});
+       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  
