@@ -9,7 +9,9 @@
 @import url("../app/scripts/jqgrid/plugins/ui.multiselect.css");
 @font-face {
     font-family: Book;
-    src: url(BKANT.ttf);
+    src: url('BKANT.ttf') format('truetype');
+	font-weight: normal;
+    font-style: normal;
    }
 html,body {
 	background-image:url(../img/white-noise.gif);

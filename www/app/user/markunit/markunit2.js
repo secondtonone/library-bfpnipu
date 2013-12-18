@@ -33,6 +33,7 @@ $("#list").jqGrid({
             rowList:[15,30,45],
             sortname: 'id_vid',
             sortorder: "asc",
+			viewrecords: true,
 			caption: 'Приём изданий',
    			subGrid: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {

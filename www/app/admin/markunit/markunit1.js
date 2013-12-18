@@ -10,10 +10,10 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
-            colModel :[
-                {name:'id_book', index:'id_book', width:40, align:'right', search:false}
-                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+            colNames:['Действия','#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
+            colModel :[{name:'act',index:'act', width:41,sortable:false,search:false},
+                {name:'id_book', index:'id_book', width:40, align:'right', search:false},
+				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},				
@@ -29,6 +29,7 @@ $("#list").jqGrid({
             sortname: 'id_book',
             sortorder: "asc",
             caption: 'Данные о книгах',
+			viewrecords: true,
 			subGrid: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {
 		// subgrid
@@ -51,28 +52,27 @@ $("#list").jqGrid({
 		    sortorder: "asc",
 		    height: '100%'
 		});
-		},
-            ondblClickRow: function(id) {
-                
-                    $("#list").restoreRow(lastSel);
-                    $("#list").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-			onSelectRow: function(id) {
-               jQuery("#list").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit1/saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
-			{}, 
-			{}, 
-			{},  
-			{}, 
-			{} 
-		); 
+		},gridComplete: function(){
+		var ids = jQuery("#list").jqGrid('getDataIDs');
+		for(var i=0;i < ids.length;i++){
+			var cl = ids[i];
+			be = "<input type='button' title='Редактировать' class='my-ui-icon-pecil' onclick=\"jQuery('#list').editRow('"+cl+"');\"  />"; 
+			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"');\"  />"; 
+			ce = "<input type='button' title='Отменить' class='my-ui-icon-cancel' onclick=\"jQuery('#list').restoreRow('"+cl+"');\" />"; 
+			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
+		}	
+	},editurl: 'scripts/unit1/saverowunit1.php'
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
-    $('#book').autocomplete({
+        function updateTable(value) {
+    $("#list").setGridParam({url:"scripts/unit1/getdataunit1.php?idbook="+value,datatype:"json", page:1})
+      .trigger("reloadGrid"); 
+	$("#list").setGridParam({url:"scripts/unit1/getdataunit1.php",datatype:"json", page:1})
+  }
+        
+
+        $('#book').autocomplete({
         source:'scripts/unit1/autocomplete.php?id_q=1',
 		delay:10,
 		minLength: 3,
@@ -80,6 +80,7 @@ $("#list").jqGrid({
 		$(this).val(ui.item.label); 
 		$("#id_book").val(ui.item.value);
 		$('#book1').val(ui.item.label); 
+		updateTable(ui.item.value);
 		$("#id_book1").val(ui.item.value);
 		$('#book2').val(ui.item.label); 
 		$("#id_book2").val(ui.item.value);
@@ -97,8 +98,8 @@ $("#list").jqGrid({
 		$("#id_book8").val(ui.item.value);
 		$('#book9').val(ui.item.label); 
 		$("#id_book9").val(ui.item.value);
-        return false; },
-        focus: function(event, ui) {
+		return false; },
+		focus: function(event, ui) {
         $(this).val(ui.item.label);
         return false;
     }
@@ -213,6 +214,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book1').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -260,6 +262,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book2').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -306,7 +309,8 @@ return i=0;
 		minLength: 3,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
-		$('#id_book3').val(ui.item.value); 
+		$('#id_book3').val(ui.item.value);
+		updateTable(ui.item.value); 
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -354,6 +358,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book4').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -402,6 +407,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book5').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -449,6 +455,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book6').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -495,7 +502,8 @@ return i=0;
 		minLength: 3,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
-		$('#id_book7').val(ui.item.value); 
+		$('#id_book7').val(ui.item.value);
+		updateTable(ui.item.value); 
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -543,6 +551,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book8').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -590,6 +599,7 @@ return i=0;
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book9').val(ui.item.value); 
+		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);

@@ -30,8 +30,9 @@ $("#list").jqGrid({
             sortorder: "asc",
             caption: 'Данные о книгах требующие замены',
 			subGrid: true,
+			viewrecords: true,
 			grouping:true,
-   	groupingView : {
+   	      groupingView : {
    		groupField : ['year_create'],
    		groupColumnShow : [false]
    	},

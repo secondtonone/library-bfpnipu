@@ -7,7 +7,10 @@ try {
     $rowsPerPage = $_POST['rows'];
     $sortingField = $_POST['sidx'];
     $sortingOrder = $_POST['sord'];
-
+    $idbook='';
+	if (isset($_GET['idbook']) && !empty($_GET['idbook'])) {
+    $idbook=$_GET['idbook'];
+  }
 
 	$qWhere = '';
 	//определяем команду (поиск или просто запрос на вывод данных)
@@ -57,16 +60,25 @@ try {
 	}
 	
     //определяем количество записей в таблице
-    $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
-    $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
+	if (empty($idbook)) {
+     $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
+    $totalRows = $rows->fetch(PDO::FETCH_ASSOC); }else
+	{$rows = $dbh->prepare('SELECT COUNT(id_book) AS count FROM book WHERE id_book=?');
+	$rows->execute(array($idbook));
+	$totalRows = $rows->fetch(PDO::FETCH_ASSOC);
+		}
 	
     $kodkaf=$_SESSION["id_kafedra"];
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
+	if (empty($idbook)) {
     $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf));
-
+	}else {
+		$res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`id_book`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array($kodkaf,$idbook));
+		}
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
     $response->page = $curPage;
@@ -76,7 +88,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+        $response->rows[$i]['cell']=array("",$row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
 		
         $i++;
     }

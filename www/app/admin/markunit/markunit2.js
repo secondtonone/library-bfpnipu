@@ -81,6 +81,7 @@ $("#list").jqGrid({
 		   	rowNum:20,
 		   	sortname: 'fam_io',
 		    sortorder: "asc",
+			viewrecords: true,
 			height: '100%'
 		});
 		},
@@ -94,18 +95,30 @@ $("#list").jqGrid({
 			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
 		}	
 	},editurl: 'scripts/unit2/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil",onClickButton: function(){
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil",onClickButton: function(){var s;
+										  s = $("#list").jqGrid('getGridParam','selarrrow');
+										  if (s==false)
+										  { alert("Поля не отмечаны!");
+											  }else{
+										 for(var i=0;i<s.length;i++){
+			                             var cl = s[i];
+										 $("#list").editRow(cl, true);
+										 }}}, position: "last", title:"Редактирование", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-disk",onClickButton: function(){
 			   								var s;
-											var url;
-										   url = "scripts/unit2/massedit.php"; 
-	                                       s = jQuery("#list").jqGrid('getGridParam','selarrrow');
+											
+	                                       s = $("#list").jqGrid('getGridParam','selarrrow');
 										   
 										   for(var i=0;i<s.length;i++){
 			                                       var cl = s[i];
-										jQuery('#list').saveRow(cl,url);
-										  }}, position: "last", title:"Редактирование отмечанных строк", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
+										$('#list').saveRow(cl);
+										  }}, position: "last", title:"Сохранение", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-cancel",onClickButton: function(){
+			   								var s;
+	                                       s = $("#list").jqGrid('getGridParam','selarrrow');
+										   for(var i=0;i<s.length;i++){
+			                               var cl = s[i];
+										$('#list').restoreRow(cl);}}, position: "last", title:"Отмена", cursor: "pointer"}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
-           jQuery("#list").jqGrid('excelExport',{"url":"scripts/unit2/excelexport.php"});
+          $("#list").jqGrid('excelExport',{"url":"scripts/unit2/excelexport.php"});
        } , position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
