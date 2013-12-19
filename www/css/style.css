@@ -117,7 +117,7 @@ footer .border{
 	}
 .content {
 	height: 100%;	
-	margin:20px auto;
+	margin:19px auto;
 	background-color:rgba(238, 238, 238, 0.5);
 	padding: 30px;
 	min-width: 800px;
@@ -125,7 +125,7 @@ footer .border{
 		}
 .content1tables {
 	height: 400px;	
-	margin:20px auto 0px;
+	margin:19px auto 0px;
 	background-color:rgba(238, 238, 238, 0.5);
 	padding: 30px;
 	min-width: 800px;
@@ -141,7 +141,7 @@ footer .border{
 		}
 .contenttable {
 	height: 400px;	
-	margin:20px auto 0px;
+	margin:19px auto 0px;
 	background-color:rgba(238, 238, 238, 0.5);
 	padding:20px;
 	min-width: 800px;

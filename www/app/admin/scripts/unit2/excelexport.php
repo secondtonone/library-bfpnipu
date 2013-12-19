@@ -4,11 +4,26 @@ require_once('../../../scripts/connect.php');
 
 	
 try {
- //читаем параметры
-    $curPage = $_POST['page'];
-    $rowsPerPage = $_POST['rows'];
-    $sortingField = $_POST['sidx'];
-    $sortingOrder = $_POST['sord'];
+
+     function cleanData(&$str)
+  {
+    $str = preg_replace("/\t/", "\\t", $str);
+    $str = preg_replace("/\r?\n/", "\\n", $str);
+    if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
+  }
+
+
+    $filename = "website_data_" . date('Ymd') . ".xls";
+    header("Content-Encoding:UTF-8");
+    header("Content-Type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment; filename=\"$filename\"");
+	
+    $flag = false;
+	
+    $curPage = $_GET['page'];
+    $rowsPerPage = $_GET['rows'];
+    $sortingField = $_GET['sidx'];
+    $sortingOrder = $_GET['sord'];
 
 
 	$qWhere = '';
@@ -16,11 +31,11 @@ try {
 	//если поиск, конструируем WHERE часть запроса
 	
 
-	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
+	if (isset($_GET['_search']) && $_GET['_search'] == 'true') {
 		$allowedFields = array('fam','name','otchestvo', 'name_group', 'name_book','year_create', 'data_vidachi', 'data_vozvrata', 'na_rukah', 'poterya', 'primechanie');
 		$allowedOperations = array('AND', 'OR');
 		
-		$searchData = json_decode($_POST['filters']);
+		$searchData = json_decode($_GET['filters']);
 
 		$qWhere = ' AND ';
 		$firstElem = true;
@@ -74,16 +89,17 @@ try {
     $response->total = ceil($totalRows['count'] / $rowsPerPage);
     $response->records = $totalRows['count'];
 
-    $i=0;
-    while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		$response->rows[$i]['id']=$row['id_vid'];
-        $response->rows[$i]['cell']=array("",$row['id_vid'],$row['fam'],$row['name'],$row['otchestvo'],$row['name_group'], $row['name_book'],$row['year_create'],$row['data_vidachi'],$row['data_vozvrata'],$row['na_rukah'],$row['poterya'],$row['primechanie']);
-		      $i++;
-    }
-    echo json_encode($response);
-	
-	
 
+    while(false !==($row=$res->fetch(PDO::FETCH_ASSOC))) {
+		
+          if(!$flag) {
+          echo implode("\t", array_keys($row)) . "\r\n";
+          $flag = true;
+                    }
+     array_walk($row, 'cleanData');
+     echo implode("\t", array_values($row)) . "\r\n";
+                }
+                exit;
 }
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();
