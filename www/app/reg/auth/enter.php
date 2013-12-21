@@ -63,13 +63,16 @@ $_SESSION["id_man"]=$result["id_man"];
 $_SESSION["rights"]=$result["rights"];
 $_SESSION["email"]=$result["email"];
 
-$query='SELECT `telefon_dom`,`telefon_sot`,`e_mail`,`telefon_rabochii` FROM `people` WHERE id_man=?';
+$query='SELECT `fam`,`name`,`otchestvo`,`telefon_dom`,`telefon_sot`,`e_mail`,`telefon_rabochii` FROM `people` WHERE id_man=?';
 $result=$QueryClass->check_repeat($query,$_SESSION["id_man"],$dbh);
 
 $_SESSION["telefon_dom"]=$result["telefon_dom"];
 $_SESSION["telefon_sot"]=$result["telefon_sot"];
 $_SESSION["telefon_rabochii"]=$result["telefon_rabochii"];
 $_SESSION["e_mail"]=$result["e_mail"];
+$_SESSION["fam"]=$result["fam"];
+$_SESSION["realname"]=$result["name"];
+$_SESSION["otchestvo"]=$result["otchestvo"];
 
 $query='SELECT COUNT(`id_vid`) AS count FROM `vidacha` WHERE id_man=? and na_rukah="Yes"';
 $result=$QueryClass->check_repeat($query,$_SESSION["id_man"],$dbh);

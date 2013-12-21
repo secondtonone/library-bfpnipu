@@ -8,6 +8,7 @@ beforeSend: function() {
 $(".p_content").html("<div id='preloader'></div>");
 },
 success: function(html){
+$('.p_content').height(900);
 $(".p_content").html(html);
 }
 });
@@ -37,11 +38,13 @@ $(document).on('submit','#ppl',function(){
                  var value3 = $("#email").val();  
 				 var value4 = $("#workphone").val();
 				 var value5 = $("#hide").val();
-				 				  
+				 var value6 = $("#fam").val();
+                 var value7 = $("#name").val();
+                 var value8 = $("#otch").val();				 				  
                 $.ajax({  
                   type: "POST",  
                   url: "cabinet/saveform.php",  
-                  data: 'telephone='+ value1+'&mobile='+ value2+ '&email=' +value3+'&workphone='+ value4+'&hide='+ value5,
+                  data: 'fam='+ value6+'&name='+ value7+'&otch='+ value8+'&telephone='+ value1+'&mobile='+ value2+ '&email=' +value3+'&workphone='+ value4+'&hide='+ value5,
 				  beforeSend: function() {$(".p_content").html("<div id='preloader'></div>");
 },                 
 				   success: function(data){  
