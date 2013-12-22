@@ -2,24 +2,11 @@
 session_start();
 require_once('../../../scripts/connect.php');
 
+
 	
 try {
 
-     function cleanData(&$str)
-  {
-    $str = preg_replace("/\t/", "\\t", $str);
-    $str = preg_replace("/\r?\n/", "\\n", $str);
-    if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
-  }
-
-
-    $filename = "website_data_" . date('Ymd') . ".xls";
-    header("Content-Encoding:UTF-8");
-    header("Content-Type: application/vnd.ms-excel");
-    header("Content-Disposition: attachment; filename=\"$filename\"");
-	
-    $flag = false;
-	
+   	
     $curPage = $_GET['page'];
     $rowsPerPage = $_GET['rows'];
     $sortingField = $_GET['sidx'];
@@ -89,17 +76,55 @@ try {
     $response->total = ceil($totalRows['count'] / $rowsPerPage);
     $response->records = $totalRows['count'];
 
+  $filename = "website_data_" . date('Ymd') . ".xls";
 
-    while(false !==($row=$res->fetch(PDO::FETCH_ASSOC))) {
-		
-          if(!$flag) {
-          echo implode("\t", array_keys($row)) . "\r\n";
-          $flag = true;
-                    }
-     array_walk($row, 'cleanData');
-     echo implode("\t", array_values($row)) . "\r\n";
-                }
-                exit;
+header("Content-Disposition: attachment; filename=\"$filename\"");
+header("Content-Type: application/vnd.ms-excel");
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+</head>';
+ echo '<table width="700" border="1"> 
+  <tr> 
+    <td>№</td> 
+    <td>Фамилия</td> 
+    <td>Отчество</td>
+	<td>Группа</td> 
+	<td>Книга</td> 
+	<td>Год издания</td>
+	<td>Дата выдачи</td> 
+	<td>Дата возврата</td> 
+	<td>На руках</td>
+	<td>Потеря</td>
+	<td>Примечание</td>
+  </tr>';
+  while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+ if ($row["na_rukah"]=="Yes")
+ {$na_rukah="Да";
+ }else{
+ $na_rukah="Нет"; }
+  if ($row["poterya"]=="Yes")
+ {$poterya="Да";
+ }else{
+ $poterya="Нет"; }
+echo  '<tr> 
+    <td>'.$row["id_vid"].'</td> 
+    <td>'.$row["fam"].'</td> 
+    <td>'.$row["name"].'</td> 
+	<td>'.$row["otchestvo"].'</td> 
+	<td>'.$row["name_group"].'</td> 
+    <td>'.$row["name_book"].'</td> 
+    <td>'.$row["year_create"].'</td> 
+	<td>'.$row["data_vidachi"].'</td> 
+    <td>'.$row["data_vozvrata"].'</td> 
+    <td>'.$na_rukah.'</td> 
+    <td>'.$poterya.'</td> 
+    <td>'.$row["primechanie"].'</td> 
+      </tr>';
+ }
+ echo '</table>';
+
 }
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();

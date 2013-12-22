@@ -1,24 +1,18 @@
 ﻿<?php 
 require_once '../../scripts/startsession.php';
 require_once '../../scripts/connect.php';
-require_once '../model/userclass.php';
 require_once '../../reg/reg/model/regclass.php';
 
-
-
-
-
-$UserClass=new UserClass();
 $RegClass=new RegClass();
 
 if ($_POST["hide"]=="ppl"){
 	
-	$fam=$UserClass->check_data($_POST["fam"]);
-	$name=$UserClass->check_data($_POST["name"]);
-	$otch=$UserClass->check_data($_POST["otch"]);
-	$telephone=$UserClass->check_data($_POST["telephone"]);
-	$mobile=$UserClass->check_data($_POST["mobile"]);
-	$workphone=$UserClass->check_data($_POST["workphone"]);
+	$fam=$RegClass->check_data($_POST["fam"]);
+	$name=$RegClass->check_data($_POST["name"]);
+	$otch=$RegClass->check_data($_POST["otch"]);
+	$telephone=$RegClass->check_data($_POST["telephone"]);
+	$mobile=$RegClass->check_data($_POST["mobile"]);
+	$workphone=$RegClass->check_data($_POST["workphone"]);
 	$email=$RegClass->check_email($_POST["email"]);
 	if ($email==false) 
 	{exit;}

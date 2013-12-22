@@ -15,12 +15,12 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
+		$allowedFields = array('mail','titles','mark', 'date_change');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
 
-		$qWhere = ' AND ';
+		$qWhere = 'WHERE';
 		$firstElem = true;
 
 		//объединяем все полученные условия
@@ -57,15 +57,14 @@ try {
 	}
 	
     //определяем количество записей в таблице
-    $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
+    $rows = $dbh->query('SELECT COUNT(id_mail) AS count FROM mail');
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
 	
-    $kodkaf=$_SESSION["id_kafedra"];
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kodkaf));
+    $res = $dbh->prepare('SELECT `id_mail`,`mail`,`titles`,`mark`,`date_change` FROM `mail`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute();
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
@@ -75,9 +74,8 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
-		
+		$response->rows[$i]['id']=$row['id_mail'];
+        $response->rows[$i]['cell']=array($row['id_mail'],$row['mail'],$row['titles'],$row['mark'],$row['date_change']);
         $i++;
     }
     echo json_encode($response);
