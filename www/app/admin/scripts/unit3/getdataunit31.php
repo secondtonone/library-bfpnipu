@@ -66,8 +66,8 @@ try {
         
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT id_book,(select `name_book` from `book` where book.`id_book`=vidacha.`id_book` AND book.`id_kafedra`=?) as name_book,(select `year_create` from `book` where book.`id_book`=vidacha.`id_book`) as year_create,(select `kolvo_vsego` from `book` where book.`id_book`=vidacha.`id_book`) as `kolvo_vsego`, (select `ostatok` from `book` where book.`id_book`=vidacha.`id_book`) as `ostatok`, COUNT(`na_rukah`) as na_rukah FROM vidacha where `na_rukah`=? AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (MONTH(data_vidachi)<=11 AND YEAR(CURDATE())-YEAR(`data_vidachi`)=1 AND MONTH(CURDATE())>5) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-        $res->execute(array($kodkaf,"Yes"));
+        $res = $dbh->prepare('SELECT book.`id_book`,`name_book`,`year_create`,`kolvo_vsego`,`ostatok`,COUNT(`na_rukah`)as na_rukah from `book` INNER JOIN `vidacha` ON book.`id_book`=vidacha.`id_book`  AND book.`id_kafedra`=? where `na_rukah`="Yes" AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (MONTH(data_vidachi)<=11 AND YEAR(CURDATE())-YEAR(`data_vidachi`)=1 AND MONTH(CURDATE())>5) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY `book`.id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+        $res->execute(array($kodkaf));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
     $response = new stdClass();
