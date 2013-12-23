@@ -53,6 +53,7 @@ $("#list1").jqGrid({
             rowList:[15,30,45],
             sortname: 'id_vid',
             sortorder: "asc",
+            viewrecords: true,
             caption: 'Должники без эл. адреса'
 		}).navGrid('#pager1',{view:false, del:false, add:false, edit:false, search:false}).navSeparatorAdd("#pager1",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager1",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
