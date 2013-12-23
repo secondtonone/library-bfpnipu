@@ -18,7 +18,7 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','year_create','kolvo_vsego','UDK', 'name_kratko','ostatok');
+		$allowedFields = array('name_book','year_create','kolvo_vsego','UDK','ostatok');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -88,7 +88,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array("",$row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'], $row['name_kratko'],$row['ostatok']);
+        $response->rows[$i]['cell']=array("",$row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['ostatok']);
 		
         $i++;
     }

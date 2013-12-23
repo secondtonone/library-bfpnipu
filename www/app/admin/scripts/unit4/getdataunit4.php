@@ -15,7 +15,7 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('mail','titles','mark', 'date_change');
+		$allowedFields = array('mail','fam','name','otchestvo','name_group','titles','mark', 'date_change');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -63,7 +63,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_mail`,`mail`,`titles`,`mark`,`date_change` FROM `mail`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT `id_mail`,`fam`,`name`,`otchestvo`,`name_group`,`mail`,`titles`,`mark`,`date_change` FROM `mail` m INNER JOIN `people` p ON m.`id_man`=p.`id_man` JOIN `student` s ON p.`id_man`=s.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute();
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -75,7 +75,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_mail'];
-        $response->rows[$i]['cell']=array($row['id_mail'],$row['mail'],$row['titles'],$row['mark'],$row['date_change']);
+        $response->rows[$i]['cell']=array($row['id_mail'],$row['mail'],$row['fam'],$row['name'],$row['otchestvo'],$row['name_group'],$row['titles'],$row['mark'],$row['date_change']);
         $i++;
     }
     echo json_encode($response);
