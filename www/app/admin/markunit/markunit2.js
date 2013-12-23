@@ -38,6 +38,7 @@ $("#list").jqGrid({
             sortname: 'id_vid',
             sortorder: "asc",
             caption: 'Приём изданий',
+            viewrecords: true,
 			subGrid: true,
 			multiselect: true,
 			subGridRowExpanded: function(subgrid_id, row_id) {
