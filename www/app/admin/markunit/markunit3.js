@@ -98,6 +98,7 @@ $("#list1").jqGrid({
             rowList:[15,30,45],
             sortname: 'id_book',
             sortorder: "asc",
+            viewrecords: true,
             caption: 'Данные о тираже книг',
                 subGridRowExpanded: function(subgrid_id, row_id) {
                 // subgrid
