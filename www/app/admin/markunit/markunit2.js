@@ -112,7 +112,8 @@ $("#list").jqGrid({
 										   for(var i=0;i<s.length;i++){
 			                                       var cl = s[i];
 										$('#list').saveRow(cl);
-										  } $('#list').trigger("reloadGrid");}, position: "last", title:"Сохранение", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-cancel",onClickButton: function(){
+										  } 
+										  $('#list').trigger("reloadGrid");}, position: "last", title:"Сохранение", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-cancel",onClickButton: function(){
 			   								var s;
 	                                       s = $("#list").jqGrid('getGridParam','selarrrow');
 										   for(var i=0;i<s.length;i++){

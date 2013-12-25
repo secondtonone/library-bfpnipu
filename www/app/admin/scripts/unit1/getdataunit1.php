@@ -88,7 +88,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array("",$row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['ostatok']);
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['name_kratko'],$row['ostatok']);
 		
         $i++;
     }

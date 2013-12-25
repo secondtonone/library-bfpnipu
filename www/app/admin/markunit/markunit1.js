@@ -10,13 +10,13 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['Действия','#', 'Название книги','Год издания', 'Всего','УДК','Остаток'],
-            colModel :[{name:'act',index:'act', width:41,sortable:false,search:false},
-                {name:'id_book', index:'id_book', width:40, align:'right', search:false},
-				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+            colNames:['#', 'Название книги','Год издания', 'Всего','УДК','Кафедра','Остаток'],
+            colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
+				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'UDK', index:'UDK', width:55, align:'left',editable:true, edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'name_kratko', index:'name_kratko', width:55, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
                 
                 ],
@@ -51,17 +51,10 @@ $("#list").jqGrid({
 		    sortorder: "asc",
 		    height: '100%'
 		});
-		},gridComplete: function(){
-		var ids = jQuery("#list").jqGrid('getDataIDs');
-		for(var i=0;i < ids.length;i++){
-			var cl = ids[i];
-			be = "<input type='button' title='Редактировать' class='my-ui-icon-pecil' onclick=\"jQuery('#list').editRow('"+cl+"');\"  />"; 
-			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"');\"  />"; 
-			ce = "<input type='button' title='Отменить' class='my-ui-icon-cancel' onclick=\"jQuery('#list').restoreRow('"+cl+"');\" />"; 
-			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
-		}	
-	},editurl: 'scripts/unit1/saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}); 
+		},editurl: 'scripts/unit1/saverowunit1.php'
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{},{width:500,height:580,reloadAfterSubmit:true},  
+			{width:500,height:580,reloadAfterSubmit:true}, 
+			{}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
         function updateTable(value) {
