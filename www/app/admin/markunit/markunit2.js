@@ -91,7 +91,7 @@ $("#list").jqGrid({
 		for(var i=0;i < ids.length;i++){
 			var cl = ids[i];
 			be = "<input type='button' title='Редактировать' class='my-ui-icon-pecil' onclick=\"jQuery('#list').editRow('"+cl+"');\"  />"; 
-			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"');\"  />"; 
+			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"'); $('#list').trigger('reloadGrid');\"  />"; 
 			ce = "<input type='button' title='Отменить' class='my-ui-icon-cancel' onclick=\"jQuery('#list').restoreRow('"+cl+"');\" />"; 
 			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
 		}	
@@ -112,7 +112,7 @@ $("#list").jqGrid({
 										   for(var i=0;i<s.length;i++){
 			                                       var cl = s[i];
 										$('#list').saveRow(cl);
-										  }}, position: "last", title:"Сохранение", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-cancel",onClickButton: function(){
+										  } $('#list').trigger("reloadGrid");}, position: "last", title:"Сохранение", cursor: "pointer"}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-cancel",onClickButton: function(){
 			   								var s;
 	                                       s = $("#list").jqGrid('getGridParam','selarrrow');
 										   for(var i=0;i<s.length;i++){
