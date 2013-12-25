@@ -10,9 +10,11 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Всего','УДК','Кафедра','Остаток'],
+            colNames:['#', 'Название книги','Издательство','Кол-во страниц','Год издания', 'Всего','УДК','Кафедра','Остаток'],
             colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
 				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'izdatelstvo', index:'izdatelstvo', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'kolvo_str', index:'kolvo_str', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'UDK', index:'UDK', width:55, align:'left',editable:true, edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -52,8 +54,8 @@ $("#list").jqGrid({
 		    height: '100%'
 		});
 		},editurl: 'scripts/unit1/saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{},{width:500,height:580,reloadAfterSubmit:true},  
-			{width:500,height:580,reloadAfterSubmit:true}, 
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{},{width:400,height:400,reloadAfterSubmit:true},  
+			{width:400,height:400,reloadAfterSubmit:true}, 
 			{}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
