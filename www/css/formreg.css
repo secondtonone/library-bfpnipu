@@ -1,13 +1,15 @@
 #regForm {
 	width: 600px;
 	padding: 24px 24px 0;
-	margin:5% auto 0;
+	margin:0 auto;
 	background: #FEFEFE;
    	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	font: 16px/18px Book;
 	color: rgb(12, 6, 207);
+	top:5%;
+    position:relative;
 }
 #regForm .field {
 	margin: 0 0 18px;

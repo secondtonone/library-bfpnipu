@@ -15,12 +15,14 @@ html,body {
 	font-family:Book;
 	height:100%;
 	color:rgb(12, 6, 207);
+	font-family: 'Times New Roman', Times, serif;
 }
 .page {
 	min-width: 800px;
 	max-width: 1200px;
 	height: 100%;	
 	margin:0 auto;
+	padding:0 auto;
 	}
 .indexpage {
 	min-width: 900px;
@@ -47,7 +49,7 @@ footer .border{
 
 }
 #attentionForm {
-	margin: 15% auto;
+	margin: 0 auto;
 	padding:10px 10px;
 	width: 50%;
 	background: #FEFEFE;
@@ -63,6 +65,8 @@ footer .border{
 	-ms-transition: All 0.5s ease;
 	transition: All 0.5s ease;
 	cursor: pointer;
+	top:25%;
+    position:relative;
 }
 
 		
@@ -71,7 +75,7 @@ footer .border{
 	text-align:center;
 	text-decoration: none;
 	display:block;
-			}
+				}
 #attentionForm:hover {
 	background-color:rgba(228, 3, 48, 0.1);
 	box-shadow: 0 0 0px rgb(0,0,0);
@@ -109,9 +113,11 @@ footer .border{
 	background-image:url(../img/preloader.GIF);
 	background-repeat: no-repeat;
 	display:block; 
-	margin:15% auto;
+	margin:0 auto;
 	height:100px;
 	width:128px;
+	top:25%;
+    position:relative;
 	}
 .content {
 	height: 400px;	

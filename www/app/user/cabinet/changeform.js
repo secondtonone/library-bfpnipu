@@ -8,7 +8,7 @@ beforeSend: function() {
 $(".p_content").html("<div id='preloader'></div>");
 },
 success: function(html){
-$('.p_content').height(900);
+$('.p_content').height(830);
 $(".p_content").html(html);
 }
 });

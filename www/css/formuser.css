@@ -2,13 +2,14 @@
 #acc {
 	width: 80%;
 	padding: 24px 24px 0;
-	margin: 70px auto 0;
+	margin: 40px auto;
 	background: #FEFEFE;
    	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	font: 18px/20px Book;
 	color: rgb(228, 3, 48);
+
 }
 #ppl .field,
 #acc .field {

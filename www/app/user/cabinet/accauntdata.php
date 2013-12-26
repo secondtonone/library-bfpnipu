@@ -1,4 +1,4 @@
-﻿  <?php require_once '../../scripts/startsession.php';?>
+﻿<?php require_once '../../scripts/startsession.php';?>
   <form id="acc">
 	<div class="field">
 		<label>Почта:</label>

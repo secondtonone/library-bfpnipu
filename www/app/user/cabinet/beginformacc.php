@@ -1,5 +1,4 @@
-﻿
-<div id="acc">
+﻿<div id="acc">
 	<div class="field">
     
 		<label>Почта: <div class="formline"> <?php echo $_SESSION["email"]; ?></div></label>
