@@ -1,4 +1,4 @@
-﻿<?php require_once '../../scripts/startsession.php';?>
+﻿<?php require_once '../../scripts/startsessionstudent.php';?>
 <form id="ppl">
 	<div class="field">
 <label>Фамилия:</label><div class="input"><input type='text' id='fam' maxlength="35" placeholder="Введите свою фамилию" title="Должна начинаться с заглавной и содержать только русские буквы." value="<?php echo $_SESSION["fam"]; ?>"></div>

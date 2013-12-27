@@ -1,4 +1,4 @@
-﻿<?php require_once '../scripts/startsession.php';?>
+﻿<?php require_once '../scripts/startsessionadmin.php';?>
 <!DOCTYPE HTML>
 <html>
 <head>

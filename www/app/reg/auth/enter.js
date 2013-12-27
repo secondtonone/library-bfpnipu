@@ -13,10 +13,10 @@ $(document).ready(function(){
                   success: function(data){ 
                                          if (data=="user"){
                                                          
-                                window.location.href = "/app/user/unit2.php";
+                                window.location.href = "unit2.php";
                                                          }else{
                                                 if(data=="admin"){
-                                 window.location.href = "/app/admin/unit1.php";
+                                 window.location.href = "unit1.php";
                                                                  }else{
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");
 						setTimeout('window.location.href = "index.php"', 3000);

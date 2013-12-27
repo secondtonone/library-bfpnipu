@@ -1,2 +1,2 @@
 <footer><div class="border">Информационная система покафедрального учёта библиотечного фонда Березниковского филиала ПНИПУ
-&copy; Кузнецов Максим 2012-<?php echo date("Y"); ?></div></footer>
+&copy; Кузнецов Максим 2012-<?php echo date("Y"); ?><div class="ver">v. 2.0 rc1</div></div></footer>

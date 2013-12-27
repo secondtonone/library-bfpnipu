@@ -15,5 +15,5 @@ session_destroy();
 /*
  * Делаем редирект на главную страницу
  */
-echo "<html><head><meta http-equiv='Refresh' content='0; URL=/index.php'></head></html>";
+echo "<html><head><meta http-equiv='Refresh' content='0; URL=../../../index.php'></head></html>";
 ?>

@@ -23,7 +23,7 @@ beforeSend: function() {
 $(".p_content").html("<div id='preloader'></div>");
 },
 success: function(){
-window.location.href = "/app/user/cabinet_controller.php";
+window.location.href = "cabinet_controller.php";
 }
 });
 return false;
@@ -114,7 +114,7 @@ beforeSend: function() {
 $(".a_content").html("<div id='preloader'></div>");
 },
 success: function(){
-window.location.href = "/app/user/cabinet_controller.php";
+window.location.href = "cabinet_controller.php";
 }
 });
 return false;
