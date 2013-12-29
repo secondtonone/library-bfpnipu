@@ -8,7 +8,7 @@ $titles='';
 
 $query = $dbh->query('TRUNCATE TABLE `mail`');
 
-$query = $dbh->prepare('SELECT `id_man`,`email` FROM `users`');
+$query = $dbh->prepare('SELECT `id_man`,`e_mail` FROM `people` WHERE `e_mail`<>""');
 $query->execute();
 
 while($row = $query->fetch(PDO::FETCH_ASSOC)) 
@@ -24,7 +24,7 @@ while($row = $query->fetch(PDO::FETCH_ASSOC))
 	 if (!empty($titles))
 	 {
     $res = $dbh->prepare('INSERT INTO `mail`(`mail`,`id_man`,`titles`,`mark`) VALUES (?,?,?,?)');
-    $res->execute(array($row["email"],$row["id_man"], $titles,"Неотправлено"));
+    $res->execute(array($row["e_mail"],$row["id_man"], $titles,"Неотправлено"));
 	 }
 	 }
 ?>

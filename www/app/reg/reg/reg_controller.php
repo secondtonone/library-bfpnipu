@@ -55,6 +55,8 @@ if (!empty($result)) { exit;}
 */
 $queryinsert='INSERT INTO `users` (name, pass, email, rights, id_man) VALUES (?,?,?,?,?)';
 $adduser=$QueryClass->insert_inf($query,$queryinsert,$login,$pass,$email,$idman,$dbh);
+$query=$dbh->prepare("UPDATE `people` SET `e_mail`=? WHERE `id_man`=?");
+$query->execute(array($email,$idman));
 /*
 * Отправка письма с кодом подтверждения
 */

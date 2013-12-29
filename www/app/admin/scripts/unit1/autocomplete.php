@@ -8,7 +8,7 @@ try {
     $kodkaf=$_SESSION["id_kafedra"];
 		
 	if ($id_q==1){
-      $res = $dbh->prepare("SELECT b.`id_book`,b.`name_book` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`name_book` LIKE ?");
+      $res = $dbh->prepare("SELECT b.`id_book`,b.`name_book` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`kolvo_vsego`>0 AND b.`name_book` LIKE ?");
 	$res->execute(array($kodkaf,"%$term%"));
 
     
@@ -18,7 +18,7 @@ try {
     echo json_encode($response);
 	}
 		if ($id_q==2){
-			$res = $dbh->prepare("SELECT `id_group`,`name_group` FROM `group` WHERE `name_group` LIKE ?");
+			$res = $dbh->prepare("SELECT `id_group`,`name_group` FROM `group` WHERE `year_okonchan`>=YEAR(CURDATE()) AND `name_group` LIKE ?");
 
 	$res->execute(array("%$term%"));
 
@@ -32,13 +32,18 @@ try {
 				
 			$id_group=$_GET["id_group"]; 
 			
-			$res = $dbh->prepare("SELECT p.`id_man`, p.`fam`,p.`name`,p.`otchestvo` FROM  `people` p INNER JOIN `student` s ON s.`id_man`=p.`id_man` WHERE s.`id_group`=? AND p.`fam` LIKE ?");
+			$res = $dbh->prepare("SELECT p.`id_man`, p.`fam`,p.`name`,p.`otchestvo`,p.`e_mail` FROM  `people` p INNER JOIN `student` s ON s.`id_man`=p.`id_man` WHERE s.`id_group`=? AND p.`fam` LIKE ?");
 
 	$res->execute(array($id_group,"%$term%"));
 
     
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		        $response[]=array('value' => $row["id_man"],'label' =>$row["fam"],'name' =>$row["name"],'otch'=>$row["otchestvo"]);
+		if (!empty($row["e_mail"])){
+			$email=$row["e_mail"];
+			}else{
+			$email="нет";
+			}
+		        $response[]=array('value' => $row["id_man"],'label' =>$row["fam"],'name' =>$row["name"],'otch'=>$row["otchestvo"],'email'=>$email);
 	    }
     echo json_encode($response);
 	}

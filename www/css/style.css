@@ -441,3 +441,4 @@ img.sticky-close
 	background-image:url(../app/scripts/jqgrid/themes/images/ui-icons_0C06CF_256x240.png);
 	background-position:0 -128px;
 	}
+.ui-front { z-index: 1000; }

@@ -14,9 +14,8 @@ $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['Действия','#', 'Фамилия','Имя', 'Отчество','Группа', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
-            colModel :[{name:'act',index:'act', width:41,sortable:false,search:false},
-                {name:'id_vid', index:'id_vid', width:20, align:'right', search:false}
+            colNames:['#', 'Фамилия','Имя', 'Отчество','Группа', 'Книга', 'Год','Дата выдачи','Дата возврата','На руках','Потеря','Примечание'],	 
+            colModel :[{name:'id_vid', index:'id_vid', width:20, align:'right', search:false}
                 ,{name:'fam', index:'fam', width:60, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'name', index:'name', width:60, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'otchestvo', index:'otchestvo', width:69, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -34,7 +33,7 @@ $("#list").jqGrid({
 			autowidth:true,
             height:300,
 			rowNum:15,
-            rowList:[15,30,45],
+            rowList:[15,30,45,90],
             sortname: 'id_vid',
             sortorder: "asc",
             caption: 'Приём изданий',
@@ -85,17 +84,7 @@ $("#list").jqGrid({
 			viewrecords: true,
 			height: '100%'
 		});
-		},
-           gridComplete: function(){
-		var ids = jQuery("#list").jqGrid('getDataIDs');
-		for(var i=0;i < ids.length;i++){
-			var cl = ids[i];
-			be = "<input type='button' title='Редактировать' class='my-ui-icon-pecil' onclick=\"jQuery('#list').editRow('"+cl+"');\"  />"; 
-			se = "<input type='button' title='Сохранить' class='my-ui-icon-disk' onclick=\"jQuery('#list').saveRow('"+cl+"'); $('#list').trigger('reloadGrid');\"  />"; 
-			ce = "<input type='button' title='Отменить' class='my-ui-icon-cancel' onclick=\"jQuery('#list').restoreRow('"+cl+"');\" />"; 
-			jQuery("#list").jqGrid('setRowData',ids[i],{act:be+se+ce});
-		}	
-	},editurl: 'scripts/unit2/saverowunit2.php'
+		},editurl: 'scripts/unit2/saverowunit2.php'
         }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-pencil",onClickButton: function(){var s;
 										  s = $("#list").jqGrid('getGridParam','selarrrow');
 										  if (s==false)

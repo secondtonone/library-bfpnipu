@@ -22,8 +22,8 @@ try {
 	}else
 	if ($narukah=="Yes" && $resvid['na_rukah']=="Yes" && $poterya=="Yes" && $resvid['poterya']=="No")
 	{
-	$poterya = $dbh->prepare('UPDATE `vidacha` SET `poterya`=? WHERE `id_vid`=?');
-    $poterya->execute(array($poterya, $id));
+	$poterya1 = $dbh->prepare('UPDATE `vidacha` SET `poterya`=?,`primechanie`=? WHERE `id_vid`=?');
+    $poterya1->execute(array($poterya,$prim,$id));
 	$vse = $dbh->prepare('UPDATE `book` SET `kolvo_vsego`=`kolvo_vsego`-? WHERE id =?');
 	$vse->execute(array(1,$resvid['id_book']));
 	}

@@ -18,20 +18,24 @@ $("#list").jqGrid({
 				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'UDK', index:'UDK', width:55, align:'left',editable:true, edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'name_kratko', index:'name_kratko', width:55, align:'left', edittype:"select",formatter:"select",search:false,editoptions:{value:"1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'id_kafedra', index:'id_kafedra', width:55, align:'left', edittype:"select",formatter:"select",search:false,editoptions:{value:"1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
-                
-                ],
+ ],
             pager: '#pager',
 			autowidth:true,
             height:300,
 			rowNum:15,
-            rowList:[15,30,45],
+            rowList:[15,30,45,90],
             sortname: 'id_book',
             sortorder: "asc",
             caption: 'Данные о книгах',
 			viewrecords: true,
 			subGrid: true,
+			ondblClickRow: function(id) {
+			celValue = $("#list").jqGrid ('getCell', id, 'name_book');
+			$("#id_book").val(id);
+			$("#book").val(celValue);
+		},
 			subGridRowExpanded: function(subgrid_id, row_id) {
 		// subgrid
 		var subgrid_table_id, pager_id;
@@ -44,17 +48,34 @@ $("#list").jqGrid({
 			url:"scripts/unit1/subgridunit1.php?id="+row_id,
 			datatype: "json",
 			mtype: 'GET',
-			colNames: ['Автор'],
+			colNames: ['#','Автор'],
 			colModel: [
-				{name:"fam_io",index:"fam_io",width:250,editable:true, edittype:"text", search:false}		
-			],
+			{name: "id_avtor",index: "id_avtor",editable: true,edittype: "text",hidden: true},{name:"fam_io",index:"fam_io",width:250,editable:true, edittype:"text", search:false, editoptions:{
+      size: 35,
+      dataInit: function (e) {
+        $(e).autocomplete({
+          source: "scripts/unit1/subgridunit1.php?q=1",
+          minLength: 1,
+          focus: function (event, ui) {
+            $(e).val(ui.item.label);
+			return false;
+          },
+          select: function (event, ui) {
+            $(e).val(ui.item.label);
+            $("input#id_avtor").val(ui.item.value);
+			return false;
+          }
+        });}}}],
 		   	rowNum:20,
 			pager: pager_id,
 		   	sortname: 'fam_io',
 		    sortorder: "asc",
 			viewrecords: true,
+			editurl: "scripts/unit1/savesubgridunit1.php?idbook="+row_id,
 		    height: '100%'
-		}).navGrid('#'+pager_id,{view:false, del:false, add:true, edit:false, search:false});
+		}).navGrid('#'+pager_id,{view:false, del:false, add:true, edit:false, search:false},{width:375,reloadAfterSubmit:true,zIndex:99},  
+			{width:375,reloadAfterSubmit:true,zIndex:99}, 
+			{},{});
 		},editurl: 'scripts/unit1/saverowunit1.php'
         }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:400,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
 			{width:770,height:400,reloadAfterSubmit:true}, 
@@ -150,7 +171,7 @@ $("#list").jqGrid({
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 	 
 });
@@ -248,7 +269,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book2').autocomplete({
@@ -296,7 +317,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book3').autocomplete({
@@ -344,7 +365,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book4').autocomplete({
@@ -392,7 +413,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
 
@@ -441,7 +462,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book6').autocomplete({
@@ -489,7 +510,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book7').autocomplete({
@@ -537,7 +558,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 });  
     $('#book8').autocomplete({
@@ -585,7 +606,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
     $('#book9').autocomplete({
@@ -633,7 +654,7 @@ return i=0;
     }
 	
     }).data( "autocomplete" )._renderItem = function( ul, item ) {
-		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "</a>" ).appendTo( ul );
+		return $( "<li></li>" ).append( "<a>" + item.label + " " + item.name + " " + item.otch + "<br>Почта: "+ item.email+"</a>" ).appendTo( ul );
 	};
 }); 
 //кнопка для очитски значений
