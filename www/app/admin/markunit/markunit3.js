@@ -57,23 +57,8 @@ $("#list").jqGrid({
 		    sortorder: "asc",
 		    height: '100%'
 		});
-		},ondblClickRow: function(id) {
-                
-                    $("#list").restoreRow(lastSel);
-                    $("#list").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-			onSelectRow: function(id) {
-               jQuery("#list").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit2/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}, 
-			{}, 
-			{},  
-			{}, 
-			{} 
-		); 
+		}
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false}); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
 
@@ -98,13 +83,14 @@ $("#list1").jqGrid({
             rowList:[15,30,45],
             sortname: 'id_book',
             sortorder: "asc",
+			subGrid:true,
             viewrecords: true,
             caption: 'Данные о тираже книг',
                 subGridRowExpanded: function(subgrid_id, row_id) {
                 // subgrid
                 var subgrid_table_id, pager_id;
-                subgrid_table_id = subgrid_id+"_tt";
-                pager_id = "pp_"+subgrid_table_id;
+                subgrid_table_id = subgrid_id+"_ttt";
+                pager_id = "ppp_"+subgrid_table_id;
                 
                 $("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table></div>");
                 
@@ -121,23 +107,7 @@ $("#list1").jqGrid({
                     sortorder: "asc",
                     height: '100%'
                 });
-                },ondblClickRow: function(id) {
-                
-                    $("#list1").restoreRow(lastSel);
-                    $("#list1").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-                        onSelectRow: function(id) {
-               jQuery("#list1").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit3/saverowunit3.php'
-        }).navGrid('#pager1',{view:false, del:false, add:false, edit:false, search:false}, 
-                        {}, 
-                        {},  
-                        {}, 
-                        {} 
-                ); 
+                }}).navGrid('#pager1',{view:false, del:false, add:false, edit:false, search:false}); 
                 $("#list1").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  

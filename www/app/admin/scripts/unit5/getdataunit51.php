@@ -16,12 +16,12 @@ try {
         
 
         if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-                $allowedFields = array('name_book','year_create','kolvo_vsego','ostatok','na_rukah');
+                $allowedFields = array('year_postup', 'name_group', 'form', 'kolvo_studentov','name_kratko','name_spec','year_okonchan');
                 $allowedOperations = array('AND', 'OR');
                 
                 $searchData = json_decode($_POST['filters']);
 
-                $qWhere = ' AND ';
+                $qWhere = ' WHERE ';
                 $firstElem = true;
 
                 //объединяем все полученные условия
@@ -58,16 +58,13 @@ try {
         }
              
     //определяем количество записей в таблице
-    $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
+    $rows = $dbh->query('SELECT COUNT(`id_group`) AS count FROM `group`');
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
-        
-    $kodkaf=$_SESSION["id_kafedra"];
-  
-        
+	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-        $res = $dbh->prepare('SELECT book.`id_book`,`name_book`,`year_create`,`kolvo_vsego`,`ostatok`,COUNT(`na_rukah`)as na_rukah from `book` INNER JOIN `vidacha` ON book.`id_book`=vidacha.`id_book`  AND book.`id_kafedra`=? where `na_rukah`="Yes" AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (MONTH(data_vidachi)<=11 AND YEAR(CURDATE())-YEAR(`data_vidachi`)=1 AND MONTH(CURDATE())>5) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY `book`.id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-        $res->execute(array($kodkaf));
+    $res = $dbh->prepare('SELECT `id_group`, `year_postup`, `name_group`, `form`, `kolvo_studentov`,`name_kratko`,`name_spec`, `year_okonchan` FROM `group` g INNER JOIN `specialistic` s ON s.`id_spec`=g.`id_specialistic` INNER JOIN `kafedra` k ON s.`kod_kafedri`=k.`id_kafedra`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+        $res->execute(array());
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
     $response = new stdClass();
@@ -77,9 +74,9 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['year_create'],$row['kolvo_vsego'],$row['ostatok'],$row['na_rukah']);
-                
+		$response->rows[$i]['id']=$row['id_group'];
+        $response->rows[$i]['cell']=array($row['id_group'],$row['year_postup'],$row['name_group'],$row['form'],$row['kolvo_studentov'],$row['name_kratko'],$row['name_spec'],$row['year_okonchan']);
+           
         $i++;}
    
     echo json_encode($response);

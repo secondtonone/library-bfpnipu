@@ -7,137 +7,72 @@ $(".unit5").each(function(){
 
 });
 $("#list").jqGrid({
-            url:'scripts/unit5/getdataunit3.php',
+            url:'scripts/unit5/getdataunit5.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
+            colNames:['#','Фамилия','Имя','Отчество','Группа','Год поступления','Номер зачетки','Дом. телефон','Сот. телефон','Эл. почта','Место работы','Цех, отдел','Должность','Рабочий телефон'],
             colModel :[
-                {name:'id_book', index:'id_book', width:40, align:'right',editable:false, search:false,editable:true}
-                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'year_create', index:'year_create', width:60, align:'center',editable:true,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center',editable:true, edittype:"text",editable:false,sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'UDK', index:'UDK', width:55, align:'left', edittype:"text", search:false,editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},				
-				{name:'name_kratko', index:'name_kratko', width:70, align:'left', edittype:"text",editable:true, search:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
-                
+                {name:'id_man', index:'id_man', width:40, align:'right',editable:false, search:false,editable:false}
+                ,{name:'fam', index:'fam', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name', index:'name', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'otchestvo', index:'otchestvo', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name_group', index:'name_group', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'god_postup', index:'god_postup', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},				
+				{name:'number_zach', index:'number_zach', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'telefon_dom', index:'telefon_dom', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'telefon_sot', index:'telefon_sot', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'e_mail', index:'e_mail', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'mesto_raboti', index:'mesto_raboti', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'ceh_otdel', index:'ceh_otdel', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'doljnost', index:'doljnost', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'telefon_rabochii', index:'telefon_rabochii', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}      
                 ],
             pager: '#pager',
 			autowidth:true,
             height:300,
 			rowNum:15,
-            rowList:[15,30,45],
-            sortname: 'id_book',
+            rowList:[15,30,45,90],
+            sortname: 'id_man',
             sortorder: "asc",
-            caption: 'Данные о книгах требующие замены',
-			subGrid: true,
+            caption: 'Данные о студентах',
 			viewrecords: true,
-			grouping:true,
-   	      groupingView : {
-   		groupField : ['year_create'],
-   		groupColumnShow : [false]
-   	},
-			subGridRowExpanded: function(subgrid_id, row_id) {
-		// subgrid
-		var subgrid_table_id, pager_id;
-		subgrid_table_id = subgrid_id+"_t";
-		pager_id = "p_"+subgrid_table_id;
-		
-		$("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table></div>");
-		
-		jQuery("#"+subgrid_table_id).jqGrid({
-			url:"scripts/unit5/subgridunit3.php?id="+row_id,
-			datatype: "json",
-			mtype: 'GET',
-			colNames: ['Автор'],
-			colModel: [
-				{name:"fam_io",index:"fam_io",width:250}		
-			],
-		   	rowNum:20,
-		   	sortname: 'fam_io',
-		    sortorder: "asc",
-		    height: '100%'
-		});
-		},ondblClickRow: function(id) {
-                
-                    $("#list").restoreRow(lastSel);
-                    $("#list").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-			onSelectRow: function(id) {
-               jQuery("#list").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit5/saverowunit2.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false}, 
-			{}, 
-			{width:400,height:280,reloadAfterSubmit:true},  
-			{width:400,height:580,reloadAfterSubmit:true}, 
-			{} 
+			editurl: 'scripts/unit5/saverowunit5.php'
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},  
+			{width:470,height:550,reloadAfterSubmit:true}, 
+			{},{} 
 		); 
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
 
 $("#list1").jqGrid({
-            url:'scripts/unit5/getdataunit31.php',
+            url:'scripts/unit5/getdataunit51.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Всего', 'Остаток', 'Просрочено на руках'],
+            colNames:['#','Год поступления', 'Название группы', 'Форма', 'Кол-во студентов','Кафедра','Специальность','Год окончания'],
              colModel :[
-                {name:'id_book', index:'id_book', width:40, align:'right', search:false}
-                ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",editable:false,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-                                {name:'year_create', index:'year_create', width:60, align:'center', editable:false,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:false,editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, editable:false,edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-                                {name:'na_rukah', index:'na_rukah', width:50, align:'center',editable:false, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
-                
+                {name:'id_group', index:'id_group', width:40, align:'right', search:false,editable:false}
+                ,{name:'year_postup', index:'nyear_postup', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name_group', index:'name_group', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'form', index:'form', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'kolvo_studentov', index:'kolvo_studentov', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name_kratko', index:'name_kratko', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name_spec', index:'name_spec', width:350, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'year_okonchan', index:'year_okonchan', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}               
                 ],
             pager: '#pager1',
             autowidth:true,
             height:300,
             rowNum:15,
-            rowList:[15,30,45],
-            sortname: 'id_book',
+            rowList:[15,30,45,90],
+            sortname: 'id_group',
             sortorder: "asc",
             viewrecords: true,
-            caption: 'Данные о тираже книг',
-                subGridRowExpanded: function(subgrid_id, row_id) {
-                // subgrid
-                var subgrid_table_id, pager_id;
-                subgrid_table_id = subgrid_id+"_tt";
-                pager_id = "pp_"+subgrid_table_id;
-                
-                $("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table></div>");
-                
-                jQuery("#"+subgrid_table_id).jqGrid({
-                        url:"scripts/unit5/subgridunit31.php?id="+row_id,
-                        datatype: "json",
-                        mtype: 'GET',
-                        colNames: ['Автор'],
-                        colModel: [
-                                {name:"fam_io",index:"fam_io",width:250}                
-                        ],
-                           rowNum:20,
-                           sortname: 'fam_io',
-                    sortorder: "asc",
-                    height: '100%'
-                });
-                },ondblClickRow: function(id) {
-                
-                    $("#list1").restoreRow(lastSel);
-                    $("#list1").editRow(id, true);
-                    lastSel = id;
-               
-            }, 
-                        onSelectRow: function(id) {
-               jQuery("#list1").restoreRow(lastSel);
-}, 
-            editurl: 'scripts/unit3/saverowunit3.php'
-        }).navGrid('#pager1',{view:false, del:false, add:false, edit:false, search:false}, 
-                        {}, 
-                        {},  
-                        {}, 
-                        {} 
-                ); 
+            caption: 'Данные о группах',
+            editurl: 'scripts/unit5/saverowunit51.php'
+        }).navGrid('#pager1',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:350,zIndex:99,reloadAfterSubmit:true},{width:470,height:350,zIndex:99,reloadAfterSubmit:true},  
+			{width:470,height:350,zIndex:99,reloadAfterSubmit:true}, 
+			{},{} 
+		); 
                 $("#list1").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  

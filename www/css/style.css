@@ -34,7 +34,7 @@ footer {
 	height: 18px;
     margin:0 auto;
     bottom:0px;
-	position:  fixed;
+	position:fixed;
 	width: 100%;
 	clear:both;
 	text-align:center;
@@ -48,10 +48,12 @@ footer .border{
 	width: 89%;
 
 }
-footer .border .ver{
-	margin:0 auto;
-	float:right;
+.ver{
+	position:fixed;
+	bottom:1px;
+	right:1px;
 	color:#D8D8D8;
+	font-size:11px;
 }
 #attentionForm {
 	margin: 0 auto;
