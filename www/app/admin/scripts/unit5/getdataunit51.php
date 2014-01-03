@@ -16,7 +16,7 @@ try {
         
 
         if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-                $allowedFields = array('year_postup', 'name_group', 'form', 'kolvo_studentov','name_kratko','name_spec','year_okonchan');
+                $allowedFields = array('year_postup', 'name_group', 'form', 'kolvo_studentov','kod_kafedri','name_spec','year_okonchan');
                 $allowedOperations = array('AND', 'OR');
                 
                 $searchData = json_decode($_POST['filters']);
@@ -63,7 +63,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_group`, `year_postup`, `name_group`, `form`, `kolvo_studentov`,`name_kratko`,`name_spec`, `year_okonchan` FROM `group` g INNER JOIN `specialistic` s ON s.`id_spec`=g.`id_specialistic` INNER JOIN `kafedra` k ON s.`kod_kafedri`=k.`id_kafedra`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT `id_group`, `year_postup`, `name_group`, `form`, `kolvo_studentov`,`kod_kafedri`,s.`id_spec`,`name_spec`, `year_okonchan` FROM `group` g INNER JOIN `specialistic` s ON s.`id_spec`=g.`id_specialistic` INNER JOIN `kafedra` k ON s.`kod_kafedri`=k.`id_kafedra`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
         $res->execute(array());
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -75,7 +75,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_group'];
-        $response->rows[$i]['cell']=array($row['id_group'],$row['year_postup'],$row['name_group'],$row['form'],$row['kolvo_studentov'],$row['name_kratko'],$row['name_spec'],$row['year_okonchan']);
+        $response->rows[$i]['cell']=array($row['id_group'],$row['year_postup'],$row['name_group'],$row['form'],$row['kolvo_studentov'],$row['kod_kafedri'],$row['id_spec'],$row['name_spec'],$row['year_okonchan']);
            
         $i++;}
    
