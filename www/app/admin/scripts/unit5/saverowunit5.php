@@ -4,13 +4,23 @@ require_once('../../../scripts/connect.php');
 
 try {
 if ($_POST['oper']=="edit"){
-    $query=$dbh->prepare('UPDATE `book` SET `name_book`=?,`kod_izdat`=?,`kolvo_str`=?,`year_create`=?, `kolvo_vsego`=?,`UDK`=?,`id_kafedra`=?,`ostatok`=?,`data_change`=NOW() WHERE `id_book`=?');
-    $query->execute(array($_POST['name_book'],$_POST['izdatelstvo'],$_POST['kolvo_str'],$_POST['year_create'],$_POST['kolvo_vsego'],$_POST['UDK'],$_POST['id_kafedra'], $_POST['ostatok'],$_POST['id']));
+    $query=$dbh->prepare('UPDATE `peope` SET `fam`=?, `name`=?, `otchestvo`=?,`telefon_dom`=?, `telefon_sot`=?, `e_mail`=?, `mesto_raboti`=?, `ceh_otdel`=?, `doljnost`=?, `telefon_rabochii`=?,`data_change`=NOW() WHERE `id_man`=?');
+    $query->execute(array($_POST['fam'],$_POST['name'],$_POST['otchestvo'],$_POST['telefon_dom'],$_POST['telefon_sot'],$_POST['e_mail'],$_POST['mesto_raboti'], $_POST['ceh_otdel'], $_POST['doljnost'], $_POST['telefon_rabochii'],$_POST['id']));
+	
+	$query=$dbh->prepare('UPDATE `student` SET `number_zach`=?, `id_group`=?, `god_postup`=?,`data_change`=NOW() WHERE `id_man`=?');
+    $query->execute(array($_POST['number_zach'],$_POST['id_group'],$_POST['god_postup'],$_POST['id']));
+	
 }
 if ($_POST['oper']=="add")
 {
- $query=$dbh->prepare('INSERT INTO `book` (`name_book`,`kod_izdat`,`kolvo_str`,`year_create`, `kolvo_vsego`,`UDK`,`id_kafedra`,`ostatok`,`data_change`) VALUES (?,?,?,?,?,?,?,?,NOW())');
-    $query->execute(array($_POST['name_book'],$_POST['izdatelstvo'],$_POST['kolvo_str'],$_POST['year_create'],$_POST['kolvo_vsego'],$_POST['UDK'],$_POST['id_kafedra'], $_POST['ostatok']));	}
+ $query=$dbh->prepare('INSERT INTO `peope` (`fam`, `name`, `otchestvo`,`telefon_dom`, `telefon_sot`, `e_mail`, `mesto_raboti`, `ceh_otdel`, `doljnost`, `telefon_rabochii`,`data_change`,`data_zapoln_anketi`) VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),NOW())');
+    $query->execute(array($_POST['fam'],$_POST['name'],$_POST['otchestvo'],$_POST['telefon_dom'],$_POST['telefon_sot'],$_POST['e_mail'],$_POST['mesto_raboti'], $_POST['ceh_otdel'], $_POST['doljnost'], $_POST['telefon_rabochii']));	
+	$lastid=$dbh->lastInsertId();
+	
+	$query=$dbh->prepare('INSERT INTO `student` (`id_man`,`number_zach`, `id_group`, `god_postup`,`data_change`) VALUES (?,?,?,?,NOW())');
+    $query->execute(array($lastid,$_POST['number_zach'],$_POST['id_group'],$_POST['god_postup']));
+	
+	}
 }
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();

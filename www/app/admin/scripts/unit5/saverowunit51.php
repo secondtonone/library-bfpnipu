@@ -4,13 +4,13 @@ require_once('../../../scripts/connect.php');
 
 try {
 if ($_POST['oper']=="edit"){
-    $query=$dbh->prepare('UPDATE `book` SET `name_book`=?,`kod_izdat`=?,`kolvo_str`=?,`year_create`=?, `kolvo_vsego`=?,`UDK`=?,`id_kafedra`=?,`ostatok`=?,`data_change`=NOW() WHERE `id_book`=?');
-    $query->execute(array($_POST['name_book'],$_POST['izdatelstvo'],$_POST['kolvo_str'],$_POST['year_create'],$_POST['kolvo_vsego'],$_POST['UDK'],$_POST['id_kafedra'], $_POST['ostatok'],$_POST['id']));
+    $query=$dbh->prepare('UPDATE `group` SET `year_postup`=?, `name_group`=?, `form`=?,`kolvo_studentov`=?,`id_specialistic`=?,`year_okonchan`=?,`data_change`=NOW() WHERE `id_group`=?');
+    $query->execute(array($_POST['year_postup'],$_POST['name_group'],$_POST['form'],$_POST['kolvo_studentov'],$_POST['id_spec'],$_POST['year_okonchan'],$_POST['id']));
 }
 if ($_POST['oper']=="add")
 {
- $query=$dbh->prepare('INSERT INTO `book` (`name_book`,`kod_izdat`,`kolvo_str`,`year_create`, `kolvo_vsego`,`UDK`,`id_kafedra`,`ostatok`,`data_change`) VALUES (?,?,?,?,?,?,?,?,NOW())');
-    $query->execute(array($_POST['name_book'],$_POST['izdatelstvo'],$_POST['kolvo_str'],$_POST['year_create'],$_POST['kolvo_vsego'],$_POST['UDK'],$_POST['id_kafedra'], $_POST['ostatok']));	}
+ $query=$dbh->prepare('INSERT INTO `group` (`year_postup`, `name_group`, `form`, `kolvo_studentov`,`id_specialistic`,`year_okonchan`,`data_change`) VALUES (?,?,?,?,?,?,NOW())');
+    $query->execute(array($_POST['year_postup'],$_POST['name_group'],$_POST['form'],$_POST['kolvo_studentov'],$_POST['id_spec'],$_POST['year_okonchan']));	}
 }
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();
