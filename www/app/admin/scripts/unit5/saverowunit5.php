@@ -4,7 +4,7 @@ require_once('../../../scripts/connect.php');
 
 try {
 if ($_POST['oper']=="edit"){
-    $query=$dbh->prepare('UPDATE `peope` SET `fam`=?, `name`=?, `otchestvo`=?,`telefon_dom`=?, `telefon_sot`=?, `e_mail`=?, `mesto_raboti`=?, `ceh_otdel`=?, `doljnost`=?, `telefon_rabochii`=?,`data_change`=NOW() WHERE `id_man`=?');
+    $query=$dbh->prepare('UPDATE `people` SET `fam`=?, `name`=?, `otchestvo`=?,`telefon_dom`=?, `telefon_sot`=?, `e_mail`=?, `mesto_raboti`=?, `ceh_otdel`=?, `doljnost`=?, `telefon_rabochii`=?,`data_change`=NOW() WHERE `id_man`=?');
     $query->execute(array($_POST['fam'],$_POST['name'],$_POST['otchestvo'],$_POST['telefon_dom'],$_POST['telefon_sot'],$_POST['e_mail'],$_POST['mesto_raboti'], $_POST['ceh_otdel'], $_POST['doljnost'], $_POST['telefon_rabochii'],$_POST['id']));
 	
 	$query=$dbh->prepare('UPDATE `student` SET `number_zach`=?, `id_group`=?, `god_postup`=?,`data_change`=NOW() WHERE `id_man`=?');
@@ -13,7 +13,7 @@ if ($_POST['oper']=="edit"){
 }
 if ($_POST['oper']=="add")
 {
- $query=$dbh->prepare('INSERT INTO `peope` (`fam`, `name`, `otchestvo`,`telefon_dom`, `telefon_sot`, `e_mail`, `mesto_raboti`, `ceh_otdel`, `doljnost`, `telefon_rabochii`,`data_change`,`data_zapoln_anketi`) VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),NOW())');
+ $query=$dbh->prepare('INSERT INTO `people` (`fam`, `name`, `otchestvo`,`telefon_dom`, `telefon_sot`, `e_mail`, `mesto_raboti`, `ceh_otdel`, `doljnost`, `telefon_rabochii`,`data_change`,`data_zapoln_anketi`) VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),NOW())');
     $query->execute(array($_POST['fam'],$_POST['name'],$_POST['otchestvo'],$_POST['telefon_dom'],$_POST['telefon_sot'],$_POST['e_mail'],$_POST['mesto_raboti'], $_POST['ceh_otdel'], $_POST['doljnost'], $_POST['telefon_rabochii']));	
 	$lastid=$dbh->lastInsertId();
 	

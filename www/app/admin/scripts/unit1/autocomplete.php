@@ -8,7 +8,7 @@ try {
     $kodkaf=$_SESSION["id_kafedra"];
 		
 	if ($id_q==1){
-      $res = $dbh->prepare("SELECT b.`id_book`,b.`name_book` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`kolvo_vsego`>0 AND b.`name_book` LIKE ?");
+      $res = $dbh->prepare("SELECT b.`id_book`,b.`name_book` FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`kolvo_vsego`>0 AND b.`ostatok`>0 AND b.`name_book` LIKE ?");
 	$res->execute(array($kodkaf,"%$term%"));
 
     

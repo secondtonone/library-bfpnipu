@@ -20,7 +20,7 @@ try {
 		
 		$searchData = json_decode($_POST['filters']);
 
-		$qWhere = ' WHERE ';
+		$qWhere = ' AND ';
 		$firstElem = true;
 
 		//объединяем все полученные условия
@@ -63,7 +63,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON b.`id_kafedra`=k.`id_kafedra`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, k.`name_kratko`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON b.`id_kafedra`=k.`id_kafedra` WHERE `kolvo_vsego`>0'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute();
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей

@@ -46,14 +46,21 @@ if ($_POST["hide"]=="acc"){
 	 $queryupdate=$dbh->prepare('UPDATE `users` SET email=?,pass=? WHERE id=?');
 	 $queryupdate->execute(array($email,$password,$_SESSION["id"]));
 	 
+	 $queryupdate=$dbh->prepare('UPDATE `people` SET e_mail=?,`data_change`=NOW() WHERE id_man=?');
+	 $queryupdate->execute(array($email,$_SESSION["id_man"]));
+	 
 	 $_SESSION["email"]=$email;
+	 $_SESSION["e_mail"]=$email;
 	  echo "Данные успешно изменены.";
 	 }else{
 
 	 $queryupdate=$dbh->prepare('UPDATE `users` SET email=? WHERE id=?');
 	 $queryupdate->execute(array($email,$_SESSION["id"]));
+	 $queryupdate=$dbh->prepare('UPDATE `people` SET e_mail=?,`data_change`=NOW() WHERE id_man=?');
+	 $queryupdate->execute(array($email,$_SESSION["id_man"]));
 	 
 	 $_SESSION["email"]=$email;
+	 $_SESSION["e_mail"]=$email;
 	  echo "Данные успешно изменены.";	
 	 }
 		 }

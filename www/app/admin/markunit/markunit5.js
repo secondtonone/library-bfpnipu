@@ -33,7 +33,7 @@ $("#list").jqGrid({
 			return false;
           }
         });}}},
-				{name:'god_postup', index:'god_postup', width:150, align:'left',edittype:"select",formatter:"select",editoptions:{value:":Выберите;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},				
+				{name:'god_postup', index:'god_postup', width:150, align:'left',edittype:"select",formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},				
 				{name:'number_zach', index:'number_zach', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true},editoptions:{size: 10}},
 				{name:'telefon_dom', index:'telefon_dom', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'telefon_sot', index:'telefon_sot', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
@@ -68,7 +68,7 @@ $("#list1").jqGrid({
             colNames:['#','Год поступления', 'Название группы', 'Форма', 'Кол-во студентов','Кафедра','','Специальность','Год окончания'],
              colModel :[
                 {name:'id_group', index:'id_group', width:40, align:'right', search:false,editable:false}
-                ,{name:'year_postup', index:'nyear_postup', width:100, align:'left', edittype:"select",editable:true,formatter:"select",editoptions:{value:":Выберите;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+                ,{name:'year_postup', index:'nyear_postup', width:100, align:'left', edittype:"select",editable:true,formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'name_group', index:'name_group', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'form', index:'form', width:100, align:'left',edittype:"select",formatter:"select",search:true,editoptions:{value:":Выберите;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},editable:true,stype:"select", searchrules:{value:":Все;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},clearSearch:true},
 				{name:'kolvo_studentov', index:'kolvo_studentov', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
@@ -90,7 +90,7 @@ $("#list1").jqGrid({
 			return false;
           }
         });}}},
-				{name:'year_okonchan', index:'year_okonchan', width:100, align:'left',edittype:"select",editable:true,formatter:"select",editoptions:{value:":Выберите;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020;2021:2021;2022:2022;2023:2023;2024:2024;2025:2025;2026:2026"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}               
+				{name:'year_okonchan', index:'year_okonchan', width:100, align:'left',edittype:"select",editable:true,formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020;2021:2021;2022:2022;2023:2023;2024:2024;2025:2025;2026:2026"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}               
                 ],
             pager: '#pager1',
             autowidth:true,
