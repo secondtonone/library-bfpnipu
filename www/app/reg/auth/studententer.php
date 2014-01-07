@@ -25,26 +25,6 @@ if ($login==false) { exit;}
 $password=$RegClass->check_pass($password,$password);
 if ($password==false) { exit;}
 
-
-$query='SELECT * FROM `admin` WHERE name=?';
-$result=$QueryClass->check_repeat($query,$login,$dbh);
-/*
-* Если такой пользователь есть, то проверяем пароли
-*/
-if(!empty($result["id"])){
-	
-if($result["pass"]==$password){
-	
-$_SESSION["id"]=$result["id"];
-$_SESSION["name"]=$result["name"];
-$_SESSION["id_kafedra"]=$result["id_kafedra"];
-$_SESSION["rights"]=$result["rights"];
-
-echo "admin";
-}else{
-exit("Вы ввели не верный пароль");
-}
-}else{
 $query='SELECT * FROM `users` WHERE name=?';
 $result=$QueryClass->check_repeat($query,$login,$dbh);
 
@@ -86,5 +66,5 @@ exit("Вы ввели не верный пароль!");
 }else{
 exit("Вы ввели не верные данные!");
 }
-}
+
 ?>

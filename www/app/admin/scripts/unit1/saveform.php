@@ -11,6 +11,18 @@ try {
 	if ($i==0){
         if (!empty($id_book) && !empty($id_man))
         { 
+		$query=$dbh->prepare('SELECT `name_book`,`kolvo_vsego`,`ostatok` FROM `book` WHERE `id_book`=?' );
+		$query->execute(array($id_book));
+		$row = $query->fetch(PDO::FETCH_ASSOC);
+		
+		if ($row['kolvo_vsego']==0)
+		{echo '"'.$row['name_book'].'" не выдается в связи потери актуальности.';
+		exit;
+		}
+			if ($row['ostatok']==0)
+		{echo 'В данный момент нет экземляров "'.$row['name_book'].'".';
+		exit;}
+		
         $vid = $dbh->prepare('INSERT INTO `vidacha`(`id_man`,`id_book`,`data_vidachi`,`na_rukah`,`poterya`) VALUES (?,?,?,?,?)');
         $vid->execute(array($id_man,$id_book,$datevid,"Yes","No"));
         $ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`-? WHERE `id_book` =?');

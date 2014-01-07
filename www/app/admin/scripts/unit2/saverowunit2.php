@@ -17,15 +17,15 @@ try {
 	{
 	$priem = $dbh->prepare('UPDATE `vidacha` SET `data_vozvrata`=?, `na_rukah`=? WHERE `id_vid`=?');
     $priem->execute(array($datevoz, $narukah, $id));
-	$ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`+? WHERE `id_book` =?');
-	$ost->execute(array(1,$resvid['id_book']));
+	$ost = $dbh->prepare('UPDATE `book` SET `ostatok`=`ostatok`+1 WHERE `id_book` =?');
+	$ost->execute(array($resvid['id_book']));
 	}else
 	if ($narukah=="Yes" && $resvid['na_rukah']=="Yes" && $poterya=="Yes" && $resvid['poterya']=="No")
 	{
 	$poterya1 = $dbh->prepare('UPDATE `vidacha` SET `poterya`=?,`primechanie`=? WHERE `id_vid`=?');
     $poterya1->execute(array($poterya,$prim,$id));
-	$vse = $dbh->prepare('UPDATE `book` SET `kolvo_vsego`=`kolvo_vsego`-? WHERE id =?');
-	$vse->execute(array(1,$resvid['id_book']));
+	$vse = $dbh->prepare('UPDATE `book` SET `kolvo_vsego`=`kolvo_vsego`-1 WHERE id =?');
+	$vse->execute(array($resvid['id_book']));
 	}
 	else 
 	if ($narukah=="No" && $resvid['na_rukah']=="No")

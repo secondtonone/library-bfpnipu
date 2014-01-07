@@ -66,7 +66,7 @@ try {
         
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-        $res = $dbh->prepare('SELECT book.`id_book`,`name_book`,`year_create`,`kolvo_vsego`,`ostatok`,COUNT(`na_rukah`)as na_rukah from `book` INNER JOIN `vidacha` ON book.`id_book`=vidacha.`id_book`  AND book.`id_kafedra`=? where `na_rukah`="Yes" AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (MONTH(data_vidachi)<=11 AND YEAR(CURDATE())-YEAR(`data_vidachi`)=1) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY `book`.id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+        $res = $dbh->prepare('SELECT book.`id_book`,`name_book`,`year_create`,`kolvo_vsego`,`ostatok`,COUNT(`na_rukah`)as na_rukah from `book` INNER JOIN `vidacha` ON book.`id_book`=vidacha.`id_book`  AND book.`id_kafedra`=? where `na_rukah`="Yes" AND `poterya`="No" AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (YEAR(CURDATE())-YEAR(`data_vidachi`)=1) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5)) GROUP BY `book`.id_book'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
         $res->execute(array($kodkaf));
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей

@@ -28,7 +28,7 @@
 </div>
 </form>
 </div>
-<script src="../reg/auth/enter.js"></script>
+<script src="../reg/auth/studententer.js"></script>
 <script src="../scripts/tooltip.js"></script>
 <?php require_once '../../temp/footer.php';?>
 </body>

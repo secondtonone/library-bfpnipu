@@ -81,10 +81,10 @@ try {
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		list($year, $month, $day, $hour, $minute, $second) = sscanf($row['data_vidachi'], "%04s-%02s-%02s %02s:%02s:%02s");
 		$raz=$curyear-$year;
-		if (($raz>1) or ($month<=11 and $raz==1) or ($raz==0 and $curmonth>6 and $month<=5)) 
+		if (($raz>1) or ($raz==1) or ($raz==0 and $curmonth>6 and $month<=5)) 
 		{$status=array("status"=>"Просроченно!");
 			} else 
-		{$status=array("status"=>"Не забудьте сдать в срок.");
+		{$status=array("status"=>"Не забудьте сдать в срок!");
 				}
 		$response->rows[$i]['id']=$row['id_vid'];
         $response->rows[$i]['cell']=array($row['id_vid'],$row['name_book'],$row['year_create'],$row['data_vidachi'],$row['na_rukah'],$row['poterya'],$row['primechanie'],$status['status']);
