@@ -76,7 +76,7 @@ try {
     $response->total = ceil($totalRows['count'] / $rowsPerPage);
     $response->records = $totalRows['count'];
 
-  $filename = "website_data_" . date('Ymd') . ".xls";
+  $filename = "Данные о приеме изданий " . date('Y-m-d') . ".xls";
 
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header("Content-Type: application/vnd.ms-excel");

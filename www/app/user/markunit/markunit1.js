@@ -11,7 +11,7 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Год издания', 'Всего','УДК', 'Кафедра', 'Остаток'],
+            colNames:['#', 'Название книги','Год издания', 'Тираж','УДК', 'Кафедра', 'Остаток'],
             colModel :[
                 {name:'id_book', index:'id_book', width:40, align:'right', search:false}
                 ,{name:'name_book', index:'name_book', width:350, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},

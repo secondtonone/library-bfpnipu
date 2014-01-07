@@ -57,7 +57,10 @@ $("#list").jqGrid({
         }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},  
 			{width:470,height:550,reloadAfterSubmit:true}, 
 			{},{} 
-		); 
+		).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
+	                         function () { 
+          $("#list").jqGrid('excelExport',{"url":"scripts/unit5/excelexport.php"});
+       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"});  
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
 
@@ -105,7 +108,10 @@ $("#list1").jqGrid({
         }).navGrid('#pager1',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:350,zIndex:99,reloadAfterSubmit:true},{width:470,height:350,zIndex:99,reloadAfterSubmit:true},  
 			{width:470,height:350,zIndex:99,reloadAfterSubmit:true}, 
 			{},{} 
-		); 
+		).navSeparatorAdd("#pager1",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager1",{caption:"",buttonicon:"ui-icon-document", onClickButton:
+	                         function () { 
+          $("#list1").jqGrid('excelExport',{"url":"scripts/unit5/excelexport1.php"});
+       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
                 $("#list1").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  

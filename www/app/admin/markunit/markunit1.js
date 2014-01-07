@@ -10,7 +10,7 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Издательство','Кол-во страниц','Год издания', 'Всего','УДК','Кафедра','Остаток'],
+            colNames:['#', 'Название книги','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
             colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
 				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"textarea",editable:true,editoptions:{rows:"3",cols:"50"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'izdatelstvo', index:'izdatelstvo', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":Выберите;9:Пермский государственный технический университет;10:Пермский национальный исследовательский политехнический университет"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -79,7 +79,10 @@ $("#list").jqGrid({
 		},editurl: 'scripts/unit1/saverowunit1.php'
         }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:400,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
 			{width:770,height:400,reloadAfterSubmit:true}, 
-			{},{}); 
+			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
+	                         function () { 
+          $("#list").jqGrid('excelExport',{"url":"scripts/unit1/excelexport.php"});
+       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"});  
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
         function updateTable(value) {

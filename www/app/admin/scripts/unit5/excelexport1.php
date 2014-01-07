@@ -19,12 +19,12 @@ try {
 	
 
 	if (isset($_GET['_search']) && $_GET['_search'] == 'true') {
-		$allowedFields = array('fam','name','otchestvo', 'name_group', 'name_book','year_create', 'data_vidachi', 'data_vozvrata', 'na_rukah', 'poterya', 'primechanie');
+	$allowedFields = array('year_postup', 'name_group', 'form', 'kolvo_studentov','kod_kafedri','name_spec','year_okonchan');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_GET['filters']);
 
-		$qWhere = ' AND ';
+		$qWhere = ' WHERE ';
 		$firstElem = true;
 
 		//объединяем все полученные условия
@@ -61,22 +61,21 @@ try {
 	}
 	
     //определяем количество записей в таблице
-    $rows = $dbh->query('SELECT COUNT(`id_vid`) AS count FROM `vidacha`');
+    $rows = $dbh->query('SELECT COUNT(`id_group`) AS count FROM `group`');
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC);
-	
-    $kodkaf=$_SESSION["id_kafedra"];
+
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_vid`, p.`fam`,p.`name`,p.`otchestvo`, g.`name_group`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kodkaf));
+    $res = $dbh->prepare('SELECT `id_group`, `year_postup`, `name_group`, `form`, `kolvo_studentov`,`name_kafedra`,s.`id_spec`,`name_spec`, `year_okonchan` FROM `group` g INNER JOIN `specialistic` s ON s.`id_spec`=g.`id_specialistic` INNER JOIN `kafedra` k ON s.`kod_kafedri`=k.`id_kafedra`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array());
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
     $response->page = $curPage;
     $response->total = ceil($totalRows['count'] / $rowsPerPage);
     $response->records = $totalRows['count'];
 
-  $filename = "Должники без эл. адреса " . date('Y-m-d') . ".xls";
+  $filename = "Данные о группах " . date('Y-m-d') . ".xls";
 
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header("Content-Type: application/vnd.ms-excel");
@@ -86,41 +85,26 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 </head>';
  echo '<table width="700" border="1"> 
-  <tr> 
+  <tr>
     <td>№</td> 
-    <td>Фамилия</td> 
-    <td>Отчество</td>
-	<td>Группа</td> 
-	<td>Книга</td> 
-	<td>Год издания</td>
-	<td>Дата выдачи</td> 
-	<td>Дата возврата</td> 
-	<td>На руках</td>
-	<td>Потеря</td>
-	<td>Примечание</td>
+    <td>Год поступления</td> 
+    <td>Название группы</td>
+	<td>Форма</td> 
+	<td>Кол-во студентов</td> 
+	<td>Кафедра</td>
+	<td>Специальность</td> 
+	<td>Год окончания</td> 
   </tr>';
   while($row = $res->fetch(PDO::FETCH_ASSOC)) {
- if ($row["na_rukah"]=="Yes")
- {$na_rukah="Да";
- }else{
- $na_rukah="Нет"; }
-  if ($row["poterya"]=="Yes")
- {$poterya="Да";
- }else{
- $poterya="Нет"; }
-echo  '<tr> 
-    <td>'.$row["id_vid"].'</td> 
-    <td>'.$row["fam"].'</td> 
-    <td>'.$row["name"].'</td> 
-	<td>'.$row["otchestvo"].'</td> 
-	<td>'.$row["name_group"].'</td> 
-    <td>'.$row["name_book"].'</td> 
-    <td>'.$row["year_create"].'</td> 
-	<td>'.$row["data_vidachi"].'</td> 
-    <td>'.$row["data_vozvrata"].'</td> 
-    <td>'.$na_rukah.'</td> 
-    <td>'.$poterya.'</td> 
-    <td>'.$row["primechanie"].'</td> 
+ echo  '<tr> 
+    <td>'.$row["id_group"].'</td> 
+    <td>'.$row['year_postup'].'</td> 
+    <td>'.$row['name_group'].'</td> 
+    <td>'.$row['form'].'</td> 
+    <td>'.$row['kolvo_studentov'].'</td> 
+	<td>'.$row['name_kafedra'].'</td> 
+    <td>'.$row['name_spec'].'</td> 
+    <td>'.$row['year_okonchan'].'</td> 
       </tr>';
  }
  echo '</table>';
