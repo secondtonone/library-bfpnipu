@@ -13,6 +13,15 @@
 <?php require_once '../../temp/menuline.php';?>
 <?php require_once '../../temp/header.php';?>
 <div class="page">
+<ul class="help">
+  <li>О сайте</li>
+  <li>JqGrid плагин</li>
+  <li>Вкладка студенты</li>
+  <li>Вкладка выдача</li>
+  <li>Вкладка прием</li>
+  <li>Вкладка статистика</li>
+  <li>Вкладка статус рассылки</li>
+</ul>
 </div>
 <script src="../scripts/tooltip.js"></script>
 </body>

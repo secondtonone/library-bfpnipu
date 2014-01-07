@@ -444,3 +444,30 @@ img.sticky-close
 	background-position:0 -128px;
 	}
 .ui-front { z-index: 1000; }
+.help {
+	position:fixed;
+    float:left;
+	top:160px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	}
+.help li {
+    font: bold 15px Arial, Tahoma, sans-serif;
+    padding-left: 0;
+	cursor:pointer;	
+	height:30px;
+	border-top: 1px solid white;
+	width:200px;
+	background: -moz-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	background: -webkit-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	background: -o-linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	background: linear-gradient(180deg, rgb(12, 6, 207),rgba(12, 6, 207, 0.8));
+	color:white;
+	padding-left:7px;
+	line-height:30px;
+	}
+.help li:hover {
+	background-color: rgb(12, 6, 167);
+	color:white;
+	}
