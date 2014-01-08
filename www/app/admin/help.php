@@ -14,14 +14,30 @@
 <?php require_once '../../temp/header.php';?>
 <div class="page">
 <ul class="help">
-  <li>О сайте</li>
-  <li>JqGrid плагин</li>
-  <li>Вкладка студенты</li>
-  <li>Вкладка выдача</li>
-  <li>Вкладка прием</li>
-  <li>Вкладка статистика</li>
-  <li>Вкладка статус рассылки</li>
+  <li><a href="#about">О сайте</a></li>
+  <li><a href="#plagin">JqGrid плагин</a></li>
+  <li><a href="#unit5">Вкладка студенты</a></li>
+  <li><a href="#unit1">Вкладка выдача</a></li>
+  <li><a href="#unit2">Вкладка прием</a></li>
+  <li><a href="#unit3">Вкладка статистика</a></li>
+  <li><a href="#unit4">Вкладка статус рассылки</a></li>
 </ul>
+<div class="helparea">
+<h2><a name="about">О сайте</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="plagin">JqGrid плагин</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="unit5">Вкладка студенты</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="unit1">Вкладка выдача</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="unit2">Вкладка прием</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="unit3">Вкладка статистика</a></h2>
+<p>Этот сайт ололо</p>
+<h2><a name="unit4">Вкладка статус рассылки</a></h2>
+<p>Этот сайт ололо</p>
+</div>
 </div>
 <script src="../scripts/tooltip.js"></script>
 </body>

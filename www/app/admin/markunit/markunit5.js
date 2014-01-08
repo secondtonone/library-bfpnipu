@@ -6,6 +6,9 @@ $(".unit5").each(function(){
     $(this).addClass("selected");
 
 });
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit5');
+   });
 $("#list").jqGrid({
             url:'scripts/unit5/getdataunit5.php',
             datatype: 'json',

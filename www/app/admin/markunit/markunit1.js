@@ -3,8 +3,12 @@ $(document).ready(function(){
 $(".unit1").each(function(){
     $(this).addClass("selected");
 });
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit1');
+   });
+
 //jqgrid плагин
-var lastSel;
+
 		
 $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',

@@ -471,3 +471,24 @@ img.sticky-close
 	background-color: rgb(12, 6, 167);
 	color:white;
 	}
+.helparea{
+	height:900px;
+	max-width:930px;
+	min-width:530px;
+	left:220px;
+	position:relative;
+	padding-left:50px;
+	padding-top:30px;
+	}
+.helparea h2{
+    color: rgb(228, 3, 48);
+	display:block;
+	}
+.helparea p{
+    color:rgb(12, 6, 167);
+	font:14px Arial, Tahoma, sans-serif;
+	}
+.help a{
+	text-decoration: none;
+	color:white;
+	}

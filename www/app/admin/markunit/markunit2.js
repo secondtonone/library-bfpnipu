@@ -7,8 +7,10 @@ $(".unit2").each(function(){
 
 
 });
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit2');
+   });
 
-var lastSel;
 		
 $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',

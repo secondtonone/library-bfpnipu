@@ -9,9 +9,11 @@ require_once('../../../scripts/connect.php');
 	$prim = $_POST['primechanie'];
 	
 try {
-    $vid = $dbh->prepare('SELECT `na_rukah`,`poterya`,`id_book` FROM `vidacha` WHERE `id_vid`=?');
+    $vid = $dbh->prepare('SELECT v.`na_rukah`,v.`poterya`,v.`id_book`,b.`id_kafedra` FROM `vidacha` v INNER JOIN `book` b ON v.`id_book`=b.`id_book` WHERE v.`id_vid`=?');
 	$vid->execute(array($id));
 	$resvid = $vid->fetch(PDO::FETCH_ASSOC);
+	
+	if ($resvid['id_kafedra']==$_SESSION["id_kafedra"]){
 	
 	if ($narukah=="No" && $resvid['na_rukah']=="Yes" && $resvid['poterya']=="No" && $poterya=="No")
 	{
@@ -34,7 +36,9 @@ try {
 	}  else 
 	{
 	exit;
-	}  
+	}  }
+	else{
+		exit;}
 }
 catch (PDOException $e) {
     echo 'Database error: '.$e->getMessage();

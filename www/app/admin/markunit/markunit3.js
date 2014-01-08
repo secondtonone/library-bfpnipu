@@ -4,8 +4,10 @@ $(document).ready(function(){
 $(".unit3").each(function(){
 
     $(this).addClass("selected");
-
 });
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit3');
+   });
 $("#list").jqGrid({
             url:'scripts/unit3/getdataunit3.php',
             datatype: 'json',

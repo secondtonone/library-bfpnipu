@@ -5,7 +5,9 @@ $(".unit4").each(function(){
     $(this).addClass("selected");
 });
 //jqgrid плагин
-var lastSel;
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit4');
+   });
 		
 $("#list").jqGrid({
             url:'scripts/unit4/getdataunit4.php',
