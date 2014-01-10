@@ -88,7 +88,8 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
  echo '<table width="700" border="1"> 
   <tr> 
     <td>№</td> 
-    <td>Фамилия</td> 
+    <td>Фамилия</td>
+    <td>Имя</td>
     <td>Отчество</td>
 	<td>Группа</td> 
 	<td>Книга</td> 
