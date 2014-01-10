@@ -68,7 +68,7 @@ try {
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT `id_vid`, p.`fam`,p.`name`,p.`otchestvo`, g.`name_group`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v INNER JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT `id_vid`, p.`fam`,p.`name`,p.`otchestvo`, g.`name_group`, b.`name_book`,b.`year_create`, `data_vidachi`, `data_vozvrata`, `na_rukah`, `poterya`, `primechanie` FROM `vidacha` v JOIN `people` p ON v.`id_man`=p.`id_man` JOIN `student` s ON s.`id_man`=p.`id_man` JOIN `group` g ON s.`id_group`=g.`id_group` JOIN `book` b ON v.`id_book`=b.`id_book` WHERE b.`id_kafedra`=? AND p.`e_mail`="" AND v.`na_rukah`="Yes" AND v.`poterya`="No" AND ((YEAR(CURDATE())-YEAR(data_vidachi)>=1) OR (YEAR(CURDATE())-YEAR(`data_vidachi`)=1) OR (YEAR(CURDATE())-YEAR(data_vidachi)=0 AND MONTH(CURDATE())>6 AND MONTH(`data_vidachi`)<=5))'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf));
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
@@ -88,27 +88,15 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
  echo '<table width="700" border="1"> 
   <tr> 
     <td>№</td> 
-    <td>Фамилия</td> 
+    <td>Фамилия</td>
+    <td>Имя</td> 
     <td>Отчество</td>
 	<td>Группа</td> 
 	<td>Книга</td> 
 	<td>Год издания</td>
-	<td>Дата выдачи</td> 
-	<td>Дата возврата</td> 
-	<td>На руках</td>
-	<td>Потеря</td>
-	<td>Примечание</td>
   </tr>';
   while($row = $res->fetch(PDO::FETCH_ASSOC)) {
- if ($row["na_rukah"]=="Yes")
- {$na_rukah="Да";
- }else{
- $na_rukah="Нет"; }
-  if ($row["poterya"]=="Yes")
- {$poterya="Да";
- }else{
- $poterya="Нет"; }
-echo  '<tr> 
+ echo  '<tr> 
     <td>'.$row["id_vid"].'</td> 
     <td>'.$row["fam"].'</td> 
     <td>'.$row["name"].'</td> 
@@ -116,11 +104,7 @@ echo  '<tr>
 	<td>'.$row["name_group"].'</td> 
     <td>'.$row["name_book"].'</td> 
     <td>'.$row["year_create"].'</td> 
-	<td>'.$row["data_vidachi"].'</td> 
-    <td>'.$row["data_vozvrata"].'</td> 
-    <td>'.$na_rukah.'</td> 
-    <td>'.$poterya.'</td> 
-    <td>'.$row["primechanie"].'</td> 
+
       </tr>';
  }
  echo '</table>';
