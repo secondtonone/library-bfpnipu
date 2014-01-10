@@ -15,9 +15,9 @@
 <a href="app/user/index.php" class="user">ЧИТАТЕЛЬ<p>Вход и регистрация для студентов</p></a>
 <a href="app/admin/index.php"class="admin">БИБЛИОТЕКАРЬ<p>Вход для инженеров кафедры</p></a>
 <div class="social">
-<a href="http://twitter.com/home?status=Электронная библиотека кафедр БФ ПНИПУ http://www.library.bfpnipu.com" class="tw"/></a>
-<a href="http://www.facebook.com/sharer.php?u=http://www.library.bfpnipu.com&t=Электронная библиотека кафедр БФ ПНИПУ" class="fb"/></a>
-<a href="http://vkontakte.ru/share.php?url=http://www.library.bfpnipu.com" class="vk"/></a>
+<a href="http://twitter.com/home?status=Электронная библиотека кафедр БФ ПНИПУ http://www.librarybfpnipu.besaba.com" class="tw"/></a>
+<a href="http://www.facebook.com/sharer.php?u=http://www.librarybfpnipu.besaba.com&t=Электронная библиотека кафедр БФ ПНИПУ" class="fb"/></a>
+<a href="http://vkontakte.ru/share.php?url=http://www.librarybfpnipu.besaba.com" class="vk"/></a>
 </div>
 </div>
 <?php require_once 'temp/footer.php';?>
