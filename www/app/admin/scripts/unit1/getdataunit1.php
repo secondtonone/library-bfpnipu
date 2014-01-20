@@ -18,7 +18,7 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','year_create','izdatelstvo','kolvo_str','kolvo_vsego','UDK','name_kratko','ostatok');
+		$allowedFields = array('name_book','year_create','kod_grif','izdatelstvo','kolvo_str','kolvo_vsego','UDK','name_kratko','ostatok');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
@@ -73,10 +73,10 @@ try {
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
 	if (empty($idbook)) {
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kod_grif`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf));
 	}else {
-		$res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`id_book`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+		$res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kod_grif`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`id_book`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
 	$res->execute(array($kodkaf,$idbook));
 		}
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -88,7 +88,7 @@ try {
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
 		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['kod_izdat'],$row['kolvo_str'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['id_kafedra'],$row['ostatok']);
+        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['kod_grif'],$row['kod_izdat'],$row['kolvo_str'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['id_kafedra'],$row['ostatok']);
 		
         $i++;
     }

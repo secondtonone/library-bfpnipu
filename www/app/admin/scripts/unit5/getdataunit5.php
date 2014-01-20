@@ -16,7 +16,7 @@ try {
         
 
         if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-                $allowedFields = array('fam','name','otchestvo', 'name_group','god_postup','number_zach','telefon_dom','telefon_sot','e_mail','mesto_raboti','ceh_otdel','doljnost','telefon_rabochii');
+                $allowedFields = array('fam','name','otchestvo', 'name_group','otchis','god_postup','number_zach','telefon_dom','telefon_sot','e_mail','mesto_raboti','ceh_otdel','doljnost','telefon_rabochii');
                 $allowedOperations = array('AND', 'OR');
                 
                 $searchData = json_decode($_POST['filters']);
@@ -65,7 +65,7 @@ try {
         
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-    $res = $dbh->prepare('SELECT s.`id_man`, `fam`, `name`, `otchestvo`,g.`id_group`,g.`name_group`,`god_postup`,`number_zach` ,`telefon_dom`, `telefon_sot`, `e_mail`, `mesto_raboti`, `ceh_otdel`, `doljnost`, `telefon_rabochii`,p.`data_change` FROM `student` as s INNER JOIN `people` as p ON s.`id_man`=p.`id_man` INNER JOIN `group` as g ON s.`id_group`=g.`id_group`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+    $res = $dbh->prepare('SELECT s.`id_man`, `fam`, `name`, `otchestvo`,g.`id_group`,g.`name_group`,(SELECT `name_group` FROM `group` WHERE `otchislen_iz_group`=`id_group`) as otchis,`god_postup`,`number_zach` ,`telefon_dom`, `telefon_sot`, `e_mail`, `mesto_raboti`, `ceh_otdel`, `doljnost`, `telefon_rabochii`,p.`data_change` FROM `student` as s INNER JOIN `people` as p ON s.`id_man`=p.`id_man` INNER JOIN `group` as g ON s.`id_group`=g.`id_group`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
         $res->execute(array());
 
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
@@ -76,6 +76,7 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+		
                 $response->rows[$i]['id']=$row['id_man'];
         $response->rows[$i]['cell']=array($row['id_man'],$row['fam'],$row['name'],$row['otchestvo'], $row['id_group'], $row['name_group'],$row['god_postup'],$row['number_zach'],$row['telefon_dom'],$row['telefon_sot'],$row['e_mail'],$row['mesto_raboti'],$row['ceh_otdel'],$row['doljnost'],$row['telefon_rabochii'],$row['data_change']);
                 

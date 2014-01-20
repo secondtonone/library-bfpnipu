@@ -14,9 +14,10 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
+            colNames:['#', 'Название книги','Гриф','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
             colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
 				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"textarea",editable:true,editoptions:{rows:"3",cols:"50"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'kod_grif', index:'kod_grif', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;2:Рекомендовано МО;3:Допущено УМО;4:Допущено МО;6:Рекомендовано УМО;7:нет грифа;8:УМО АМ"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'izdatelstvo', index:'izdatelstvo', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;9:Пермский государственный технический университет;10:Пермский национальный исследовательский политехнический университет"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_str', index:'kolvo_str', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -81,8 +82,8 @@ $("#list").jqGrid({
 			{width:375,reloadAfterSubmit:true,zIndex:99}, 
 			{},{});
 		},editurl: 'scripts/unit1/saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:400,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
-			{width:770,height:400,reloadAfterSubmit:true}, 
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:440,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
+			{width:770,height:440,reloadAfterSubmit:true}, 
 			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
           $("#list").jqGrid('excelExport',{"url":"scripts/unit1/excelexport.php"});
