@@ -13,7 +13,7 @@ $("#list").jqGrid({
             url:'scripts/unit5/getdataunit5.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#','Фамилия','Имя','Отчество','','Группа','Год поступления','Номер зачетки','Дом. телефон','Сот. телефон','Эл. почта','Место работы','Цех, отдел','Должность','Рабочий телефон','Дата'],
+            colNames:['#','Фамилия','Имя','Отчество','','Группа','','Отчислен из группы','Год поступления','Номер зачетки','Дом. телефон','Сот. телефон','Эл. почта','Место работы','Цех, отдел','Должность','Рабочий телефон','Дата'],
             colModel :[
                 {name:'id_man', index:'id_man', width:40, align:'right',editable:false, search:false,editable:false}
                 ,{name:'fam', index:'fam', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
@@ -33,6 +33,22 @@ $("#list").jqGrid({
           select: function (event, ui) {
             $(e).val(ui.item.label);
             $("input#id_group").val(ui.item.value);
+			return false;
+          }
+        });}}},{name: "otchislen_iz_group",index: "otchislen_iz_group",editable: true,edittype: "text",hidden:true},
+				{name:'otgroup', index:'otgroup', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}, editoptions:{
+      size: 10,
+      dataInit: function (e) {
+        $(e).autocomplete({
+          source: "scripts/unit5/autocomplete.php?q=1",
+          minLength: 1,
+          focus: function (event, ui) {
+            $(e).val(ui.item.label);
+			return false;
+          },
+          select: function (event, ui) {
+            $(e).val(ui.item.label);
+            $("input#otchislen_iz_group").val(ui.item.value);
 			return false;
           }
         });}}},
@@ -57,8 +73,8 @@ $("#list").jqGrid({
             caption: 'Данные о студентах',
 			viewrecords: true,
 			editurl: 'scripts/unit5/saverowunit5.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},{width:470,height:550,zIndex:99,reloadAfterSubmit:true},  
-			{width:470,height:550,reloadAfterSubmit:true}, 
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:470,height:570,zIndex:99,reloadAfterSubmit:true},{width:470,height:570,zIndex:99,reloadAfterSubmit:true},  
+			{width:470,height:570,reloadAfterSubmit:true}, 
 			{},{} 
 		).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
