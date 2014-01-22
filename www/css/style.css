@@ -72,7 +72,7 @@ footer .border{
 	-ms-transition: All 0.5s ease;
 	transition: All 0.5s ease;
 	cursor: pointer;
-	top:25%;
+	top:35%;
     position:relative;
 }
 
@@ -123,7 +123,27 @@ footer .border{
 	margin:0 auto;
 	height:100px;
 	width:128px;
-	top:25%;
+	top:35%;
+    position:relative;
+	}
+.a_content #preloader{
+	background-image:url(../img/preloader.GIF);
+	background-repeat: no-repeat;
+	display:block; 
+	margin:0 auto;
+	height:100px;
+	width:128px;
+	top:30%;
+    position:relative;
+	}
+.p_content #preloader{
+	background-image:url(../img/preloader.GIF);
+	background-repeat: no-repeat;
+	display:block; 
+	margin:0 auto;
+	height:100px;
+	width:128px;
+	top:30%;
     position:relative;
 	}
 .content {

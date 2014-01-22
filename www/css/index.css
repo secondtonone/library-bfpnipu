@@ -17,7 +17,7 @@
 	-ms-transition: All 0.5s ease;
 	transition: All 0.5s ease;
            position: relative;
-           top: 20%;
+           top: 35%;
 	}
 .user {
            color: rgb(228, 3, 48);
@@ -67,7 +67,7 @@
 	width: 80px;
            clear:both;
            position:relative;
-           top:30%;
+           top:45%;
 }
 .social a { 
     display: inline-block;

@@ -1,5 +1,9 @@
 $(document).ready(function(){
 	
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit1');
+   });
+	
 $(document).on('click',".perchange",function(){
 $.ajax({
 url: "cabinet/personaldata.php",
@@ -8,7 +12,7 @@ beforeSend: function() {
 $(".p_content").html("<div id='preloader'></div>");
 },
 success: function(html){
-$('.p_content').height(830);
+$('.p_content').height(730);
 $(".p_content").html(html);
 }
 });
@@ -35,8 +39,7 @@ $(document).on('submit','#ppl',function(){
 				
 				 var value1 = $("#telephone").val();
                  var value2 = $("#mobile").val();
-                 var value3 = $("#email").val();  
-				 var value4 = $("#workphone").val();
+                 var value4 = $("#workphone").val();
 				 var value5 = $("#hide").val();
 				 var value6 = $("#fam").val();
                  var value7 = $("#name").val();
@@ -44,7 +47,7 @@ $(document).on('submit','#ppl',function(){
                 $.ajax({  
                   type: "POST",  
                   url: "cabinet/saveform.php",  
-                  data: 'fam='+ value6+'&name='+ value7+'&otch='+ value8+'&telephone='+ value1+'&mobile='+ value2+ '&email=' +value3+'&workphone='+ value4+'&hide='+ value5,
+                  data: 'fam='+ value6+'&name='+ value7+'&otch='+ value8+'&telephone='+ value1+'&mobile='+ value2+'&workphone='+ value4+'&hide='+ value5,
 				  beforeSend: function() {$(".p_content").html("<div id='preloader'></div>");
 },                 
 				   success: function(data){  

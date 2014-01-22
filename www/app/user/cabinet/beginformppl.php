@@ -15,9 +15,6 @@
 		<label>Телефон сотовый: <div class="formline"> <?php echo $_SESSION["telefon_sot"]; ?></div></label>
 		</div>
     	<div class="field">
-		<label>Электронная почта: <div class="formline"> <?php echo $_SESSION["e_mail"]; ?></div></label>
-	</div>
-    	<div class="field">
 		<label>Рабочий телефон: <div class="formline"><?php echo $_SESSION["telefon_rabochii"]; ?></div></label>
 	</div>
 	<div class="submitbutton">

@@ -17,9 +17,9 @@ if ($_POST["hide"]=="ppl"){
 	if ($email==false) 
 	{exit;}
 	
-	 $queryupdate=$dbh->prepare('UPDATE `people` SET fam=?,name=?,otchestvo=?,telefon_dom=?,telefon_sot=?,telefon_rabochii=?,e_mail=?,`data_change`=NOW() WHERE id_man=?');
+	 $queryupdate=$dbh->prepare('UPDATE `people` SET fam=?,name=?,otchestvo=?,telefon_dom=?,telefon_sot=?,telefon_rabochii=?,`data_change`=NOW() WHERE id_man=?');
 	 
-	 $queryupdate->execute(array($fam,$name,$otch,$telephone,$mobile,$workphone,$email,$_SESSION["id_man"]));
+	 $queryupdate->execute(array($fam,$name,$otch,$telephone,$mobile,$workphone,$_SESSION["id_man"]));
 	 
 	  $_SESSION["fam"]=$fam;
 	  $_SESSION["realname"]=$name;

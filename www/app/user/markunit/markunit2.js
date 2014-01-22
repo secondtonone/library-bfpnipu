@@ -4,11 +4,11 @@ $(document).ready(function(){
 $(".unit2").each(function(){
  
     $(this).addClass("selected");
-
-
 });
 
-var lastSel;
+$("a[href='help.php']").each(function(){
+      $(this).attr('href', $(this).attr('href')+'#unit3');
+   });
 		
 $("#list").jqGrid({
             url:'scripts/unit2/getdataunit2.php',
