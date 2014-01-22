@@ -365,7 +365,7 @@ return i=0;
 		minLength: 3,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
-		$("#id_man1").val(ui.item.value); 
+		$("#id_man3").val(ui.item.value); 
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
