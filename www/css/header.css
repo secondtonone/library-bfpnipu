@@ -48,8 +48,6 @@ header {
 .exit {
 	float:right;
 	}
-
-
 .line:hover{
 	background: -o-linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
 	background: -webkit-linear-gradient(180deg, rgb(12, 6, 157),rgba(12, 6, 157, 0.2));
