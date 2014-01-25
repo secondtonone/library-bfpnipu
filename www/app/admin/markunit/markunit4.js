@@ -20,7 +20,7 @@ $("#list").jqGrid({
 			{name:'name', index:'name', width:50, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 			{name:'otchestvo', index:'otchestvo', width:50, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 			{name:'name_group', index:'name_group', width:50, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'titles', index:'titles', width:350, align:'center', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
+				{name:'titles', index:'titles', width:350, align:'left', edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'mark', index:'mark', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'date_change', index:'date_change', width:55, align:'left', edittype:"text",searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}],
             pager: '#pager',

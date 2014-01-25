@@ -24,7 +24,7 @@ while($row = $query->fetch(PDO::FETCH_ASSOC))
      }
 	 if (!empty($titles) AND preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $row["e_mail"]))
 	 {
-	$titles=rtrim($titles,',');
+	$titles=rtrim($titles,', ');
     $res = $dbh->prepare('INSERT INTO `mail`(`mail`,`id_man`,`titles`,`mark`) VALUES (?,?,?,?)');
     $res->execute(array($row["e_mail"],$row["id_man"],$titles,"Неотправлено"));
 	$titles='';
