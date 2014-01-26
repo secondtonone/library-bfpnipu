@@ -14,9 +14,26 @@ $("#list").jqGrid({
             url:'scripts/unit1/getdataunit1.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Гриф','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
+            colNames:['#', 'Название книги','','Автор','Гриф','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
             colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
-				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"textarea",editable:true,editoptions:{rows:"3",cols:"50"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+			{name:'name_book', index:'name_book', width:350, align:'left', edittype:"textarea",editable:true,editoptions:{rows:"3",cols:"50"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name: "id_avtor",index: "id_avtor",editable: true,edittype: "text",hidden: true},
+			{name:"fam_io",index:"fam_io",width:150,editable:true, edittype:"text", search:false, editoptions:{
+      size: 35,
+      dataInit: function (e) {
+        $(e).autocomplete({
+          source: "scripts/unit1/subgridunit1.php?q=1",
+          minLength: 1,
+          focus: function (event, ui) {
+            $(e).val(ui.item.label);
+			return false;
+          },
+          select: function (event, ui) {
+            $(e).val(ui.item.label);
+            $("input#id_avtor").val(ui.item.value);
+			return false;
+          }
+        });}}},
 				{name:'kod_grif', index:'kod_grif', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;2:Рекомендовано МО;3:Допущено УМО;4:Допущено МО;6:Рекомендовано УМО;7:нет грифа;8:УМО АМ"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'izdatelstvo', index:'izdatelstvo', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;9:Пермский государственный технический университет;10:Пермский национальный исследовательский политехнический университет"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
 				{name:'kolvo_str', index:'kolvo_str', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
@@ -82,8 +99,8 @@ $("#list").jqGrid({
 			{width:375,reloadAfterSubmit:true,zIndex:99}, 
 			{},{});
 		},editurl: 'scripts/unit1/saverowunit1.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:440,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
-			{width:770,height:440,reloadAfterSubmit:true}, 
+        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:530,reloadAfterSubmit:true},{width:770,height:530,reloadAfterSubmit:true},  
+			{width:770,height:530,reloadAfterSubmit:true}, 
 			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
           $("#list").jqGrid('excelExport',{"url":"scripts/unit1/excelexport.php"});

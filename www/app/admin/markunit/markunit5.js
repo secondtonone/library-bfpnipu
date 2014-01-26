@@ -87,16 +87,17 @@ $("#list1").jqGrid({
             url:'scripts/unit5/getdataunit51.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#','Год поступления', 'Название группы', 'Форма', 'Кол-во студентов','Кафедра','','Специальность','Год окончания'],
+            colNames:['#','Год поступления', 'Название группы', 'Форма', 'Кол-во студентов','Кафедра','Выпуск','','Специальность','Год окончания'],
              colModel :[
-                {name:'id_group', index:'id_group', width:40, align:'right', search:false,editable:false}
+                {name:'id_group', index:'id_group', width:20, align:'right', search:false,editable:false}
                 ,{name:'year_postup', index:'nyear_postup', width:100, align:'left', edittype:"select",editable:true,formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
 				{name:'name_group', index:'name_group', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'form', index:'form', width:100, align:'left',edittype:"select",formatter:"select",search:true,editoptions:{value:":Выберите;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},editable:true,stype:"select", searchrules:{value:":Все;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},clearSearch:true},
-				{name:'kolvo_studentov', index:'kolvo_studentov', width:100, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'kod_kafedri', index:'kod_kafedri', width:55, align:'left', edittype:"select",formatter:"select",search:true,editoptions:{value:":Выберите;1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},editable:false,stype:"select", searchrules:{value:":Все;1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},clearSearch:true},
+				{name:'form', index:'form', width:70, align:'left',edittype:"select",formatter:"select",search:true,editoptions:{value:":Выберите;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},editable:true,stype:"select", searchrules:{value:":Все;дневная:дневная;ускоренная:ускоренная;вечерняя:вечерняя"},clearSearch:true},
+				{name:'kolvo_studentov', index:'kolvo_studentov', width:60, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'kod_kafedri', index:'kod_kafedri', width:60, align:'left', edittype:"select",formatter:"select",search:true,editoptions:{value:":Выберите;1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},editable:false,stype:"select", searchrules:{value:":Все;1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},clearSearch:true},
+				{name:'vipusk', index:'vipusk', width:60, align:'center',editable:true,edittype:"checkbox",formatter:"checkbox",editoptions: {value:"1:0"},search:true,stype:'select', searchoptions:{value:":Все;1:Да;0:Нет"}},
 				{name:'id_spec', index:'id_spec', width:350, align:'left',editable: true,edittype: "text",hidden:true},
-				{name:'name_spec', index:'name_spec', width:350, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}, editoptions:{
+				{name:'name_spec', index:'name_spec', width:200, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}, editoptions:{
       size: 25,
       dataInit: function (e) {
 		  $(e).autocomplete({
@@ -112,7 +113,7 @@ $("#list1").jqGrid({
 			return false;
           }
         });}}},
-				{name:'year_okonchan', index:'year_okonchan', width:100, align:'left',edittype:"select",editable:true,formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020;2021:2021;2022:2022;2023:2023;2024:2024;2025:2025;2026:2026"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}               
+				{name:'year_okonchan', index:'year_okonchan', width:55, align:'left',edittype:"select",editable:true,formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020;2021:2021;2022:2022;2023:2023;2024:2024;2025:2025;2026:2026"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}               
                 ],
             pager: '#pager1',
             autowidth:true,

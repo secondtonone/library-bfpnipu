@@ -14,99 +14,93 @@ $("#list").jqGrid({
             url:'scripts/unit6/getdataunit6.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['#', 'Название книги','Гриф','Издательство','Кол-во страниц','Год издания', 'Тираж','УДК','Кафедра','Остаток'],
-            colModel :[{name:'id_book', index:'id_book', width:40, align:'right', search:false},
-				{name:'name_book', index:'name_book', width:350, align:'left', edittype:"textarea",editable:true,editoptions:{rows:"3",cols:"50"},searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
-				{name:'kod_grif', index:'kod_grif', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;2:Рекомендовано МО;3:Допущено УМО;4:Допущено МО;6:Рекомендовано УМО;7:нет грифа;8:УМО АМ"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'izdatelstvo', index:'izdatelstvo', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;9:Пермский государственный технический университет;10:Пермский национальный исследовательский политехнический университет"},search:false,editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'kolvo_str', index:'kolvo_str', width:60, align:'center', edittype:"text",editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'year_create', index:'year_create', width:60, align:'center', edittype:"select",formatter:"select",editoptions:{value:":-;2000:2000;2001:2001;2002:2002;2003:2003;2004:2004;2005:2005;2006:2006;2007:2007;2008:2008;2009:2009;2010:2010;2011:2011;2012:2012;2013:2013;2014:2014;2015:2015;2016:2016;2017:2017;2018:2018;2019:2019;2020:2020"},editable:true, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'kolvo_vsego', index:'kolvo_vsego', width:65, align:'center', editable:true, edittype:"text",sorttype:'integer', searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'UDK', index:'UDK', width:55, align:'left',editable:true, edittype:"text", search:false, searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}},
-				{name:'id_kafedra', index:'id_kafedra', width:55, align:'left', edittype:"select",formatter:"select",search:false,editoptions:{value:":-;1:АТП;2:ХТиЭ;4:ОНД;5:Экономики;7:ТМП;8:ТКМ"},editable:true,clearSearch:true},
-				{name:'ostatok', index:'ostatok', width:50, align:'center',editable:true, edittype:"text", searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch: true}}
+            colNames:['#','Фамилия','Имя','Отчество','Эл. почта'],
+            colModel :[{name:'id_man', index:'id_man', width:40, align:'right',editable:false, search:false,editable:false}
+                ,{name:'fam', index:'fam', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'name', index:'name', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},{name:'otchestvo', index:'otchestvo', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}},
+				{name:'e_mail', index:'e_mail', width:150, align:'left', edittype:"text",editable:true,searchoptions:{sopt:['bw','eq','ne','cn'],clearSearch:true}}
  ],
             pager: '#pager',
-			width:500,
+			width:520,
             height:300,
 			rowNum:15,
             rowList:[15,30,45,90],
-            sortname: 'id_book',
+            sortname: 'id_man',
             sortorder: "asc",
-            caption: 'Данные о книгах',
+            caption: 'Студенты',
 			viewrecords: true,
-			subGrid: true,
-			multiselect: true,
-			ondblClickRow: function(id) {
-			celValue = $("#list").jqGrid ('getCell', id, 'name_book');
-			$("#id_book").val(id);
-			$("#book").val(celValue);
-		},
-			subGridRowExpanded: function(subgrid_id, row_id) {
-		// subgrid
-		var subgrid_table_id, pager_id;
-		subgrid_table_id = subgrid_id+"_t";
-		pager_id = "p_"+subgrid_table_id;
-		
-		$("#"+subgrid_id).html("<div class='subgridform'><table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>");
-		
-		jQuery("#"+subgrid_table_id).jqGrid({
-			url:"scripts/unit6/subgridunit6.php?id="+row_id,
-			datatype: "json",
-			mtype: 'GET',
-			colNames: ['#','Автор'],
-			colModel: [
-			{name: "id_avtor",index: "id_avtor",editable: true,edittype: "text",hidden: true},{name:"fam_io",index:"fam_io",width:250,editable:true, edittype:"text", search:false, editoptions:{
-      size: 35,
-      dataInit: function (e) {
-        $(e).autocomplete({
-          source: "scripts/unit6/subgridunit6.php?q=1",
-          minLength: 1,
-          focus: function (event, ui) {
-            $(e).val(ui.item.label);
-			return false;
-          },
-          select: function (event, ui) {
-            $(e).val(ui.item.label);
-            $("input#id_avtor").val(ui.item.value);
-			return false;
-          }
-        });}}}],
-		   	rowNum:20,
-			pager: pager_id,
-		   	sortname: 'fam_io',
-		    sortorder: "asc",
-			viewrecords: true,
-			editurl: "scripts/unit6/savesubgridunit6.php?idbook="+row_id,
-		    height: '100%'
-		}).navGrid('#'+pager_id,{view:false, del:false, add:true, edit:false, search:false},{width:375,reloadAfterSubmit:true,zIndex:99},  
-			{width:375,reloadAfterSubmit:true,zIndex:99}, 
-			{},{});
-		},editurl: 'scripts/unit6/saverowunit6.php'
-        }).navGrid('#pager',{view:false, del:false, add:true, edit:true, search:false},{width:770,height:440,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
+			multiselect: true
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false},{width:770,height:440,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
 			{width:770,height:440,reloadAfterSubmit:true}, 
-			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
-	                         function () { 
-          $("#list").jqGrid('excelExport',{"url":"scripts/unit6/excelexport.php"});
-       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"});  
+			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"Выдать ", onClickButton: function(){
+			   								var s;
+											var id_bookg=$("#id_bookg").val();
+											
+	    s = $("#list").jqGrid('getGridParam','selarrrow');
+		              for(var i=0;i<s.length;i++){
+			                                       var cl = s[i];
+				$.ajax({  
+                  type: "POST",  
+                  url: "scripts/unit6/saverowunit61.php",  
+                  data: 'id_book='+id_bookg+'&id_man='+cl,
+		 		  success: function(data){
+					  
+                  $("#giveFormgroup .mass").html(data);
+				  $("#giveFormgroup .mass").hide(3000);
+                 }
+						  
+                    
+                });  
+										  } 
+										  $('#list').trigger("reloadGrid");} , position: "last", title:"Выдать", cursor: "pointer"});  
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
         function updateTable(value) {
-    $("#list").setGridParam({url:"scripts/unit6/getdataunit6.php?idbook="+value,datatype:"json", page:1})
+    $("#list").setGridParam({url:"scripts/unit6/getdataunit6.php?idgroup="+value,datatype:"json", page:1})
       .trigger("reloadGrid"); 
 	$("#list").setGridParam({url:"scripts/unit6/getdataunit6.php",datatype:"json", page:1})
   }
         
+        $('#bookg').autocomplete({
+        source:'scripts/unit6/autocomplete.php?id_q=1',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_bookg").val(ui.item.value);
+		return false; },
+		focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false;
+    }
+	
+    });
+	
+	    $('#groupg').autocomplete({
+        source:'scripts/unit6/autocomplete.php?id_q=2',
+		delay:10,
+		minLength: 1,
+		select: function (event, ui) {
+		$(this).val(ui.item.label); 
+		$("#id_groupg").val(ui.item.value);
+		updateTable(ui.item.value);
+        return false; },
+        focus: function(event, ui) {
+        $(this).val(ui.item.label);
+        return false; 
+    }
+	});
+
+
 
         $('#book').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$("#id_book").val(ui.item.value);
 		$('#book1').val(ui.item.label); 
-		updateTable(ui.item.value);
 		$("#id_book1").val(ui.item.value);
 		$('#book2').val(ui.item.label); 
 		$("#id_book2").val(ui.item.value);
@@ -169,7 +163,7 @@ $("#list").jqGrid({
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man").val(ui.item.value); 
@@ -238,11 +232,10 @@ return i=0;
     $('#book1').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book1').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -269,7 +262,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man1").val(ui.item.value); 
@@ -286,11 +279,10 @@ return i=0;
     $('#book2').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book2').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -317,7 +309,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man2").val(ui.item.value); 
@@ -334,11 +326,10 @@ return i=0;
     $('#book3').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book3').val(ui.item.value);
-		updateTable(ui.item.value); 
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -365,7 +356,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man3").val(ui.item.value); 
@@ -382,11 +373,10 @@ return i=0;
     $('#book4').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book4').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -413,7 +403,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man4").val(ui.item.value); 
@@ -431,11 +421,10 @@ return i=0;
     $('#book5').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book5').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -462,7 +451,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man5").val(ui.item.value); 
@@ -479,11 +468,10 @@ return i=0;
     $('#book6').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book6').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -510,7 +498,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man6").val(ui.item.value); 
@@ -527,11 +515,10 @@ return i=0;
     $('#book7').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book7').val(ui.item.value);
-		updateTable(ui.item.value); 
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -558,7 +545,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man7").val(ui.item.value); 
@@ -575,11 +562,10 @@ return i=0;
     $('#book8').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book8').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -606,7 +592,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man8").val(ui.item.value); 
@@ -623,11 +609,10 @@ return i=0;
     $('#book9').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label); 
 		$('#id_book9').val(ui.item.value); 
-		updateTable(ui.item.value);
         return false; },
         focus: function(event, ui) {
         $(this).val(ui.item.label);
@@ -654,7 +639,7 @@ return i=0;
 	   	$(this).autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=3&id_group='+id_group+'',
 		delay:10,
-		minLength: 3,
+		minLength: 1,
 		select: function (event, ui) {
 		$(this).val(ui.item.label+' '+ui.item.name+' '+ui.item.otch); 
 		$("#id_man9").val(ui.item.value); 
@@ -669,6 +654,14 @@ return i=0;
 	};
 }); 
 //кнопка для очитски значений
+$('#giveFormgroup .fieldg1 .cross').click(function(){
+$('#giveFormgroup .fieldg1 input').val("");
+	
+});
+$('#giveFormgroup .fieldg2 .cross').click(function(){
+$('#giveFormgroup .fieldg2 input').val("");
+$("#list").setGridParam({url:"scripts/unit6/getdataunit6.php",datatype:"json", page:1}).trigger("reloadGrid"); 
+});
 $('.fields .cross').click(function(){
 $('.fields .field input').val("");	
 });

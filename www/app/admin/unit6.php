@@ -13,8 +13,19 @@
 <?php require_once '../../temp/header.php';?>
 <?php require_once '../../temp/adminmenu.php';?>
 <div class="page">
-<div class="contenttable">
-   <div class="table">
+<div class="contenttablefor6">
+<form id="giveFormgroup">
+<div class="fieldg1">
+<label>Книга</label>
+<input type='text' id='id_bookg' hidden='hidden'>
+<input type='text' id='bookg' required placeholder="Введите название книги" title="Начните печатать, появятся варианты из которых нужно выбрать."><div title="Очистить поля" class='cross'></div></div>
+<div class="fieldg2">
+<label>Группа</label>
+<input type='text' id='id_groupg' hidden='hidden'>
+<input type='text' id='groupg' maxlength="20" required  placeholder="Введите группу студента" title="Начните печатать, появятся варианты из которых нужно выбрать."><div title="Очистить поля" class='cross'></div></div>
+<div class="mass"></div>
+</form>
+   <div class="tablefor6">
     <table id="list"></table> 
 	<div id="pager"></div> 
     </div>
@@ -221,7 +232,7 @@
 <div class="sumbitfrom">
 <div class="add"  title="Добавить дополнительную  форму">+</div>
 <div class="remove"  title="Удалить дополнительную форму">-</div>
-<button type="submit">Отправить</button>
+<button type="submit">Выдать</button>
 </div>
 </form>   
 </div>

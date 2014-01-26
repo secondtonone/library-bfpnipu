@@ -18,7 +18,7 @@ try {
     echo json_encode($response);
 	}
 		if ($id_q==2){
-			$res = $dbh->prepare("SELECT `id_group`,`name_group` FROM `group` WHERE `year_okonchan`>=YEAR(CURDATE()) AND `name_group` LIKE ?");
+			$res = $dbh->prepare("SELECT `id_group`,`name_group` FROM `group` WHERE `vipusk`=0 AND `name_group` LIKE ?");
 
 	$res->execute(array("%$term%"));
 

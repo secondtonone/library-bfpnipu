@@ -7,9 +7,9 @@ try {
     $rowsPerPage = $_POST['rows'];
     $sortingField = $_POST['sidx'];
     $sortingOrder = $_POST['sord'];
-    $idbook='';
-	if (isset($_GET['idbook']) && !empty($_GET['idbook'])) {
-    $idbook=$_GET['idbook'];
+    $idgroup='';
+	if (isset($_GET['idgroup']) && !empty($_GET['idgroup'])) {
+    $idgroup=$_GET['idgroup'];
   }
 
 	$qWhere = '';
@@ -18,12 +18,15 @@ try {
 	
 
 	if (isset($_POST['_search']) && $_POST['_search'] == 'true') {
-		$allowedFields = array('name_book','year_create','kod_grif','izdatelstvo','kolvo_str','kolvo_vsego','UDK','name_kratko','ostatok');
+		$allowedFields = array('fam','name','otchestvo','e_mail');
 		$allowedOperations = array('AND', 'OR');
 		
 		$searchData = json_decode($_POST['filters']);
 
 		$qWhere = ' AND ';
+		if (isset($_GET['idgroup']) && !empty($_GET['idgroup'])) {
+        $qWhere = ' WHERE ';
+        }
 		$firstElem = true;
 
 		//объединяем все полученные условия
@@ -60,24 +63,23 @@ try {
 	}
 	
     //определяем количество записей в таблице
-	if (empty($idbook)) {
-     $rows = $dbh->query('SELECT COUNT(id_book) AS count FROM book');
+	if (empty($idgroup)) {
+     $rows = $dbh->query('SELECT COUNT(id_man) AS count FROM student');
     $totalRows = $rows->fetch(PDO::FETCH_ASSOC); }else
-	{$rows = $dbh->prepare('SELECT COUNT(id_book) AS count FROM book WHERE id_book=?');
-	$rows->execute(array($idbook));
+	{$rows = $dbh->prepare('SELECT COUNT(id_man) AS count FROM student WHERE id_group=?');
+	$rows->execute(array($idgroup));
 	$totalRows = $rows->fetch(PDO::FETCH_ASSOC);
 		}
-	
-    $kodkaf=$_SESSION["id_kafedra"];
+
 	
     $firstRowIndex = $curPage * $rowsPerPage - $rowsPerPage;
     //получаем список из базы
-	if (empty($idbook)) {
-    $res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kod_grif`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kodkaf));
+	if (empty($idgroup)) {
+    $res = $dbh->prepare('SELECT s.`id_man`, `fam`, `name`, `otchestvo`,`e_mail` FROM `student` as s INNER JOIN `people` as p ON s.`id_man`=p.`id_man` INNER JOIN `group` as g ON s.`id_group`=g.`id_group`'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array());
 	}else {
-		$res = $dbh->prepare('SELECT b.`id_book`,b.`name_book`,b.`kod_izdat`,b.`kod_grif`,b.`kolvo_str`,b.`year_create`, b.`kolvo_vsego`, b.`UDK`, b.`id_kafedra`, b.`ostatok`FROM `book` as b INNER JOIN `kafedra` as k ON k.`id_kafedra`=b.`id_kafedra` WHERE b.`id_kafedra`=? AND b.`id_book`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
-	$res->execute(array($kodkaf,$idbook));
+		$res = $dbh->prepare('SELECT s.`id_man`, `fam`, `name`, `otchestvo`,`e_mail` FROM `student` as s INNER JOIN `people` as p ON s.`id_man`=p.`id_man` INNER JOIN `group` as g ON s.`id_group`=g.`id_group` WHERE s.`id_group`=?'.$qWhere.' ORDER BY '.$sortingField.' '.$sortingOrder.' LIMIT '.$firstRowIndex.', '.$rowsPerPage);
+	$res->execute(array($idgroup));
 		}
     //сохраняем номер текущей страницы, общее количество страниц и общее количество записей
 	$response = new stdClass();
@@ -87,8 +89,8 @@ try {
 
     $i=0;
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-		$response->rows[$i]['id']=$row['id_book'];
-        $response->rows[$i]['cell']=array($row['id_book'],$row['name_book'],$row['kod_grif'],$row['kod_izdat'],$row['kolvo_str'],$row['year_create'],$row['kolvo_vsego'],$row['UDK'],$row['id_kafedra'],$row['ostatok']);
+		$response->rows[$i]['id']=$row['id_man'];
+        $response->rows[$i]['cell']=array($row['id_man'],$row['fam'],$row['name'],$row['otchestvo'],$row['e_mail']);
 		
         $i++;
     }

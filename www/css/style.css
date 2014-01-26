@@ -178,6 +178,14 @@ footer .border{
 	min-width: 800px;
 	max-width: 1200px;
 		}
+.contenttablefor6 {
+	height: 400px;	
+	margin:19px auto 0px;
+	background-color:rgba(238, 238, 238, 0.5);
+	padding:20px;
+	max-width: 1200px;
+	min-width: 1150px;
+		}
 .contentform {
 	height: 250px;	
 	margin:0px auto;
@@ -229,6 +237,13 @@ footer .border{
 .table .ui-jqgrid {margin:0 auto;
        
 	}
+.tablefor6 {
+	float:right;
+	margin: 0px 80px 0px 0px;
+	}
+	.tablefor6 .ui-jqgrid {margin:0 auto;
+       
+	}
 .subgridform {
 	float:left;
     width: 300px;
@@ -246,6 +261,82 @@ footer .border{
 	max-width:260px;
 	background:rgba(248, 248, 248, 0.8);
   }	
+
+#giveFormgroup .cross {
+	background-image:url(../img/cross.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin:2px 0px 0px 8px;
+	padding:0px 0px;
+	height:30px;
+    width:30px;
+	float:right;
+	cursor: pointer;
+	}
+#giveFormgroup {
+	height: 240px;	
+	padding: 24px 24px 0;
+	margin: 0px 0px 0px 80px;
+	background: #FEFEFE;
+   	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font: 16px/18px Book;
+	color: rgb(12, 6, 207);
+	width: 400px;
+	float:left;
+		}
+#giveFormgroup .fieldg1,#giveFormgroup .fieldg2 {
+	margin:5px 8px;
+	float:left;
+}
+#giveFormgroup .mass {
+	margin:5px 8px;
+	float:left;
+	width: 300px;
+	height:30px;
+	font: 14px sans-serif;
+}
+#giveFormgroup label {
+	display: block;
+	margin: 2px 0 11px;
+}
+#giveFormgroup input {
+    font: 14px sans-serif;
+	color: rgb(12, 6, 207);
+	width: 300px;
+	padding: 9px 13px;
+    border: 1px solid #D2D9DC;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+    -webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 5px #F7F9FA;
+	outline: none;
+	
+}
+#giveFormgroup input:focus {
+	border-color: #B7D4EA;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+	-moz-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+    -webkit-box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 4px #D0E6F6, 0 0 0 5px #F2F8FC;
+}
+#giveFormgroup button {
+	overflow:hidden;
+	padding: 6px 20px;
+	height: 30px;
+ 	color: #FFF;
+    font: bold 13px Arial, Tahoma, sans-serif;
+	background-color: rgb(12, 6, 207);
+	cursor: pointer;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+	margin:50px 10px 30px 0px;
+	float:right;
+}
+#giveFormgroup button:hover {
+	background-color: rgb(12, 6, 167);
+} 
 #giveForm {
 	width: 950px;
 	height: 180px;

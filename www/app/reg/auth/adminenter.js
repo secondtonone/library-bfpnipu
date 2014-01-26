@@ -11,7 +11,7 @@ $(document).ready(function(){
                   data: 'login='+ value1+'&pass='+ value2,
                   beforeSend: function() {$(".page").html("<div id='preloader'></div>");},    
                   success: function(data){if(data=="admin"){
-                                 window.location.href = "unit1.php";
+                                 window.location.href = "unit6.php";
                                                                  }else{
                         $(".page").html("<div id='attentionForm'><a class='attentionText' href='index.php'>"+data+"</a></div>");
 						setTimeout('window.location.href = "index.php"', 3000);
