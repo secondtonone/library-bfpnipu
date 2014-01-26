@@ -113,7 +113,24 @@ $("#list").jqGrid({
 										$('#list').restoreRow(cl);}}, position: "last", title:"Отмена", cursor: "pointer"}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"",buttonicon:"ui-icon-document", onClickButton:
 	                         function () { 
           $("#list").jqGrid('excelExport',{"url":"scripts/unit2/excelexport.php"});
-       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"}); 
+       } , position: "last", title:"Экспорт в Excel", cursor: "pointer"}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"Прием ", onClickButton: function(){
+			   								var s;
+											
+											
+	    s = $("#list").jqGrid('getGridParam','selarrrow');
+		              for(var i=0;i<s.length;i++){
+			                                       var cl = s[i];
+				$.ajax({  
+                  type: "POST",  
+                  url: "scripts/unit2/saverowunit21.php",  
+                  data: 'id_vid='+cl,
+		 		  success: function(data){
+                 }
+						  
+                    
+                });  
+										  } 
+										  $('#list').trigger("reloadGrid");} , position: "last", title:"Принять", cursor: "pointer"});
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  
