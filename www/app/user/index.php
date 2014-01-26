@@ -14,7 +14,7 @@
 <div class="page">
 <form id="loginForm">
 <div class="field">
-<label>Имя пользователя:</label>
+<label>Логин:</label>
 <div class="input" ><input type="text" id="login" autocomplete="on" maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите имя пользователя" title="Должно содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов."></div>
 </div>
 <div class="field">

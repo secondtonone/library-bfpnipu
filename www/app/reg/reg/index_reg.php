@@ -14,7 +14,7 @@
 <form id="regForm">
 <div class="left">
 <div class="field">
-<label>Имя</label>
+<label>Логин</label>
 <input type='text' id='login' maxlength="20" required pattern="^[a-zA-Z0-9]+$" placeholder="Введите имя пользователя" title="Должно содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов.">
 </div>
 <div class="field">

@@ -13,7 +13,7 @@
 <div class="page">
 <form id="loginForm">
 	<div class="field">
-		<label>Имя пользователя:</label>
+		<label>Логин:</label>
 		<div class="input"><input type="text"  id="login" maxlength="20" placeholder="Введите имя пользователя" required pattern="^[a-zA-Z0-9]+$" title="Должно содержать только латинские буквы и цифры от 6 до 20 символов, без других символов и пробелов."></div>
 	</div>
 	<div class="field">
