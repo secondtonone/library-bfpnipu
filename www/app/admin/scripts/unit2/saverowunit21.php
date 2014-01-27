@@ -4,9 +4,7 @@ require_once('../../../scripts/connect.php');
 
     $id = $_POST['id_vid'];
     $datevoz = date("Y-m-d H:i:s");
-	$narukah = $_POST['na_rukah'];
-	$poterya = $_POST['poterya'];
-	$prim = $_POST['primechanie'];
+
 	
 try {
     $vid = $dbh->prepare('SELECT v.`na_rukah`,v.`poterya`,v.`id_book`,b.`id_kafedra` FROM `vidacha` v INNER JOIN `book` b ON v.`id_book`=b.`id_book` WHERE v.`id_vid`=?');
