@@ -1,1 +1,1 @@
-<footer><div class="border">Модуль информационной системы библиотечного учета методических пособий кафедр БФ ПНИПУ &copy; Кузнецов Максим 2012-<?php echo date("Y"); ?></div></footer><div class="ver">v. 2.0 rc1</div>
+<footer><div class="border">Модуль информационной системы библиотечного учета методических пособий кафедр БФ ПНИПУ &copy; Кузнецов Максим 2012-<?php echo date("Y"); ?></div></footer><div class="ver">v. 2.0 sr1</div>

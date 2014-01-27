@@ -118,6 +118,9 @@ $("#list").jqGrid({
 											
 											
 	    s = $("#list").jqGrid('getGridParam','selarrrow');
+		 if (s==false)
+										  { alert("Поля не отмечаны!");
+											  }else{
 		              for(var i=0;i<s.length;i++){
 			                                       var cl = s[i];
 				$.ajax({  
@@ -130,7 +133,7 @@ $("#list").jqGrid({
                     
                 });  
 										  } 
-										  $('#list').trigger("reloadGrid");} , position: "last", title:"Принять", cursor: "pointer"});
+										  $('#list').trigger("reloadGrid");}} , position: "last", title:"Принять", cursor: "pointer"});
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 
  });  

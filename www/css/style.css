@@ -286,7 +286,8 @@ footer .border{
 	width: 400px;
 	float:left;
 		}
-#giveFormgroup .fieldg1,#giveFormgroup .fieldg2 {
+#giveFormgroup .fieldg1,
+#giveFormgroup .fieldg2 {
 	margin:5px 8px;
 	float:left;
 }

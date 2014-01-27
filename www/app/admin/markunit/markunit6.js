@@ -33,26 +33,25 @@ $("#list").jqGrid({
         }).navGrid('#pager',{view:false, del:false, add:false, edit:false, search:false},{width:770,height:440,reloadAfterSubmit:true},{width:770,height:400,reloadAfterSubmit:true},  
 			{width:770,height:440,reloadAfterSubmit:true}, 
 			{},{}).navSeparatorAdd("#pager",{sepclass:"ui-separator",sepcontent: ''}).navButtonAdd("#pager",{caption:"Выдать ", onClickButton: function(){
-			   								var s;
+			   								var s = $("#list").jqGrid('getGridParam','selarrrow');
 											var id_bookg=$("#id_bookg").val();
-											
-	    s = $("#list").jqGrid('getGridParam','selarrrow');
+										if (id_bookg==false)
+										  { alert("Не выбрано издание!");}
+										  else if (s==false)
+										  {	alert("Не выбран студент!");} 
+										  else{
 		              for(var i=0;i<s.length;i++){
-			                                       var cl = s[i];
-				$.ajax({  
+			          var cl = s[i];
+				     $.ajax({  
                   type: "POST",  
                   url: "scripts/unit6/saverowunit61.php",  
                   data: 'id_book='+id_bookg+'&id_man='+cl,
 		 		  success: function(data){
-					  
                   $("#giveFormgroup .mass").html(data);
 				  $("#giveFormgroup .mass").hide(3000);
                  }
-						  
-                    
-                });  
-										  } 
-										  $('#list').trigger("reloadGrid");} , position: "last", title:"Выдать", cursor: "pointer"});  
+                });} 
+				$('#list').trigger("reloadGrid");} }, position: "last", title:"Выдать", cursor: "pointer"});  
 		$("#list").jqGrid('filterToolbar',{searchOperators:true,stringResult:true,searchOnEnter:false});
 //autocomplete для певого поля
         function updateTable(value) {
@@ -60,6 +59,7 @@ $("#list").jqGrid({
       .trigger("reloadGrid"); 
 	$("#list").setGridParam({url:"scripts/unit6/getdataunit6.php",datatype:"json", page:1})
   }
+
         
         $('#bookg').autocomplete({
         source:'scripts/unit6/autocomplete.php?id_q=1',
@@ -660,6 +660,10 @@ $('#giveFormgroup .fieldg1 input').val("");
 });
 $('#giveFormgroup .fieldg2 .cross').click(function(){
 $('#giveFormgroup .fieldg2 input').val("");
+$("#list").setGridParam({url:"scripts/unit6/getdataunit6.php",datatype:"json", page:1}).trigger("reloadGrid"); 
+});
+$('#giveFormgroup .fieldg3 .cross').click(function(){
+$('#giveFormgroup .fieldg3 input').val("");
 $("#list").setGridParam({url:"scripts/unit6/getdataunit6.php",datatype:"json", page:1}).trigger("reloadGrid"); 
 });
 $('.fields .cross').click(function(){
