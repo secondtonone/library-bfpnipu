@@ -24,7 +24,7 @@ $("#list").jqGrid({
       size: 10,
       dataInit: function (e) {
         $(e).autocomplete({
-          source: "scripts/unit5/autocomplete.php?q=1",
+          source: "scripts/unit6/autocomplete.php?id_q=2",
           minLength: 1,
           focus: function (event, ui) {
             $(e).val(ui.item.label);
